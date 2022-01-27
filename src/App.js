@@ -1,6 +1,5 @@
 import "./App.css";
-import Form from "./Form/Form";
-import LogIn from "./Form/logIn";
+import LogIn from "./logIn/logIn";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "../src/Pages/Dashboard";
 
