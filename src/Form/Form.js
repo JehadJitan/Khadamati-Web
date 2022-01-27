@@ -14,20 +14,18 @@ function Form() {
   }
 
   return (
-    <>
-      <div className="form-container">
-        <span className="close-btn">x</span>
-        <div className="form-content-left">
-          <img src="img/img-2.png" alt="logo" className="form-img"></img>
-        </div>
-        {!isSubmitted ? <FormSignup submitForm={submitForm} /> : <Dashboard />}
-        <Router>
-          <Switch>
-            <Route path="/DB" exact component={Dashboard} />
-          </Switch>
-        </Router>
+    <div className="form-container">
+      <span className="close-btn">x</span>
+      <div className="form-content-left">
+        <img src="img/img-2.png" alt="logo" className="form-img"></img>
       </div>
-    </>
+      {!isSubmitted ? <FormSignup submitForm={submitForm} /> : <Dashboard />}
+      <Router>
+        <Switch>
+          <Route path="/DB" exact component={Dashboard} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 

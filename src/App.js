@@ -1,12 +1,17 @@
-import './App.css';
+import "./App.css";
 import Form from "./Form/Form";
+import LogIn from "./Form/logIn";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Dashboard from "../src/Pages/Dashboard";
 
 function App() {
   return (
-    <>
-      <style id="backG">{'body {background-repeat: no-repeat;  background-size: cover; background-position: center; background-image: url("https://images.pexels.com/photos/169677/pexels-photo-169677.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");}'}</style>
-      <Form />
-    </>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={LogIn} />
+        <Route path="/DB" component={Dashboard} />
+      </Switch>
+    </Router>
   );
 }
 

@@ -1,24 +1,22 @@
-
 .parent {
-    margin: 1rem;
-    padding: 2rem 2rem;
-    text-align: center;
-  }
-  .child {
-    display: inline-block;
-    padding: 1rem 1rem;
-    vertical-align: middle;
-    margin: 20px;
-  }
-  #txt{
-    color:white;
-    text-align: right;
-    font-size: 20px;
-    line-height: 2rem;
-    margin-right: 20px;
-    
-  }
-  #img2{
-      width: 900px;
-      height: 600px;
-  }
+  margin: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.child {
+  display: inline-block;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-right: 100px;
+}
+#txt {
+  color: white;
+  font-size: 20px;
+  line-height: 2rem;
+  direction: rtl;
+  text-align: justify;
+}
+#img2 {
+  width: 900px;
+  height: 600px;
+}
