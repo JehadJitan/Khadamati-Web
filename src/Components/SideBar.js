@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import { SideBarData } from './SideBarData';
+import SubMenu from './SubMenu';
+import { IconContext } from 'react-icons/lib';
+import mainLogo from './webLogo2.png'
+const Nav = styled.div`
+background: #15171c;
+height:80px;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+`;
+
+const KhadamatiLogo = styled.span`
+    margin-left:2rem;
+`;
+
+const NavIcon = styled(Link)`
+    margin-right:2rem;
+    font-size:2rem;
+    height:80px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    color:white;
+`;
+
+const SideBarNav = styled.nav`
+    background: #15171c;
+    width:300px;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    position:fixed;
+    top:0;
+    right:${({ sidebar }) => (sidebar ? '0' : '-100%')};
+    transition:350ms;
+    z-index:10;
+`;
+
+const SideBarWrap = styled.nav`
+    width:100%;
+`;
+
+const KhadamtiTitle = styled.span`
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size: 2em;
+    font-weight:bold;
+`;
+
+const SideBar = () => {
+
+    const [sidebar, setSidebar] = useState(false);
+
+    const showSideBar = () => setSidebar(!sidebar);
+
+    return <>
+        <Nav>
+            <KhadamatiLogo>
+                <img src={mainLogo} alt="fireSpot" width={150} />
+            </KhadamatiLogo>
+            <KhadamtiTitle className='title'>لوحة القيادة</KhadamtiTitle>
+            <NavIcon to="#">
+                <FaIcons.FaBars onClick={showSideBar} />
+            </NavIcon>
+        </Nav>
+        <SideBarNav sidebar={sidebar}>
+            <SideBarWrap>
+                <NavIcon to="#">
+                    <AiIcons.AiOutlineClose onClick={showSideBar} />
+                </NavIcon>
+                {SideBarData.map((item, index) => {
+                    return <SubMenu item={item} key={index} />;
+                })}
+            </SideBarWrap>
+        </SideBarNav>
+    </>;
+};
+
+export default SideBar;
