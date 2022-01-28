@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import NameList from './NameList';
 import ServiceList from './ServiceList';
 
 const ServiceDiv = styled.div`
@@ -10,7 +9,7 @@ const ServiceDiv = styled.div`
     align-items:center;
     margin:auto;
     width:600px;
-    height:650px;
+    height:550px;
     border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;

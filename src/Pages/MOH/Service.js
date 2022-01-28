@@ -2,11 +2,11 @@ import React from 'react';
 import './Employee.css'
 function Service({ service }) {
     return <div>
-        <table>
+        <table border="1" width="550">
             <tr>
-                <th>تفاصيل الخدمة</th>
-                <th>الخدمة</th>
-                <th>رقم الخدمة</th>
+                <th width="50%">تفاصيل الخدمة</th>
+                <th width="30%">الخدمة</th>
+                <th width="20%">رقم الخدمة</th>
             </tr>
             <tr>
                 <td>{service.description}</td>

@@ -2,12 +2,12 @@ import React from 'react';
 import './Employee.css'
 function Employee({ employee }) {
     return <div>
-        <table>
+        <table border="1" width="550">
             <tr>
-                <th>الوظيفه</th>
-                <th>رقم الهوية</th>
-                <th>العمر</th>
-                <th>الإسم الكامل</th>
+                <th width="30%">الوظيفه</th>
+                <th width="20%">رقم الهوية</th>
+                <th width="10%">العمر</th>
+                <th width="40%">الإسم الكامل</th>
 
             </tr>
             <tr>

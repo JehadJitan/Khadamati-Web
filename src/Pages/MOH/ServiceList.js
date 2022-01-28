@@ -1,5 +1,4 @@
 import React from 'react';
-import Employee from './Employee';
 import Service from './Service';
 
 function ServiceList() {

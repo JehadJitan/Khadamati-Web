@@ -8,7 +8,7 @@ const EmployeeDiv = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:500px;
+    width:600px;
     height:500px;
     border: 4px solid #d31818;
     margin-top:100px;

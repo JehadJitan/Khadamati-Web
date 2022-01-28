@@ -1,8 +1,9 @@
 table {
     font-family: arial, sans-serif;
+    margin-top: 15px;
     border-collapse: collapse;
     margin: auto;
-    margin-top: 15px;;
+
   }
   
   td, th {

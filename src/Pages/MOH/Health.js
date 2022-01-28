@@ -10,7 +10,7 @@ const EmployeeDiv = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:500px;
+    width:600px;
     height:500px;
     border: 4px solid #d31818;
     margin-top:100px;
@@ -25,7 +25,7 @@ const ServiceDiv = styled.div`
     align-items:center;
     margin:auto;
     width:600px;
-    height:650px;
+    height:550px;
     border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
