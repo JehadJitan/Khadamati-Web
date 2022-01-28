@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import phonesMockup from "./2_phones.png";
 
 import "./About.css";
