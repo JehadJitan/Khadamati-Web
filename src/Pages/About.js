@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import mainLogo from "./2_phones.png";
+import mainLogo from "../Images/2_phones.png";
 
 import "./About.css";
 const About = () => {

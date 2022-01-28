@@ -5,8 +5,8 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SideBarData } from './SideBarData';
 import SubMenu from './SubMenu';
-import { IconContext } from 'react-icons/lib';
-import mainLogo from './webLogo2.png'
+import mainLogo from '../Images/webLogo2.png'
+import { useHistory } from "react-router-dom";
 const Nav = styled.div`
 background: #15171c;
 height:80px;
@@ -62,10 +62,17 @@ const SideBar = () => {
 
     const showSideBar = () => setSidebar(!sidebar);
 
+    const history = useHistory();
+
+    const routeChange = () => {
+        let path = `/DB`;
+        history.push(path);
+    }
+
     return <>
         <Nav>
             <KhadamatiLogo>
-                <img src={mainLogo} alt="fireSpot" width={150} />
+                <img src={mainLogo} alt="khadamatiLogo" width={150} onClick={routeChange} id='khadamatiIcon' />
             </KhadamatiLogo>
             <KhadamtiTitle className='title'>لوحة القيادة</KhadamtiTitle>
             <NavIcon to="#">

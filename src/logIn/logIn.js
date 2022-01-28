@@ -5,8 +5,8 @@ import useForm from "./useForm";
 import validate from "./validateInfo";
 import { useHistory } from "react-router-dom";
 
-const LogIn = () => {
-  const { handleChange, handleSubmit, values, errors } = useForm(validate);
+const LogIn = ({ submitForm }) => {
+  const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validate);
   let history = useHistory();
 
   return (
@@ -65,7 +65,20 @@ const LogIn = () => {
                 className="form-input-btn"
                 type="submit"
                 onClick={() => {
-                  history.push("/DB");
+                  if (!values.email) {
+                    errors.email = "خطأ في البريد الالكتروني"
+                  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+                    errors.email = 'Email invalid';
+                  } else {
+                    history.push("/DB");
+                  }
+                  if (!values.password) {
+                    errors.password = 'خطأ في كلمة المرور';
+                  } else if (values.password.length < 6) {
+                    errors.password = 'يجب أن تكون كلمة المرور أطول من سته احرف';
+                  } else {
+                    history.push("/DB");
+                  }
                 }}
               >
                 تسجيل الدخول

@@ -8,6 +8,7 @@ import * as GiIcons from 'react-icons/gi';
 import * as HiIcons from 'react-icons/hi';
 import * as BsIcons from 'react-icons/bs';
 import * as MdIcons from 'react-icons/md';
+
 export const SideBarData = [
     {
         title: 'وزارة الصحة',
@@ -133,6 +134,11 @@ export const SideBarData = [
         title: 'عن النظام',
         path: '/DB/about',
         icon: <FcIcons.FcAbout />
+    },
+    {
+        title: 'تسجيل الخروج',
+        path: '/',
+        icon: <RiIcons.RiLogoutBoxFill />
     }
 
 ];
