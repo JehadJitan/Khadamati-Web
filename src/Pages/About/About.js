@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import mainLogo from "../Images/2_phones.png";
+import phonesMockup from "./2_phones.png";
 
 import "./About.css";
 const About = () => {
@@ -10,7 +9,7 @@ const About = () => {
       <style>{"body { background-color: #2d2f3b; }"}</style>
       <div className="parent">
         <div className="child" id="image">
-          <img src={mainLogo} alt="fireSpot" id="img2"></img>
+          <img src={phonesMockup} alt="fireSpot" id="img2"></img>
         </div>
         <div className="child" id="txt">
           <p

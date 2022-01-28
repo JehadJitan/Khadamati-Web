@@ -1,5 +1,6 @@
 import React from 'react';
-import './Employee.css'
+import './TableStyle.css'
+
 function Employee({ employee }) {
     return <div>
         <table border="1" width="550">

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Form.css";
-import "../App.css";
 import useForm from "./useForm";
 import validate from "./validateInfo";
 import { useHistory } from "react-router-dom";
+import logo from './img-2.png'
 
 const LogIn = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validate);
@@ -21,7 +21,7 @@ const LogIn = ({ submitForm }) => {
         <div className="form-container">
           <span className="close-btn">x</span>
           <div className="form-content-left">
-            <img src="img/img-2.png" alt="logo" className="form-img"></img>
+            <img src={logo} alt="Khadamati-logo" className="form-img"></img>
           </div>
           <div className="form-content-right">
             <form className="form" onSubmit={handleSubmit} noValidate>

@@ -1,13 +1,13 @@
-import SideBar from "../Components/SideBar";
+import SideBar from "../Components/NavBar/SideBar";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './Dashboard.css';
-import About from "./About"
+import About from "./About/About"
 import Health from "./MOH/Health"
 import Finance from "./Finance"
 import Transportation from "./Transportation"
 import Interior from "./Interior"
 import Property from "./Property"
-import LogIn from "../logIn/logIn";
+import LogIn from "../Components/logIn/logIn";
 import HealthEmployees from "./MOH/HealthEmployees";
 import HealthServices from "./MOH/HealthServices";
 

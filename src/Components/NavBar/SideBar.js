@@ -5,14 +5,15 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SideBarData } from './SideBarData';
 import SubMenu from './SubMenu';
-import mainLogo from '../Images/webLogo2.png'
+import mainLogo from './webLogo2.png'
 import { useHistory } from "react-router-dom";
 const Nav = styled.div`
 background: #15171c;
 height:80px;
 display:flex;
-justify-content:flex-end;
+justify-content:center;
 align-items:center;
+justify-content: space-between;
 `;
 
 const KhadamatiLogo = styled.span`
@@ -48,12 +49,13 @@ const SideBarWrap = styled.nav`
 
 const KhadamtiTitle = styled.span`
     color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    // display:flex;
+    // justify-content:center;
+    // align-items:center;
     margin:auto;
     font-size: 2em;
     font-weight:bold;
+    text-align: center;
 `;
 
 const SideBar = () => {
