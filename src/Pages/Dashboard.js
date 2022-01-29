@@ -38,15 +38,15 @@ function Dashboard() {
             </Router>
             <div id="parent">
                 <div id="left">
-                    <BsIcons.BsPeopleFill /><h1>العدد المواطنين</h1>
+                    <BsIcons.BsPeopleFill /><h1>عدد المواطنين</h1>
                     <h2>5,297,327</h2>
                 </div>
                 <div id="center">
-                    <BsIcons.BsPeopleFill /><h1>العدد الموظفين</h1>
+                    <BsIcons.BsPeopleFill /><h1>عدد الموظفين</h1>
                     <h2>2,134,882</h2>
                 </div>
                 <div id="right">
-                    <BsIcons.BsPeopleFill /><h1>العدد المستخدمين</h1>
+                    <BsIcons.BsPeopleFill /><h1>عدد المستخدمين</h1>
                     <h2>297,327</h2>
                 </div>
             </div>

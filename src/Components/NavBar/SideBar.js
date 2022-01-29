@@ -49,9 +49,6 @@ const SideBarWrap = styled.nav`
 
 const KhadamtiTitle = styled.span`
     color:white;
-    // display:flex;
-    // justify-content:center;
-    // align-items:center;
     margin:auto;
     font-size: 2em;
     font-weight:bold;
