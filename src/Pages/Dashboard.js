@@ -17,7 +17,7 @@ function Dashboard() {
         <>
             <style id="backG">
                 {
-                    'body {background-color: #ede0d4;}'
+                    'body {background-color: #f5f5f5;}'
                 }
             </style>
             <Router>

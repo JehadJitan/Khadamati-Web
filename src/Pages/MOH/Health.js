@@ -12,10 +12,12 @@ const EmployeeDiv = styled.div`
     margin:auto;
     width:600px;
     height:500px;
-    border: 4px solid #d31818;
+    // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
     border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
 `;
 
 const ServiceDiv = styled.div`
@@ -26,14 +28,17 @@ const ServiceDiv = styled.div`
     margin:auto;
     width:600px;
     height:550px;
-    border: 4px solid #d31818;
+    // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
     border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
 `;
 
 const Title = styled.h2`
     margin-bottom:0px;
+    color:#d31818;
 `;
 
 const CustomDiv = styled.div`
