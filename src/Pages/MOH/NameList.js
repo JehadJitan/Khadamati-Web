@@ -4,21 +4,34 @@ import Employee from './Employee';
 function NameList() {
     const employees = [{
         name: 'جهاد الجيطان',
+        gender: 'ذكر',
         age: 22,
         id: 1171858,
-        role: 'رئيس قسم المحاسبة'
+        phone: 594222110,
+        role: 'رئيس قسم المحاسبة',
+        email: 'example@gmail.com',
+        password: 'example123'
+
     },
     {
         name: 'طارق خوري',
-        age: 25,
+        gender: 'انثى',
+        age: 34,
         id: 1173019,
-        role: 'مساعد إداري'
+        phone: 594222110,
+        role: 'رئيس قسم المحاسبة',
+        email: 'example34@gmail.com',
+        password: '123example'
     },
     {
         name: 'عيسى سلامة',
-        age: 30,
-        id: 1177896,
-        role: 'مدير عام وزارة الصحة'
+        gender: 'ذكر',
+        age: 50,
+        id: 1179534,
+        phone: 524779538,
+        role: 'رئيس قسم المحاسبة',
+        email: 'example50@gmail.com',
+        password: 'test12345'
     }
     ]
     const employeeList = employees.map(employee =>

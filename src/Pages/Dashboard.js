@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './Dashboard.css';
 import About from "./About/About"
 import Health from "./MOH/Health"
-import Finance from "./Finance"
-import Transportation from "./Transportation"
-import Interior from "./Interior"
-import Property from "./Property"
+import Finance from "./MOF/Finance"
+import Transportation from "./MOT/Transportation"
+import Interior from "./MOI/Interior"
+import Property from "./MOP/Property"
 import LogIn from "../Components/logIn/logIn";
 import HealthEmployees from "./MOH/HealthEmployees";
 import HealthServices from "./MOH/HealthServices";
+import * as BsIcons from 'react-icons/bs';
 
 function Dashboard() {
 
@@ -35,6 +36,20 @@ function Dashboard() {
                     <Route path="/" exact component={LogIn} />
                 </Switch>
             </Router>
+            <div id="parent">
+                <div id="left">
+                    <BsIcons.BsPeopleFill /><h1>العدد المواطنين</h1>
+                    <h2>5,297,327</h2>
+                </div>
+                <div id="center">
+                    <BsIcons.BsPeopleFill /><h1>العدد الموظفين</h1>
+                    <h2>2,134,882</h2>
+                </div>
+                <div id="right">
+                    <BsIcons.BsPeopleFill /><h1>العدد المستخدمين</h1>
+                    <h2>297,327</h2>
+                </div>
+            </div>
         </>
     );
 }

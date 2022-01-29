@@ -10,8 +10,8 @@ const EmployeeDiv = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:600px;
-    height:500px;
+    width:1100px;
+    height:650px;
     // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
@@ -26,8 +26,8 @@ const ServiceDiv = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:600px;
-    height:550px;
+    width:1100px;
+    height:650px;
     // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
@@ -37,7 +37,7 @@ const ServiceDiv = styled.div`
 `;
 
 const Title = styled.h2`
-    margin-bottom:0px;
+    margin-top:20px;
     color:#d31818;
 `;
 
@@ -47,11 +47,19 @@ const CustomDiv = styled.div`
     justify-content: center;
 `;
 
+const CustomDiv2 = styled.div`
+    margin-top:50px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 25px;
+    border-bottom: 2px solid black;
+`;
+
 const ButtonStyle = styled.button`
     color:#dad7cd;
     display:flex;
-    height:30px;
-    width:120px;
+    height:40px;
+    width:150px;
     justify-content:center;
     align-items:center;
     border-radius: 25px;
@@ -59,22 +67,27 @@ const ButtonStyle = styled.button`
     cursor:pointer;
     background-color:#252831;
     font-weight: bold;
-    margin:20px;
+    font-size:15px;
+    margin:10px;
+
+    &:hover {
+          background-color: #d31818;
+    }
 `;
 
 function Health() {
     return (
         <div>
-            <CustomDiv>
-                <h1>وزارة الصحة</h1>
-            </CustomDiv>
+            <CustomDiv2>
+                <h1>وزارة الصحة الفلسطينية</h1>
+            </CustomDiv2>
             <EmployeeDiv className='title'>
                 <Title>لائحة الموظفين</Title>
                 <CustomDiv>
                     <NameList />
                 </CustomDiv>
                 <CustomDiv>
-                    <ButtonStyle>إضافة موظف</ButtonStyle>
+                    <ButtonStyle className='button'>إضافة موظف</ButtonStyle>
                     <ButtonStyle>تعديل موظف</ButtonStyle>
                     <ButtonStyle>حذف موظف</ButtonStyle>
                 </CustomDiv>
