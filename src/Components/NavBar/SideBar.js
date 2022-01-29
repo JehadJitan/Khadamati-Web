@@ -8,6 +8,9 @@ import SubMenu from './SubMenu';
 import mainLogo from './webLogo2.png'
 import { useHistory } from "react-router-dom";
 const Nav = styled.div`
+position: fixed;
+top: 0;
+width: 100%;
 background: #15171c;
 height:80px;
 display:flex;

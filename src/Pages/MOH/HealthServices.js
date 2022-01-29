@@ -56,10 +56,12 @@ const ButtonStyle = styled.button`
         background-color: #d31818;
   }
 `;
-
+const GeneralDiv = styled.div`
+    margin-top:100px;
+`;
 function Health() {
     return (
-        <div>
+        <GeneralDiv>
             <CustomDiv2>
                 <h1>خدمات وزارة الصحة الفلسطينية</h1>
             </CustomDiv2>
@@ -75,7 +77,7 @@ function Health() {
                 </CustomDiv>
             </ServiceDiv>
 
-        </div>
+        </GeneralDiv>
     );
 }
 

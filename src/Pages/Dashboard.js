@@ -16,11 +16,6 @@ function Dashboard() {
 
     return (
         <>
-            <style id="backG">
-                {
-                    'body {background-color: #f5f5f5;}'
-                }
-            </style>
             <Router>
                 <SideBar />
                 <Switch>

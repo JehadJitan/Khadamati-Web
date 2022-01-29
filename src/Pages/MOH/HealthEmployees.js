@@ -8,7 +8,7 @@ const EmployeeDiv = styled.div`
     align-items:center;
     margin:auto;
     width:1100px;
-    height:650px;
+    height:550px;
     // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
@@ -35,7 +35,9 @@ const CustomDiv2 = styled.div`
     padding-bottom: 25px;
     border-bottom: 2px solid black;
 `;
-
+const GeneralDiv = styled.div`
+    margin-top:100px;
+`;
 const ButtonStyle = styled.button`
     color:#dad7cd;
     display:flex;
@@ -58,7 +60,7 @@ const ButtonStyle = styled.button`
 
 function HealthEmployees() {
     return (
-        <div>
+        <GeneralDiv>
             <CustomDiv2>
                 <h1>موظفين وزارة الصحة الفلسطينية</h1>
             </CustomDiv2>
@@ -73,7 +75,7 @@ function HealthEmployees() {
                     <ButtonStyle>حذف موظف</ButtonStyle>
                 </CustomDiv>
             </EmployeeDiv>
-        </div>
+        </GeneralDiv>
     );
 }
 

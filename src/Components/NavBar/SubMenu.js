@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IoMdHeartEmpty } from 'react-icons/io';
 import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 

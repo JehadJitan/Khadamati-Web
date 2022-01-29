@@ -11,13 +11,17 @@ const EmployeeDiv = styled.div`
     align-items:center;
     margin:auto;
     width:1100px;
-    height:650px;
+    height:550px;
     // border: 4px solid #d31818;
     margin-top:100px;
     padding: 5px;
     border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
     background-color: #ffffff;
+`;
+
+const GeneralDiv = styled.div`
+    margin-top:100px;
 `;
 
 const ServiceDiv = styled.div`
@@ -77,7 +81,7 @@ const ButtonStyle = styled.button`
 
 function Health() {
     return (
-        <div>
+        <GeneralDiv>
             <CustomDiv2>
                 <h1>وزارة الصحة الفلسطينية</h1>
             </CustomDiv2>
@@ -105,7 +109,7 @@ function Health() {
                 </CustomDiv>
             </ServiceDiv>
 
-        </div>
+        </GeneralDiv>
     );
 }
 
