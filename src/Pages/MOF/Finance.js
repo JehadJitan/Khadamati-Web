@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '@mui/material/Button';
 function Finance() {
-    return <div>
-        <Button variant="contained">Hello World</Button>
-        <Button size="medium">Contained</Button>
+    return <div style={{
+        "margin-top": 100
+    }}>
         <h1>Finance Page</h1>
     </div>;
 }

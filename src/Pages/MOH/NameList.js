@@ -34,11 +34,9 @@ function NameList() {
         password: 'test12345'
     }
     ]
-    const employeeList = employees.map(employee =>
-        <Employee employee={employee}></Employee>
-    );
+
     return <div>
-        {employeeList}
+        <Employee employees={employees} />
     </div>;
 }
 

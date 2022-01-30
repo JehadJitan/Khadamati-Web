@@ -11,7 +11,7 @@ import * as MdIcons from 'react-icons/md';
 export const SideBarData = [
     {
         title: 'وزارة الصحة',
-        path: '/DB/MinistryOfHealth',
+        path: '/DB',
         icon: <GiIcons.GiHealthNormal />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -29,6 +29,30 @@ export const SideBarData = [
             {
                 title: 'التقارير',
                 path: '/DB/MinistryOfHealth/reports',
+                icon: <HiIcons.HiDocumentReport />,
+            }
+        ]
+    },
+    {
+        title: 'وزارة الداخلية',
+        path: '/DB',
+        icon: <HiIcons.HiIdentification />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'الموظفين',
+                path: '/DB/MinistryOfInteriorAffairs/employees',
+                icon: <BsIcons.BsFillPersonFill />,
+            },
+            {
+                title: 'الخدمات',
+                path: '/DB/MinistryOfInteriorAffairs/services',
+                icon: <MdIcons.MdOutlineMiscellaneousServices />,
+            },
+            {
+                title: 'التقارير',
+                path: '/DB/MinistryOfInteriorAffairs/reports',
                 icon: <HiIcons.HiDocumentReport />,
             }
         ]
@@ -77,30 +101,6 @@ export const SideBarData = [
             {
                 title: 'التقارير',
                 path: '/DB/MinistryOfTransportation/reports',
-                icon: <HiIcons.HiDocumentReport />,
-            }
-        ]
-    },
-    {
-        title: 'وزارة الداخلية',
-        path: '/DB/MinistryOfInteriorAffairs',
-        icon: <HiIcons.HiIdentification />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
-        subNav: [
-            {
-                title: 'الموظفين',
-                path: '/DB/MinistryOfInteriorAffairs/employees',
-                icon: <BsIcons.BsFillPersonFill />,
-            },
-            {
-                title: 'الخدمات',
-                path: '/DB/MinistryOfInteriorAffairs/services',
-                icon: <MdIcons.MdOutlineMiscellaneousServices />,
-            },
-            {
-                title: 'التقارير',
-                path: '/DB/MinistryOfInteriorAffairs/reports',
                 icon: <HiIcons.HiDocumentReport />,
             }
         ]

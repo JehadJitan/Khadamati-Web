@@ -1,7 +1,7 @@
 import React from 'react';
 import './TableStyle.css'
 
-function Employee({ employee }) {
+function Employee({ employees }) {
     return <div>
         <table border="1" width="1050">
             <tr>
@@ -14,16 +14,20 @@ function Employee({ employee }) {
                 <th width="5%">الجنس</th>
                 <th width="20%">الإسم الكامل</th>
             </tr>
-            <tr>
-                <td>{employee.password}</td>
-                <td>{employee.email}</td>
-                <td>{employee.role}</td>
-                <td>{employee.phone}</td>
-                <td>{employee.id}</td>
-                <td>{employee.age}</td>
-                <td>{employee.gender}</td>
-                <td>{employee.name}</td>
-            </tr>
+
+            {
+                employees.map(employee => <>
+                    <tr>
+                        <td>{employee.password}</td>
+                        <td>{employee.email}</td>
+                        <td>{employee.role}</td>
+                        <td>{employee.phone}</td>
+                        <td>{employee.id}</td>
+                        <td>{employee.age}</td>
+                        <td>{employee.gender}</td>
+                        <td>{employee.name}</td>
+                    </tr></>)
+            }
         </table>
     </div>;
 }

@@ -1,7 +1,9 @@
 import React from 'react';
 
 function Property() {
-    return <div><h1>Property Page</h1></div>;
+    return <div style={{
+        "margin-top": 100
+    }}><h1>Property Page</h1></div>;
 }
 
 export default Property;
