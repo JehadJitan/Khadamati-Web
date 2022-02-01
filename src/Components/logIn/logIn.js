@@ -83,7 +83,7 @@ const LogIn = ({ submitForm }) => {
               >
                 تسجيل الدخول
               </button>
-              {/* <span className='form-input-login'>هل لديك حساب؟ إضغط <a href='#'>هنا</a></span> */}
+              <span className='form-input-login'>هل نسيت كلمة المرور؟ إضغط <a href='#'>هنا</a></span>
             </form>
           </div>
         </div>

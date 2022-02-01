@@ -7,11 +7,12 @@ import * as GiIcons from 'react-icons/gi';
 import * as HiIcons from 'react-icons/hi';
 import * as BsIcons from 'react-icons/bs';
 import * as MdIcons from 'react-icons/md';
+import * as IoIcons from 'react-icons/io';
 
 export const SideBarData = [
     {
         title: 'وزارة الصحة',
-        path: '/DB',
+        // path: '/DB',
         icon: <GiIcons.GiHealthNormal />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -27,6 +28,11 @@ export const SideBarData = [
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfHealth/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
                 title: 'التقارير',
                 path: '/DB/MinistryOfHealth/reports',
                 icon: <HiIcons.HiDocumentReport />,
@@ -35,7 +41,7 @@ export const SideBarData = [
     },
     {
         title: 'وزارة الداخلية',
-        path: '/DB',
+        // path: '/DB',
         icon: <HiIcons.HiIdentification />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -51,6 +57,11 @@ export const SideBarData = [
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfInteriorAffairs/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
                 title: 'التقارير',
                 path: '/DB/MinistryOfInteriorAffairs/reports',
                 icon: <HiIcons.HiDocumentReport />,
@@ -59,7 +70,7 @@ export const SideBarData = [
     },
     {
         title: 'وزارة المالية',
-        path: '/DB/MinistryOfFinance',
+        // path: '/DB/MinistryOfFinance',
         icon: <RiIcons.RiBankCard2Fill />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -75,6 +86,11 @@ export const SideBarData = [
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfFinance/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
                 title: 'التقارير',
                 path: '/DB/MinistryOfFinance/reports',
                 icon: <HiIcons.HiDocumentReport />,
@@ -83,7 +99,7 @@ export const SideBarData = [
     },
     {
         title: 'وزارة المواصلات',
-        path: '/DB/MinistryOfTransportation',
+        // path: '/DB/MinistryOfTransportation',
         icon: <AiIcons.AiFillCar />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -99,6 +115,11 @@ export const SideBarData = [
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfTransportation/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
                 title: 'التقارير',
                 path: '/DB/MinistryOfTransportation/reports',
                 icon: <HiIcons.HiDocumentReport />,
@@ -107,7 +128,7 @@ export const SideBarData = [
     },
     {
         title: 'وزارة الأملاك والأراضي',
-        path: '/DB/MinistryOfLandMark',
+        // path: '/DB/MinistryOfLandMark',
         icon: <FaIcons.FaLandmark />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -121,6 +142,11 @@ export const SideBarData = [
                 title: 'الخدمات',
                 path: '/DB/MinistryOfLandMark/services',
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
+            },
+            {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfLandMark/requests',
+                icon: <IoIcons.IoMdSend />,
             },
             {
                 title: 'التقارير',

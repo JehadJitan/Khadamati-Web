@@ -5,7 +5,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { fontWeight } from '@mui/system';
 import {
     randomCreatedDate, randomEmail, randomId, randomPhoneNumber, randomTraderName,
     randomUpdatedDate
@@ -15,56 +14,38 @@ import {
 } from '@mui/x-data-grid-pro';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { FcLeft } from 'react-icons/fc';
-import styled from 'styled-components';
-
-
-const ServiceDiv = styled.div`
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items:center;
-    margin:auto;
-    width:100%;
-    height:550px;
-    // border: 4px solid #d31818;
-    margin-top:30px;
-    padding: 10px;
-    border-radius: 25px;
-    box-shadow: 5px 10px 18px #888888;
-    background-color: #ffffff;
-`;
+import { StyledService } from '../../Components/Divs/StyledDivs';
 
 const rows = [
 
     {
         id: "1672",
-        service: "إصدار هوية مواطن",
-        serviceDes: "تتيح للمواطن تقديم طلب إصدار هوية جديدة",
+        service: "دفع مخالفات السير",
+        serviceDes: "تتيح للمواطن إمكانية دفع المخالفات الكترونيا",
         active: "نعم",
         dateStarted: randomCreatedDate(),
         dateEnded: "-",
     },
     {
         id: "1673",
-        service: "تجديد رخصة سياقة",
-        serviceDes: "تتيح للمواطن تقديم طلب تجديد رخصة سياقة",
+        service: "دفع رسوم التأمين الصحي",
+        serviceDes: "تتيح للمواطن إمكانية دفع تكاليف التأمين الصحي",
         active: "نعم",
         dateStarted: randomCreatedDate(),
         dateEnded: randomUpdatedDate(),
     },
     {
         id: "1675",
-        service: "تجديد رخصة سياقة",
-        serviceDes: "تتيح للمواطن تقديم طلب تجديد رخصة سياقة",
+        service: "دفع الضرائب",
+        serviceDes: "تتيح للمواطن إمكانية دفع الضرائب الكترونيا",
         active: "نعم",
         dateStarted: randomCreatedDate(),
         dateEnded: randomUpdatedDate(),
     },
     {
         id: "1676",
-        service: "إصدار شهادة ميلاد جديدة",
-        serviceDes: "تتيح للمواطن تقديم طلب إصدار شهادة ميلاد جديدة",
+        service: "دفع رسوم تجديد جواز السفر",
+        serviceDes: "تتيح للمواطن دفع تكاليف تجديد جواز السفر الكترونيا",
         active: "لا",
         dateStarted: "-",
         dateEnded: "-",
@@ -157,9 +138,48 @@ export default function FullFeaturedCrudGrid() {
 
     const columns = [
         {
+            field: 'id', headerName: 'رقم الخدمة', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'service', headerName: 'الخدمة', width: 200, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'active', headerName: 'التفعيل', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'dateStarted',
+            headerName: 'تاريخ الإنشاء',
+            type: 'date',
+            width: 150,
+            editable: true,
+            align: 'center',
+            headerAlign: 'center',
+        },
+        {
+            field: 'dateEnded',
+            headerName: 'تاريخ الإنتهاء',
+            type: 'date',
+            width: 150,
+            editable: true,
+            align: 'center',
+            headerAlign: 'center',
+        },
+
+        {
             field: 'actions',
             type: 'actions',
-            headerName: 'Actions',
+            headerName: 'العملية',
             width: 200,
             align: 'center',
             cellClassName: 'actions',
@@ -201,28 +221,10 @@ export default function FullFeaturedCrudGrid() {
                 ];
             },
         },
-        {
-            field: 'dateEnded',
-            headerName: 'تاريخ الإنتهاء',
-            type: 'date',
-            width: 200,
-            editable: true,
-        },
-        {
-            field: 'dateStarted',
-            headerName: 'تاريخ الإنشاء',
-            type: 'date',
-            width: 200,
-            editable: true,
-        },
-        { field: 'active', headerName: 'التفعيل', width: 100, editable: true },
-        { field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 300, editable: true },
-        { field: 'service', headerName: 'الخدمة', width: 200, editable: true },
-        { field: 'id', headerName: 'رقم الخدمة', width: 100, editable: true },
     ];
 
     return (
-        <ServiceDiv>
+        <StyledService dir="rtl">
             <Box
                 sx={{
                     height: 500,
@@ -255,6 +257,6 @@ export default function FullFeaturedCrudGrid() {
                     }}
                 />
             </Box>
-        </ServiceDiv>
+        </StyledService>
     );
 }

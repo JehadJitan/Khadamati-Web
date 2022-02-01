@@ -5,7 +5,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import {
     randomCreatedDate, randomEmail, randomId, randomPhoneNumber, randomTraderName,
     randomUpdatedDate
@@ -15,93 +14,41 @@ import {
 } from '@mui/x-data-grid-pro';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { FcLeft } from 'react-icons/fc';
-import styled from 'styled-components';
-
-
-const EmployeeDiv = styled.div`
-    display:flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items:center;
-    margin:auto;
-    width:100%;
-    height:550px;
-    // border: 4px solid #d31818;
-    margin-top:30px;
-    padding: 10px;
-    border-radius: 25px;
-    box-shadow: 5px 10px 18px #888888;
-    background-color: #ffffff;
-`;
-
-// const Title = styled.h2`
-// margin-top:10px;
-//     // color:#d31818;
-//     // margin-bottom:30px;
-// `;
+import { StyledService } from '../../Components/Divs/StyledDivs';
 
 const rows = [
 
     {
-        id: "1171858",
-        name: "جهاد الجيطان",
-        age: 25,
-        gender: "ذكر",
-        role: "محاسب",
-        password: "test123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
+        id: "1672",
+        service: "دفع مخالفات السير",
+        serviceDes: "تتيح للمواطن إمكانية دفع المخالفات الكترونيا",
+        active: "نعم",
+        dateStarted: randomCreatedDate(),
+        dateEnded: "-",
     },
     {
-        id: "1173019",
-        name: "طارق خوري",
-        age: 30,
-        gender: "ذكر",
-        role: "مساعد إداري",
-        password: "admin@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
+        id: "1673",
+        service: "دفع رسوم التأمين الصحي",
+        serviceDes: "تتيح للمواطن إمكانية دفع تكاليف التأمين الصحي",
+        active: "نعم",
+        dateStarted: randomCreatedDate(),
+        dateEnded: randomUpdatedDate(),
     },
     {
-        id: "1156495",
-        name: "عيسى سلامة",
-        age: 25,
-        gender: "ذكر",
-        role: "المبيعات",
-        password: "sales@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
+        id: "1675",
+        service: "دفع الضرائب",
+        serviceDes: "تتيح للمواطن إمكانية دفع الضرائب الكترونيا",
+        active: "نعم",
+        dateStarted: randomCreatedDate(),
+        dateEnded: randomUpdatedDate(),
     },
     {
-        id: "1165240",
-        name: "ميار بطراوي",
-        age: 28,
-        gender: "انثى",
-        role: "المشتريات",
-        password: "role@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: "1123597",
-        name: "ديما يونس",
-        age: 25,
-        gender: "انثى",
-        role: "علاقات عامة",
-        password: "pr@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
+        id: "1676",
+        service: "دفع رسوم تجديد جواز السفر",
+        serviceDes: "تتيح للمواطن دفع تكاليف تجديد جواز السفر الكترونيا",
+        active: "لا",
+        dateStarted: "-",
+        dateEnded: "-",
     },
 ];
 
@@ -130,21 +77,9 @@ function EditToolbar(props) {
                     background: '#d31818',
                 }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
             }
-            } color="primary" onClick={handleClick}>
-                إضافة موظف جديد
+            } color="primary" endIcon={<AddIcon />} onClick={handleClick}>
+                إضافة خدمة جديدة
             </Button>
-            {/* <Button variant="contained" sx={{
-                ':hover': {
-                    bgcolor: 'primary.main', // theme.palette.primary.main
-                    background: '#d31818',
-                }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
-            }
-            } color="primary" onClick={handleClick}>
-                إبحث
-            </Button> */}
-            {/* <input style={{ "color": "red" }} placeholder="اسم الموظف" label="Multiline Placeholder"></input>
-            <label> : البحث عن موظف</label> */}
-            {/* <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name"></input> */}
         </GridToolbarContainer >
     );
 }
@@ -203,9 +138,48 @@ export default function FullFeaturedCrudGrid() {
 
     const columns = [
         {
+            field: 'id', headerName: 'رقم الخدمة', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'service', headerName: 'الخدمة', width: 200, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'active', headerName: 'التفعيل', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'dateStarted',
+            headerName: 'تاريخ الإنشاء',
+            type: 'date',
+            width: 150,
+            editable: true,
+            align: 'center',
+            headerAlign: 'center',
+        },
+        {
+            field: 'dateEnded',
+            headerName: 'تاريخ الإنتهاء',
+            type: 'date',
+            width: 150,
+            editable: true,
+            align: 'center',
+            headerAlign: 'center',
+        },
+
+        {
             field: 'actions',
             type: 'actions',
-            headerName: 'Actions',
+            headerName: 'العملية',
             width: 200,
             align: 'center',
             cellClassName: 'actions',
@@ -247,19 +221,10 @@ export default function FullFeaturedCrudGrid() {
                 ];
             },
         },
-        { field: 'password', headerName: 'كلمة المرور', width: 150, editable: true },
-        { field: 'email', headerName: 'البريد الالكتروني', width: 200, editable: true },
-        { field: 'role', headerName: 'الوظيفه', width: 150, editable: true },
-        { field: 'phone', headerName: 'رقم الهاتف', editable: true },
-        { field: 'id', headerName: 'رقم الهوية', width: 150, editable: true },
-        { field: 'age', headerName: 'العمر', type: 'number', editable: true },
-        { field: 'gender', headerName: 'الجنس', width: 100, editable: true },
-        { field: 'name', headerName: 'الإسم الكامل', width: 200, editable: true },
     ];
 
     return (
-        <EmployeeDiv>
-            {/* <Title>لائحة الموظفين</Title> */}
+        <StyledService dir="rtl">
             <Box
                 sx={{
                     height: 500,
@@ -292,6 +257,6 @@ export default function FullFeaturedCrudGrid() {
                     }}
                 />
             </Box>
-        </EmployeeDiv>
+        </StyledService>
     );
 }
