@@ -5,14 +5,14 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { SideBarData } from './SideBarData';
 import SubMenu from './SubMenu';
-import mainLogo from './webLogo2.png'
+import mainLogo from './webLogo4.png'
 import { useHistory } from "react-router-dom";
 const Nav = styled.div`
 position: fixed;
 top: 0;
 width: 100%;
 background: #15171c;
-height:80px;
+height:60px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -25,7 +25,7 @@ const KhadamatiLogo = styled.span`
 
 const NavIcon = styled(Link)`
     margin-right:2rem;
-    font-size:2rem;
+    font-size:1.5rem;
     height:80px;
     display:flex;
     justify-content:flex-end;
@@ -35,7 +35,7 @@ const NavIcon = styled(Link)`
 
 const SideBarNav = styled.nav`
     background: #15171c;
-    width:300px;
+    width:250px;
     height:100vh;
     display:flex;
     justify-content:center;

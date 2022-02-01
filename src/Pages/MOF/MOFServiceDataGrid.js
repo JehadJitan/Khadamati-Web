@@ -77,7 +77,7 @@ function EditToolbar(props) {
                     background: '#d31818',
                 }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
             }
-            } color="primary" endIcon={<AddIcon />} onClick={handleClick}>
+            } color="primary" onClick={handleClick}>
                 إضافة خدمة جديدة
             </Button>
         </GridToolbarContainer >
