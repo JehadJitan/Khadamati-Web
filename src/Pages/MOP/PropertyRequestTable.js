@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { ButtomTitleLine, StyledTable, TitleDiv } from '../../Components/Divs/StyledDivs';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const columns = [
     { field: 'id', headerName: 'رقم الطلب', width: 100, align: 'center' },
@@ -37,19 +39,22 @@ const columns = [
         align: 'center',
         headerAlign: 'center',
     },
-    { field: 'status', headerName: 'الحالة', width: 160, align: 'center' },
+    {
+        field: 'status', headerName: 'الحالة', width: 160, align: 'center',
+        headerAlign: 'center',
+    },
 ];
 
 const rows = [
     // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 1, dateSubmitted: '12-10-2021', service: 'دفع رسوم التأمين الصحي', idNumber: '1171858', fullName: 'عبدالعزيز بياثنه' },
-    { id: 2, dateSubmitted: '02-05-2020', service: 'دفع رسوم إصدار هوية جديدة', idNumber: '1175684', fullName: 'معتز ريماوي' },
-    { id: 3, dateSubmitted: '19-07-2021', service: 'دفع رسوم تجديد جواز سفر ', idNumber: '1135684', fullName: 'عدي عودة' },
-    { id: 4, dateSubmitted: '29-04-2019', service: 'دفع ضريبة عام 2020', idNumber: '1196583', fullName: 'احمد فريج' },
-    { id: 5, dateSubmitted: '12-11-2021', service: 'دفع رسوم إصدار رخصة سياقة', idNumber: '1145672', fullName: 'بدر طوافشة' },
-    { id: 6, dateSubmitted: '20-01-2022', service: 'دفع رسوم إصدار شهادة ميلاد جديدة', idNumber: '1186372', fullName: 'نمر التميمي' },
-    { id: 7, dateSubmitted: '12-10-2021', service: 'دفع رسوم طلب بدل فاقد لهوية ', idNumber: '1171717', fullName: 'عيسى سلامة' },
-    { id: 8, dateSubmitted: '12-10-2021', service: 'دفع رسوم -----', idNumber: '1198365', fullName: 'محمد بكري' },
+    { id: 1, dateSubmitted: '12-10-2021', service: 'قيد العمل', idNumber: '1171858', fullName: 'عبدالعزيز بياثنه', status: 'في الانتظار' },
+    { id: 2, dateSubmitted: '02-05-2020', service: 'قيد العمل', idNumber: '1175684', fullName: 'معتز ريماوي', status: 'في الانتظار' },
+    { id: 3, dateSubmitted: '19-07-2021', service: 'قيد العمل', idNumber: '1135684', fullName: 'عدي عودة', status: 'في الانتظار' },
+    { id: 4, dateSubmitted: '29-04-2019', service: 'قيد العمل', idNumber: '1196583', fullName: 'احمد فريج', status: 'في الانتظار' },
+    { id: 5, dateSubmitted: '12-11-2021', service: 'قيد العمل', idNumber: '1145672', fullName: 'بدر طوافشة', status: 'في الانتظار' },
+    { id: 6, dateSubmitted: '20-01-2022', service: 'قيد العمل', idNumber: '1186372', fullName: 'نمر التميمي', status: 'في الانتظار' },
+    { id: 7, dateSubmitted: '12-10-2021', service: 'قيد العمل', idNumber: '1171717', fullName: 'عيسى سلامة', status: 'في الانتظار' },
+    { id: 8, dateSubmitted: '12-10-2021', service: 'قيد العمل', idNumber: '1198365', fullName: 'محمد بكري', status: 'في الانتظار' },
 ];
 
 export default function InteriorRequestTable() {
@@ -57,7 +62,7 @@ export default function InteriorRequestTable() {
         <>
             <TitleDiv>
                 <ButtomTitleLine>
-                    <h1>طلبات وزارة الأراضي الفلسطينية</h1>
+                    <h1>طلبات سلطة الأراضي الفلسطينية</h1>
                 </ButtomTitleLine>
             </TitleDiv>
             <StyledTable dir="rtl">
@@ -70,6 +75,10 @@ export default function InteriorRequestTable() {
                         checkboxSelection
                     />
                 </div>
+                <Stack direction="row" style={{ 'margin-top': '20px' }}>
+                    <Button variant="contained" color="error" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>موافقة الطلب</Button>
+                    <Button variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>رفض الطلب</Button>
+                </Stack>
             </StyledTable>
         </>
     );

@@ -18,6 +18,7 @@ import FinanceRequestTable from "./MOF/FinanceRequestTable";
 import PropertyEmployee from "./MOP/PropertyEmployee";
 import PropertyService from "./MOP/PropertyService";
 import PropertyRequestTable from "./MOP/PropertyRequestTable";
+import Users from "./Users/Users";
 const Hello = ({ children }) => {
     return (<>
         <SideBar />
@@ -49,6 +50,7 @@ const Dashboard = () => {
                     <Route path='/DB/MinistryOfLandMark/employees' exact component={PropertyEmployee} />
                     <Route path='/DB/MinistryOfLandMark/services' exact component={PropertyService} />
                     <Route path='/DB/MinistryOfLandMark/requests' exact component={PropertyRequestTable} />
+                    <Route path='/DB/users' exact component={Users} />
                     <Route path="/" exact component={LogIn} />
                 </Switch>
             </Router>

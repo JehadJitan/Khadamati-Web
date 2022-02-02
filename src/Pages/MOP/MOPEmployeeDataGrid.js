@@ -88,6 +88,8 @@ const rows = [
     },
 ];
 
+export const MOPRowLength = rows.length;
+
 function EditToolbar(props) {
     const { apiRef } = props;
 

@@ -5,7 +5,7 @@ import MOPServiceDataGrid from "./MOPServiceDataGrid";
 function PropertyService() {
     return <TitleDiv>
         <ButtomTitleLine>
-            <h1>خدمات وزارة الأراضي  الفلسطينية</h1>
+            <h1>خدمات سلطة الأراضي  الفلسطينية</h1>
         </ButtomTitleLine>
         <MOPServiceDataGrid></MOPServiceDataGrid>
     </TitleDiv>;

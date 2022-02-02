@@ -5,7 +5,7 @@ import MOPEmployeeDataGrid from "./MOPEmployeeDataGrid";
 function PropertyEmployee() {
     return <TitleDiv>
         <ButtomTitleLine>
-            <h1>موظفين وزارة الأراضي الفلسطينية</h1>
+            <h1>موظفين سلطة الأراضي الفلسطينية</h1>
         </ButtomTitleLine>
         <MOPEmployeeDataGrid />
     </TitleDiv>;

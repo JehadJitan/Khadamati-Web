@@ -21,6 +21,7 @@ justify-content: space-between;
 
 const KhadamatiLogo = styled.span`
     margin-left:2rem;
+    margin-top:6px;
 `;
 
 const NavIcon = styled(Link)`

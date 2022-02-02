@@ -4,6 +4,9 @@ import useForm from "./useForm";
 import validate from "./validateInfo";
 import { useHistory } from "react-router-dom";
 import logo from './img-2.png'
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const LogIn = ({ submitForm }) => {
   const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validate);
@@ -60,6 +63,10 @@ const LogIn = ({ submitForm }) => {
                   onChange={handleChange}
                 />
                 {errors.password && <p>{errors.password}</p>}
+              </div>
+              <div className="form-inputs2">
+                <input type="checkbox" value="lsRememberMe" id="rememberMe" style={{ 'transform': ' scale(1.25)' }} />
+                <label className="form-label" style={{ 'margin-left': '10px' }}>: تذكرني</label>
               </div>
               <button
                 className="form-input-btn"

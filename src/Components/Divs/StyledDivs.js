@@ -39,7 +39,7 @@ export const StyledTable = styled.div`
     align-items:center;
     margin:auto;
     width:100%;
-    height:550px;
+    height:570px;
     // border: 4px solid #d31818;
     margin-top:30px;
     padding: 10px;

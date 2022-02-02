@@ -1,6 +1,11 @@
 import React from 'react';
 import * as BsIcons from 'react-icons/bs';
 import styled from 'styled-components';
+import { MOFERowLength } from './MOF/MOFEmployeeDataGrid';
+import { MOIERowLength } from './MOI/MOIEmployeeDataGrid';
+import { MOPRowLength } from './MOP/MOPEmployeeDataGrid';
+import { MOTRowLength } from './MOT/MOTEmployeeDataGrid';
+import { NumOfUsers } from './Users/Users';
 
 const Parent = styled.div`
     display: flex;
@@ -53,11 +58,11 @@ function DashboardContent() {
             </Left>
             <Center>
                 <BsIcons.BsPeopleFill /><Title>عدد الموظفين</Title>
-                <h2>2,134,882</h2>
+                <h2>{MOIERowLength + MOFERowLength + MOTRowLength + MOPRowLength}</h2>
             </Center>
             <Right>
                 <BsIcons.BsPeopleFill /><Title>عدد المستخدمين</Title>
-                <h2>297,327</h2>
+                <h2>{NumOfUsers}</h2>
             </Right>
         </Parent>
     );

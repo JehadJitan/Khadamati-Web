@@ -11,6 +11,11 @@ import * as IoIcons from 'react-icons/io';
 
 export const SideBarData = [
     {
+        title: 'المستخدمين',
+        icon: <FaIcons.FaUsers />,
+        path: '/DB/users'
+    },
+    {
         title: 'وزارة الصحة',
         // path: '/DB',
         icon: <GiIcons.GiHealthNormal />,
@@ -127,7 +132,7 @@ export const SideBarData = [
         ]
     },
     {
-        title: 'وزارة الأملاك والأراضي',
+        title: 'سلطة الأراضي',
         // path: '/DB/MinistryOfLandMark',
         icon: <FaIcons.FaLandmark />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
