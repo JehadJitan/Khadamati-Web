@@ -11,7 +11,12 @@ import * as IoIcons from 'react-icons/io';
 
 export const SideBarData = [
     {
-        title: 'المستخدمين',
+        title: 'حسابي',
+        icon: <MdIcons.MdManageAccounts />,
+        path: '/DB/myAccount'
+    },
+    {
+        title: 'لائحة المستخدمين',
         icon: <FaIcons.FaUsers />,
         path: '/DB/users'
     },

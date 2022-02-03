@@ -65,8 +65,8 @@ const LogIn = ({ submitForm }) => {
                 {errors.password && <p>{errors.password}</p>}
               </div>
               <div className="form-inputs2">
-                <input type="checkbox" value="lsRememberMe" id="rememberMe" style={{ 'transform': ' scale(1.25)' }} />
                 <label className="form-label" style={{ 'margin-left': '10px' }}>: تذكرني</label>
+                <input type="checkbox" value="rememberMe" id="rememberMe" style={{ 'transform': ' scale(1.25)' }} />
               </div>
               <button
                 className="form-input-btn"
