@@ -32,6 +32,8 @@ const NavIcon = styled(Link)`
     justify-content:flex-end;
     align-items:center;
     color:white;
+    margin-left:8rem;
+
 `;
 
 const SideBarNav = styled.nav`

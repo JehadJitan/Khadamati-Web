@@ -22,7 +22,7 @@ const Right = styled.div`
     padding: 20px;
     border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cfe1b9;
+    background-color: #cccccc;
     margin-left: 80px;
     text-align: center;
     display: flex;
@@ -32,16 +32,18 @@ const Right = styled.div`
 
 const Center = styled.div`
     width: 250px;
-    height: 350px;
+    height: 180px;
     padding: 20px;
     border-radius: 25px;
     text-align: center;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cfe1b9;
+    background-color: #cccccc;
     margin-left: 80px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
 `;
 
 const Left = styled.div`
@@ -51,7 +53,7 @@ const Left = styled.div`
     border-radius: 25px;
     text-align: center;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cfe1b9;
+    background-color: #cccccc;
     display: flex;
     align-items: center;
     flex-direction: column;
