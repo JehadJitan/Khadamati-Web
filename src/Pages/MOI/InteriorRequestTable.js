@@ -57,6 +57,9 @@ const rows = [
     { id: 8, dateSubmitted: '12-10-2021', service: 'تجديد بطاقة هوية', idNumber: '1198365', fullName: 'محمد بكري', status: 'في الانتظار' },
 ];
 
+export const MOIRequestLength = rows.length;
+
+
 export default function InteriorRequestTable() {
     return (
         <>

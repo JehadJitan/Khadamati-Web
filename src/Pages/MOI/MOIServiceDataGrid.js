@@ -51,6 +51,8 @@ const rows = [
         dateEnded: "-",
     },
 ];
+export const MOIServiceRowLength = rows.length;
+
 
 function EditToolbar(props) {
     const { apiRef } = props;

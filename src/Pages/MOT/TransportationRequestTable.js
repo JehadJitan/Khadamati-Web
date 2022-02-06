@@ -57,6 +57,8 @@ const rows = [
     { id: 8, dateSubmitted: '12-10-2021', service: 'تجديد رخصة سياقة', idNumber: '1198365', fullName: 'محمد بكري', status: 'في الانتظار' },
 ];
 
+export const MOTRequestLength = rows.length;
+
 export default function TransportationRequestTable() {
     return (
         <>

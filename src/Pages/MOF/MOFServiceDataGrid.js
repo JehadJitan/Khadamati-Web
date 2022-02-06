@@ -51,6 +51,8 @@ const rows = [
         dateEnded: "-",
     },
 ];
+export const MOFEServiceRowLength = rows.length;
+
 
 function EditToolbar(props) {
     const { apiRef } = props;

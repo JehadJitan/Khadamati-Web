@@ -51,6 +51,8 @@ const rows = [
         dateEnded: "-",
     },
 ];
+export const MOPServiceRowLength = rows.length;
+
 
 function EditToolbar(props) {
     const { apiRef } = props;

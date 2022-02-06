@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
@@ -47,6 +47,9 @@ const SideBarNav = styled.nav`
     right:${({ sidebar }) => (sidebar ? '0' : '-100%')};
     transition:350ms;
     z-index:10;
+    overflow-y: hidden;
+    overflow-y:scroll;
+
 `;
 
 const SideBarWrap = styled.nav`
@@ -73,6 +76,15 @@ const SideBar = () => {
         let path = `/DB`;
         history.push(path);
     }
+    const [isOpen, setIsOpen] = useState(false);
+
+    const whatToDo = () => setIsOpen((isOpen) => !isOpen);
+
+    useEffect(() => {
+        document.addEventListener("mousedown", () => {
+            setIsOpen(false)
+        })
+    })
 
     return <>
         <Nav>

@@ -21,30 +21,30 @@ export const SideBarData = [
         path: '/DB/users'
     },
     {
-        title: 'وزارة الصحة',
-        // path: '/DB',
-        icon: <GiIcons.GiHealthNormal />,
+        title: 'وزارة المواصلات',
+        // path: '/DB/MinistryOfTransportation',
+        icon: <AiIcons.AiFillCar />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'الموظفين',
-                path: '/DB/MinistryOfHealth/employees',
+                path: '/DB/MinistryOfTransportation/employees',
                 icon: <BsIcons.BsFillPersonFill />,
             },
             {
                 title: 'الخدمات',
-                path: '/DB/MinistryOfHealth/services',
+                path: '/DB/MinistryOfTransportation/services',
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
                 title: 'الطلبات',
-                path: '/DB/MinistryOfHealth/requests',
+                path: '/DB/MinistryOfTransportation/requests',
                 icon: <IoIcons.IoMdSend />,
             },
             {
                 title: 'التقارير',
-                path: '/DB/MinistryOfHealth/reports',
+                path: '/DB/MinistryOfTransportation/reports',
                 icon: <HiIcons.HiDocumentReport />,
             }
         ]
@@ -108,30 +108,30 @@ export const SideBarData = [
         ]
     },
     {
-        title: 'وزارة المواصلات',
-        // path: '/DB/MinistryOfTransportation',
-        icon: <AiIcons.AiFillCar />,
+        title: 'وزارة الصحة',
+        // path: '/DB',
+        icon: <GiIcons.GiHealthNormal />,
         iconClosed: <RiIcons.RiArrowDownSFill />,
         iconOpened: <RiIcons.RiArrowUpSFill />,
         subNav: [
             {
                 title: 'الموظفين',
-                path: '/DB/MinistryOfTransportation/employees',
+                path: '/DB/MinistryOfHealth/employees',
                 icon: <BsIcons.BsFillPersonFill />,
             },
             {
                 title: 'الخدمات',
-                path: '/DB/MinistryOfTransportation/services',
+                path: '/DB/MinistryOfHealth/services',
                 icon: <MdIcons.MdOutlineMiscellaneousServices />,
             },
             {
                 title: 'الطلبات',
-                path: '/DB/MinistryOfTransportation/requests',
+                path: '/DB/MinistryOfHealth/requests',
                 icon: <IoIcons.IoMdSend />,
             },
             {
                 title: 'التقارير',
-                path: '/DB/MinistryOfTransportation/reports',
+                path: '/DB/MinistryOfHealth/reports',
                 icon: <HiIcons.HiDocumentReport />,
             }
         ]

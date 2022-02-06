@@ -57,6 +57,8 @@ const rows = [
     { id: 8, dateSubmitted: '12-10-2021', service: 'دفع رسوم -----', idNumber: '1198365', fullName: 'محمد بكري', status: 'في الانتظار' },
 ];
 
+export const MOFRequestLength = rows.length;
+
 export default function InteriorRequestTable() {
     return (
         <>
