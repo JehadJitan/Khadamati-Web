@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
@@ -49,7 +49,6 @@ const SideBarNav = styled.nav`
     z-index:10;
     overflow-y: hidden;
     overflow-y:scroll;
-
 `;
 
 const SideBarWrap = styled.nav`
@@ -76,15 +75,18 @@ const SideBar = () => {
         let path = `/DB`;
         history.push(path);
     }
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
 
-    const whatToDo = () => setIsOpen((isOpen) => !isOpen);
+    // const whatToDo = () => setIsOpen((isOpen) => !isOpen);
 
-    useEffect(() => {
-        document.addEventListener("mousedown", () => {
-            setIsOpen(false)
-        })
-    })
+    // const boxRef = useRef(null);
+    // const boxOutsideClick = OutsideClick(boxRef);
+
+    // useEffect(() => {
+    //     document.addEventListener("mousedown", () => {
+    //         setIsOpen(false)
+    //     })
+    // })
 
     return <>
         <Nav>
@@ -96,7 +98,8 @@ const SideBar = () => {
                 <FaIcons.FaBars onClick={showSideBar} />
             </NavIcon>
         </Nav>
-        <SideBarNav sidebar={sidebar}>
+        <SideBarNav sidebar={sidebar} showsVerticalScrollIndicator={false}
+        >
             <SideBarWrap>
                 <NavIcon to="#">
                     <AiIcons.AiOutlineClose onClick={showSideBar} />

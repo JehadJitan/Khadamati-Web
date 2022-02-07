@@ -1,21 +1,22 @@
 table {
-    font-family: arial, sans-serif;
-    margin-top: 15px;
+    margin-top: 50px;
     border-collapse: collapse;
     margin: auto;
 
   }
   
   td, th {
-    border: 1px solid #344e41;
+    border: 2px solid #15171c;
     text-align: center;
     padding: 8px;
   }
 
   th{
-    background-color: #588157;
+    background-color: #15171c;
+    color: white;
+
   }
   
   tr:nth-child(odd) {
-    background-color: #a3b18a;
+    background-color: #dee2e6;
   }

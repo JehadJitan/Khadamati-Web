@@ -25,12 +25,12 @@ const Parent = styled.div`
 `;
 
 const Right = styled.div`
-    width: 250px;
-    height: 350px;
+    width: 210px;
+    height: 310px;
     padding: 20px;
     border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cccccc;
+    background-color: #adb5bd;
     margin-left: 80px;
     text-align: center;
     display: flex;
@@ -39,114 +39,64 @@ const Right = styled.div`
 `;
 
 const Center = styled.div`
-    width: 250px;
-    height: 180px;
+    width: 210px;
+    height: 160px;
     padding: 20px;
     border-radius: 25px;
     text-align: center;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cccccc;
+    background-color: #ffffff;
     margin-left: 80px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    align-items: center;
     margin-top: 80px;
 `;
 
 const Left = styled.div`
-    width: 250px;
-    height: 350px;
+    width: 210px;
+    height: 310px;
     padding: 20px;
     border-radius: 25px;
     text-align: center;
     box-shadow: 5px 10px 18px #888888;
-    background-color: #cccccc;
+    background-color: #adb5bd;
     display: flex;
     align-items: center;
     flex-direction: column;
 `;
 
 const Circle = styled.div`
-margin-top: 20px;
-width: 150px;
-height: 150px;
-
+margin-top: 10px;
+width: 120px;
+height: 120px;
 `;
 
 const Title = styled.h1`
     color: #d31818;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 5px;
 `;
 
 const Parent2 = styled.div`
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    
-
-`;
-const Row1 = styled.div`
-    display: flex;
     justify-content: center;
-    margin: 50px;
-    flex-direction: column;
-`;
-const Col0 = styled.div`
-width: 200px;
-height: 50px;
-padding: 5px;
-border-radius: 25px;
-text-align: center;
-box-shadow: 5px 10px 18px #888888;
-background-color: #15171c;
-display: flex;
-align-items: center;
-flex-direction: column;
-margin-bottom: 20px;
-`;
-const Col1 = styled.div`
-width: 200px;
-height: 75px;
-border-radius: 25px;
-text-align: center;
-box-shadow: 5px 10px 18px #888888;
-background-color: #cccccc;
-display: flex;
-align-items: center;
-flex-direction: column;
-margin-bottom: 20px;
-`;
-const Col2 = styled.div`
-width: 200px;
-height: 75px;
-border-radius: 25px;
-text-align: center;
-box-shadow: 5px 10px 18px #888888;
-background-color: #cccccc;
-display: flex;
-align-items: center;
-flex-direction: column;
-align-items: center;
-margin-bottom: 20px;
-`;
-const Col3 = styled.div`
-width: 200px;
-height: 75px;
-border-radius: 25px;
-box-shadow: 5px 10px 18px #888888;
-background-color: #cccccc;
-text-align: center;
-display: flex;
-align-items: center;
-flex-direction: column;
-margin-bottom: 20px;
+    width: 700px;
+    height: 320px;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
+    align-items: center;
+    margin: 0 auto;
+    margin-top:50px;
+    flex-direction: row;
+
 `;
 
 function DashboardContent() {
     const totalEmployees = MOIERowLength + MOFERowLength + MOTRowLength + MOPRowLength;
-    const numOfCitizens = 400;
+    const numOfCitizens = 200;
     const Empercentage = (totalEmployees / numOfCitizens) * 100;
     const Usprecentage = (NumOfUsers / numOfCitizens) * 100;
 
@@ -158,76 +108,45 @@ function DashboardContent() {
                 </ButtomTitleLine>
             </TitleDiv>
             <Parent2>
-                <Row1>
-                    <Col0>
-                        <Title>سلطة الأراضي</Title>
-                    </Col0>
-                    <Col1>
-                        <Title>عدد الخدمات</Title>
-                        <h2>{MOPServiceRowLength}</h2></Col1>
-                    <Col2>
-                        <Title>عدد الطلبات</Title>
-                        <h2>{MOPRequestLength}</h2></Col2>
-                    <Col3>
-                        <Title>عدد الموظفين</Title>
-                        <h2>{MOPRowLength}</h2></Col3>
-                </Row1>
-                <Row1>
-                    <Col0>
-                        <Title>وزارة الصحة</Title>
-                    </Col0>
-                    <Col1>
-                        <Title>عدد الخدمات</Title>
-                        <h2>{totalEmployees}</h2></Col1>
-                    <Col2>
-                        <Title>عدد الطلبات</Title>
-                        <h2>{totalEmployees}</h2></Col2>
-                    <Col3>
-                        <Title>عدد الموظفين</Title>
-                        <h2>{totalEmployees}</h2></Col3>
-                </Row1>
-                <Row1>
-                    <Col0>
-                        <Title>وزارة المالية</Title>
-                    </Col0>
-                    <Col1>
-                        <Title>عدد الخدمات</Title>
-                        <h2>{MOFEServiceRowLength}</h2></Col1>
-                    <Col2>
-                        <Title>عدد الطلبات</Title>
-                        <h2>{MOFRequestLength}</h2></Col2>
-                    <Col3>
-                        <Title>عدد الموظفين</Title>
-                        <h2>{MOFERowLength}</h2></Col3>
-                </Row1>
-                <Row1>
-                    <Col0>
-                        <Title>وزارة الداخلية</Title>
-                    </Col0>
-                    <Col1>
-                        <Title>عدد الخدمات</Title>
-                        <h2>{MOIServiceRowLength}</h2></Col1>
-                    <Col2>
-                        <Title>عدد الطلبات</Title>
-                        <h2>{MOIRequestLength}</h2></Col2>
-                    <Col3>
-                        <Title>عدد الموظفين</Title>
-                        <h2>{MOIERowLength}</h2></Col3>
-                </Row1>
-                <Row1>
-                    <Col0>
-                        <Title>وزارة المواصلات</Title>
-                    </Col0>
-                    <Col1>
-                        <Title>عدد الخدمات</Title>
-                        <h2>{MOTServiceRowLength}</h2></Col1>
-                    <Col2>
-                        <Title>عدد الطلبات</Title>
-                        <h2>{MOTRequestLength}</h2></Col2>
-                    <Col3>
-                        <Title>عدد الموظفين</Title>
-                        <h2>{MOTRowLength}</h2></Col3>
-                </Row1>
+                <table border="1" width="700px">
+                    <tr>
+                        <th width="150px">عدد الطلبات</th>
+                        <th width="150px">عدد الخدمات</th>
+                        <th width="150px">عدد الموظفين</th>
+                        <th width="250px">إسم الوزارة</th>
+                    </tr>
+
+                    <tr>
+                        <td>{MOTRequestLength}</td>
+                        <td>{MOTServiceRowLength}</td>
+                        <td>{MOTRowLength}</td>
+                        <td style={{ 'color': '#d31818' }}>وزارة المواصلات</td>
+                    </tr>
+                    <tr>
+                        <td>{MOIRequestLength}</td>
+                        <td>{MOIServiceRowLength}</td>
+                        <td>{MOIERowLength}</td>
+                        <td style={{ 'color': '#d31818' }}>وزارة الداخلية</td>
+                    </tr>
+                    <tr>
+                        <td>{MOFRequestLength}</td>
+                        <td>{MOFEServiceRowLength}</td>
+                        <td>{MOFERowLength}</td>
+                        <td style={{ 'color': '#d31818' }}>وزارة المالية</td>
+                    </tr>
+                    <tr>
+                        <td>{MOTRequestLength}</td>
+                        <td>{MOTServiceRowLength}</td>
+                        <td>{MOTRowLength}</td>
+                        <td style={{ 'color': '#d31818' }}>وزارة الصحة</td>
+                    </tr>
+                    <tr>
+                        <td>{MOPRequestLength}</td>
+                        <td>{MOPServiceRowLength}</td>
+                        <td>{MOPRowLength}</td>
+                        <td style={{ 'color': '#d31818' }}>سلطة الأراضي</td>
+                    </tr>
+                </table>
             </Parent2>
             <Parent>
                 <Left>

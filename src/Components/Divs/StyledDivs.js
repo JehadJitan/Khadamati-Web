@@ -6,7 +6,7 @@ flex-direction: column;
 flex-wrap: wrap;
 align-items:center;
 margin:auto;
-width:100%;
+width:90%;
 height:550px;
 // border: 4px solid #d31818;
 margin-top:30px;
@@ -22,7 +22,7 @@ export const StyledService = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:100%;
+    width:90%;
     height:550px;
     // border: 4px solid #d31818;
     margin-top:30px;
@@ -38,7 +38,7 @@ export const StyledTable = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:100%;
+    width:90%;
     height:570px;
     // border: 4px solid #d31818;
     margin-top:30px;
