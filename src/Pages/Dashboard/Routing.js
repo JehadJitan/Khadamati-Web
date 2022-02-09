@@ -21,7 +21,7 @@ import PropertyRequestTable from "../MOP/PropertyRequestTable";
 import Users from "../Users/Users";
 import profileSetting from "../MyProfile/profileSetting";
 
-const Dashboard = () => {
+const Routing = () => {
 
     return (
         <>
@@ -52,4 +52,4 @@ const Dashboard = () => {
         </>
     );
 }
-export default Dashboard;
+export default Routing;
