@@ -1,31 +1,25 @@
-import SideBar from "../Components/NavBar/SideBar";
+import SideBar from "../../Components/NavBar/SideBar";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './Dashboard.css';
-import About from "./About/About"
-import LogIn from "../Components/logIn/logIn";
-import HealthEmployees from "./MOH/HealthEmployees";
-import HealthServices from "./MOH/HealthServices";
-import InteriorEmployee from "./MOI/InteriorEmployee";
-import InteriorService from "./MOI/InteriorService";
+import About from "../About/About"
+import LogIn from "../../Components/logIn/logIn";
+import HealthEmployees from "../MOH/HealthEmployees";
+import HealthServices from "../MOH/HealthServices";
+import InteriorEmployee from "../MOI/InteriorEmployee";
+import InteriorService from "../MOI/InteriorService";
 import DashboardContent from "./DashboardContent";
-import InteriorRequestTable from "./MOI/InteriorRequestTable";
-import TransportationRequestTable from "./MOT/TransportationRequestTable";
-import TransportationService from "./MOT/TransportationService";
-import TransportationEmployee from "./MOT/TransportationEmployee";
-import FinanceEmployee from "./MOF/FinanceEmployee";
-import FinanceService from "./MOF/FinanceService";
-import FinanceRequestTable from "./MOF/FinanceRequestTable";
-import PropertyEmployee from "./MOP/PropertyEmployee";
-import PropertyService from "./MOP/PropertyService";
-import PropertyRequestTable from "./MOP/PropertyRequestTable";
-import Users from "./Users/Users";
-import profileSetting from "./MyProfile/profileSetting";
-const Hello = ({ children }) => {
-    return (<>
-        <SideBar />
-        {children}
-    </>);
-}
+import InteriorRequestTable from "../MOI/InteriorRequestTable";
+import TransportationRequestTable from "../MOT/TransportationRequestTable";
+import TransportationService from "../MOT/TransportationService";
+import TransportationEmployee from "../MOT/TransportationEmployee";
+import FinanceEmployee from "../MOF/FinanceEmployee";
+import FinanceService from "../MOF/FinanceService";
+import FinanceRequestTable from "../MOF/FinanceRequestTable";
+import PropertyEmployee from "../MOP/PropertyEmployee";
+import PropertyService from "../MOP/PropertyService";
+import PropertyRequestTable from "../MOP/PropertyRequestTable";
+import Users from "../Users/Users";
+import profileSetting from "../MyProfile/profileSetting";
 
 const Dashboard = () => {
 
@@ -36,7 +30,6 @@ const Dashboard = () => {
                 <Switch>
                     <Route path='/DB' exact component={DashboardContent} />
                     <Route path='/DB/about' exact component={About} />
-                    {/* <Route path='/DB/MinistryOfHealth' exact component={Health} /> */}
                     <Route path='/DB/MinistryOfHealth/employees' exact component={HealthEmployees} />
                     <Route path='/DB/MinistryOfHealth/services' exact component={HealthServices} />
                     <Route path='/DB/MinistryOfFinance/employees' exact component={FinanceEmployee} />

@@ -1,22 +1,22 @@
 import React from 'react';
 import * as BsIcons from 'react-icons/bs';
 import styled from 'styled-components';
-import { ButtomTitleLine, TitleDiv } from '../Components/Divs/StyledDivs'
-import { MOFERowLength } from './MOF/MOFEmployeeDataGrid';
-import { MOIERowLength } from './MOI/MOIEmployeeDataGrid';
-import { MOPRowLength } from './MOP/MOPEmployeeDataGrid';
-import { MOTRowLength } from './MOT/MOTEmployeeDataGrid';
-import { NumOfUsers } from './Users/Users';
+import { ButtomTitleLine, TitleDiv } from '../../Components/Divs/StyledDivs'
+import { MOFERowLength } from '../MOF/MOFEmployeeDataGrid';
+import { MOIERowLength } from '../MOI/MOIEmployeeDataGrid';
+import { MOPRowLength } from '../MOP/MOPEmployeeDataGrid';
+import { MOTRowLength } from '../MOT/MOTEmployeeDataGrid';
+import { NumOfUsers } from '../Users/Users';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { MOPServiceRowLength } from './MOP/MOPServiceDataGrid';
-import { MOTServiceRowLength } from './MOT/MOTServiceDataGrid';
-import { MOIServiceRowLength } from './MOI/MOIServiceDataGrid';
-import { MOFEServiceRowLength } from './MOF/MOFServiceDataGrid';
-import { MOPRequestLength } from './MOP/PropertyRequestTable';
-import { MOIRequestLength } from './MOI/InteriorRequestTable';
-import { MOTRequestLength } from './MOT/TransportationRequestTable';
-import { MOFRequestLength } from './MOF/FinanceRequestTable';
+import { MOPServiceRowLength } from '../MOP/MOPServiceDataGrid';
+import { MOTServiceRowLength } from '../MOT/MOTServiceDataGrid';
+import { MOIServiceRowLength } from '../MOI/MOIServiceDataGrid';
+import { MOFEServiceRowLength } from '../MOF/MOFServiceDataGrid';
+import { MOPRequestLength } from '../MOP/PropertyRequestTable';
+import { MOIRequestLength } from '../MOI/InteriorRequestTable';
+import { MOTRequestLength } from '../MOT/TransportationRequestTable';
+import { MOFRequestLength } from '../MOF/FinanceRequestTable';
 
 const Parent = styled.div`
     display: flex;
