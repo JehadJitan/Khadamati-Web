@@ -21,15 +21,15 @@ import { MOFRequestLength } from '../MOF/FinanceRequestTable';
 const Parent = styled.div`
     display: flex;
     justify-content: center;
-    margin: 50px;
+    margin: 20px;
 `;
 
-const Parent3 = styled.div`
+const CardParent = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
-    margin: 50px;
+    margin: 20px;
     flex-wrap: wrap;
 
 `;
@@ -64,16 +64,17 @@ const Center = styled.div`
 `;
 
 const Card = styled.div`
-    width: 330px;
+    width: 320px;
     height: 100px;
     padding: 20px;
-    border-radius: 25px;
+    // border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
     background-color: #fdc500;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-right:50px;
+    justify-content: center;
+    margin:20px;
 `;
 
 const Left = styled.div`
@@ -101,7 +102,7 @@ const Title = styled.h1`
     margin-bottom: 5px;
 `;
 
-const Title4 = styled.h1`
+const DescTitle = styled.h1`
     color: black;
     font-size: 18px;
     margin-right: 10px;
@@ -109,7 +110,7 @@ const Title4 = styled.h1`
     text-align: right;
     `;
 
-const Title5 = styled.h1`
+const NumberTitle = styled.h1`
     color: black;
     font-size: 23px;
     text-align: right;
@@ -117,13 +118,12 @@ const Title5 = styled.h1`
 
 `;
 
-const Parent2 = styled.div`
+const TableParent = styled.div`
     display: flex;
     justify-content: center;
-    width: 750px;
-    height: 300px;
-    padding: 20px;
-    border-radius: 25px;
+    width: 1050px;
+    height: 350px;
+    // border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
     background-color: #ffffff;
     align-items: center;
@@ -140,9 +140,19 @@ display: flex;
 flex-direction: column;
 `;
 
+const CustomeTable = styled.table`
+border-collapse: collapse;
+width: 100%;
+height:100%;
+// border-radius: 15px;
+// overflow:hidden
+
+
+`;
+
 function DashboardContent() {
     const totalEmployees = MOIERowLength + MOFERowLength + MOTRowLength + MOPRowLength;
-    const numOfCitizens = 200;
+    const numOfCitizens = '5,295,924';
     const Empercentage = (totalEmployees / numOfCitizens) * 100;
     const Usprecentage = (NumOfUsers / numOfCitizens) * 100;
 
@@ -153,14 +163,14 @@ function DashboardContent() {
                     <h1>نظرة عامة على لوحة القيادة</h1>
                 </ButtomTitleLine>
             </TitleDiv>
-            <Parent3>
+            <CardParent>
                 <Card style={{ 'background': '#38b000' }}>
                     <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
                         <BsIcons.BsPeopleFill size={60} />
                     </STY2>
                     <STY2>
-                        <Title5>100</Title5>
-                        <Title4>عدد مستخدمين التطبيق </Title4>
+                        <NumberTitle>1000</NumberTitle>
+                        <DescTitle>عدد مستخدمين التطبيق </DescTitle>
                     </STY2>
                 </Card>
                 <Card>
@@ -168,8 +178,8 @@ function DashboardContent() {
                         <BsIcons.BsPeopleFill size={60} />
                     </STY2>
                     <STY2>
-                        <Title5>{totalEmployees}</Title5>
-                        <Title4>عدد الموظفين الحكومية</Title4>
+                        <NumberTitle>{totalEmployees}</NumberTitle>
+                        <DescTitle>عدد الموظفين الحكومية</DescTitle>
                     </STY2>
                 </Card>
                 <Card style={{ 'background': '#38b6ff' }}>
@@ -177,11 +187,11 @@ function DashboardContent() {
                         <BsIcons.BsPeopleFill size={60} />
                     </STY2>
                     <STY2>
-                        <Title5>{numOfCitizens}</Title5>
-                        <Title4>العدد الإجمالي للمواطنين</Title4>
+                        <NumberTitle>{numOfCitizens}</NumberTitle>
+                        <DescTitle>العدد الإجمالي للمواطنين</DescTitle>
                     </STY2>
                 </Card>
-            </Parent3>
+            </CardParent>
             <Parent>
                 {/* <Parent2>
                     <Left>
@@ -204,8 +214,8 @@ function DashboardContent() {
                         </Circle>
                     </Right>
                 </Parent2> */}
-                <Parent2>
-                    <table border="1" width="700px">
+                <TableParent>
+                    <CustomeTable>
                         <tr>
                             <th width="150px">عدد الطلبات</th>
                             <th width="150px">عدد الخدمات</th>
@@ -243,8 +253,8 @@ function DashboardContent() {
                             <td>{MOPRowLength}</td>
                             <td style={{ 'color': '#d31818' }}>سلطة الأراضي</td>
                         </tr>
-                    </table>
-                </Parent2>
+                    </CustomeTable>
+                </TableParent>
             </Parent>
         </>
     );

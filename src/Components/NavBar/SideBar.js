@@ -63,6 +63,26 @@ const KhadamtiTitle = styled.span`
     text-align: center;
 `;
 
+function useOutsideAlerter(ref) {
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                alert("You clicked outside of me!");
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [ref]);
+}
+
 const SideBar = () => {
 
     const [sidebar, setSidebar] = useState(false);
@@ -88,6 +108,8 @@ const SideBar = () => {
     //     })
     // })
 
+    const elementRef = useRef(null);
+
     return <>
         <Nav>
             <KhadamatiLogo>
@@ -100,7 +122,7 @@ const SideBar = () => {
         </Nav>
         <SideBarNav sidebar={sidebar} showsVerticalScrollIndicator={false}
         >
-            <SideBarWrap>
+            <SideBarWrap ref={elementRef}>
                 <NavIcon to="#">
                     <AiIcons.AiOutlineClose onClick={showSideBar} />
                 </NavIcon>
