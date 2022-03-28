@@ -5,7 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-// import { addEmployee } from "../../shared/api";
+import { addEmployee, getEmployees } from "../../shared/api";
 import axios from "axios";
 
 // import TextField from "@mui/material/TextField";
@@ -24,7 +24,7 @@ import {
   useGridApiRef,
 } from "@mui/x-data-grid-pro";
 import PropTypes from "prop-types";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 
 import { StyledEmployee } from "../../Components/Divs/StyledDivs";
 
@@ -34,70 +34,84 @@ import { StyledEmployee } from "../../Components/Divs/StyledDivs";
 //     // margin-bottom:30px;
 // `;
 
-const rows = [
-  {
-    id: "1171858",
-    name: "جهاد الجيطان",
-    age: 25,
-    gender: "ذكر",
-    role: "محاسب",
-    password: "test123",
-    phone: randomPhoneNumber(),
-    email: randomEmail(),
-    // dateCreated: randomCreatedDate(),
-    // lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: "1173019",
-    name: "طارق خوري",
-    age: 30,
-    gender: "ذكر",
-    role: "مساعد إداري",
-    password: "admin@123",
-    phone: randomPhoneNumber(),
-    email: randomEmail(),
-    // dateCreated: randomCreatedDate(),
-    // lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: "1156495",
-    name: "عيسى سلامة",
-    age: 25,
-    gender: "ذكر",
-    role: "المبيعات",
-    password: "sales@123",
-    phone: randomPhoneNumber(),
-    email: randomEmail(),
-    // dateCreated: randomCreatedDate(),
-    // lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: "1165240",
-    name: "ميار بطراوي",
-    age: 43,
-    gender: "انثى",
-    role: "المشتريات",
-    password: "role@123",
-    phone: randomPhoneNumber(),
-    email: randomEmail(),
-    // dateCreated: randomCreatedDate(),
-    // lastLogin: randomUpdatedDate(),
-  },
-  {
-    id: "1123597",
-    name: "ديما يونس",
-    age: 25,
-    gender: "انثى",
-    role: "علاقات عامة",
-    password: "pr@123",
-    phone: randomPhoneNumber(),
-    email: randomEmail(),
-    // dateCreated: randomCreatedDate(),
-    // lastLogin: randomUpdatedDate(),
-  },
-];
+// const rows = [
+//   {
+//     id: "1171858",
+//     name: "جهاد الجيطان",
+//     age: 25,
+//     gender: "ذكر",
+//     role: "محاسب",
+//     password: "test123",
+//     phone: randomPhoneNumber(),
+//     email: randomEmail(),
+//     // dateCreated: randomCreatedDate(),
+//     // lastLogin: randomUpdatedDate(),
+//   },
+//   {
+//     id: "1173019",
+//     name: "طارق خوري",
+//     age: 30,
+//     gender: "ذكر",
+//     role: "مساعد إداري",
+//     password: "admin@123",
+//     phone: randomPhoneNumber(),
+//     email: randomEmail(),
+//     // dateCreated: randomCreatedDate(),
+//     // lastLogin: randomUpdatedDate(),
+//   },
+//   {
+//     id: "1156495",
+//     name: "عيسى سلامة",
+//     age: 25,
+//     gender: "ذكر",
+//     role: "المبيعات",
+//     password: "sales@123",
+//     phone: randomPhoneNumber(),
+//     email: randomEmail(),
+//     // dateCreated: randomCreatedDate(),
+//     // lastLogin: randomUpdatedDate(),
+//   },
+//   {
+//     id: "1165240",
+//     name: "ميار بطراوي",
+//     age: 43,
+//     gender: "انثى",
+//     role: "المشتريات",
+//     password: "role@123",
+//     phone: randomPhoneNumber(),
+//     email: randomEmail(),
+//     // dateCreated: randomCreatedDate(),
+//     // lastLogin: randomUpdatedDate(),
+//   },
+//   {
+//     id: "1123597",
+//     name: "ديما يونس",
+//     age: 25,
+//     gender: "انثى",
+//     role: "علاقات عامة",
+//     password: "pr@123",
+//     phone: randomPhoneNumber(),
+//     email: randomEmail(),
+//     // dateCreated: randomCreatedDate(),
+//     // lastLogin: randomUpdatedDate(),
+//   },
+// ];
 
-export const MOTRowLength = rows.length;
+// const rows = [
+//   {
+//     birthDate: "2022-03-28T16:42:37.207Z",
+//     email: "tarek@hotmail.com",
+//     gender: "ذكر",
+//     identity_id: "405006669",
+//     name: "طارق",
+//     password: "abc123",
+//     phone: "0595076008",
+//     role: "MOT",
+//     id: "405006669",
+//   },
+// ];
+
+// export const MOTRowLength = rows.length;
 
 function EditToolbar(props) {
   const { apiRef } = props;
@@ -156,7 +170,20 @@ EditToolbar.propTypes = {
   }).isRequired,
 };
 
-export default function FullFeaturedCrudGrid() {
+const FullFeaturedCrudGrid = () => {
+  const [rows, setRows] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getEmployees("MOT")
+      .then((res) => {
+        console.log(res.data.data);
+        setData([...res.data.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [rows]);
   const apiRef = useGridApiRef();
 
   const handleRowEditStart = (params, event) => {
@@ -196,23 +223,17 @@ export default function FullFeaturedCrudGrid() {
         password: row.password,
       };
       try {
-        axios
-          .post(`http://localhost:3001/employee`, { data: employee })
+        await addEmployee(employee)
           .then((res) => {
-            console.log(res.data);
-            return res.success;
+            console.log(res);
+          })
+          .catch((error) => {
+            console.log(error);
           });
-      } catch (err) {
-        console.log(err);
-      }
-      apiRef.current.updateRows([{ ...row, isNew: false }]);
+        apiRef.current.updateRows([{ ...row, isNew: false }]);
+      } catch (error) {}
     }
-    // const employee = {};
-    // try {
-    //     await addEmployee()
-    // }
   };
-
   const handleDeleteClick = (id) => (event) => {
     event.stopPropagation();
     apiRef.current.updateRows([{ id, _action: "delete" }]);
@@ -246,16 +267,16 @@ export default function FullFeaturedCrudGrid() {
       headerAlign: "center",
     },
     {
-      field: "age",
+      field: "birthDate",
       headerName: "العمر",
-      type: "number",
+      type: "date",
       width: 100,
       editable: true,
       align: "center",
       headerAlign: "center",
     },
     {
-      field: "id",
+      field: "_id",
       headerName: "رقم الهوية",
       width: 150,
       editable: true,
@@ -361,7 +382,7 @@ export default function FullFeaturedCrudGrid() {
             width: "100%",
             marginTop: "10px",
           }}
-          rows={rows}
+          rows={data}
           columns={columns}
           apiRef={apiRef}
           editMode="row"
@@ -378,4 +399,6 @@ export default function FullFeaturedCrudGrid() {
       </Box>
     </StyledEmployee>
   );
-}
+};
+
+export default FullFeaturedCrudGrid;
