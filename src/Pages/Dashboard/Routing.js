@@ -20,6 +20,7 @@ import PropertyService from "../MOP/PropertyService";
 import PropertyRequestTable from "../MOP/PropertyRequestTable";
 import Users from "../Users/Users";
 import profileSetting from "../MyProfile/profileSetting";
+import TransportationReports from "../MOT/TransportationReports";
 
 const Routing = () => {
 
@@ -38,6 +39,7 @@ const Routing = () => {
                     <Route path='/DB/MinistryOfTransportation/requests' exact component={TransportationRequestTable} />
                     <Route path='/DB/MinistryOfTransportation/services' exact component={TransportationService} />
                     <Route path='/DB/MinistryOfTransportation/employees' exact component={TransportationEmployee} />
+                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />
                     <Route path='/DB/MinistryOfInteriorAffairs/employees' exact component={InteriorEmployee} />
                     <Route path='/DB/MinistryOfInteriorAffairs/services' exact component={InteriorService} />
                     <Route path='/DB/MinistryOfInteriorAffairs/requests' exact component={InteriorRequestTable} />

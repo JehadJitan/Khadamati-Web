@@ -165,11 +165,38 @@ export default function FullFeaturedCrudGrid() {
         // Wait for the validation to run
         const isValid = await apiRef.current.commitRowChange(id);
         if (isValid) {
-            apiRef.current.setRowMode(id, 'view');
+            apiRef.current.setRowMode(id, "view");
             const row = apiRef.current.getRow(id);
+            console.log(JSON.stringify(row));
+            const employee = {
+                _id: row.id,
+                name: row.name,
+                gender: row.gender,
+                birthDate: new Date(),
+                role: row.role,
+                phone: row.phone,
+                identity_id: row.id,
+                email: row.email,
+                password: row.password,
+            };
+            try {
+                axios
+                    .post(`http://localhost:3001/employee`, { data: employee })
+                    .then((res) => {
+                        console.log(res.data);
+                        return res.success;
+                    });
+            } catch (err) {
+                console.log(err);
+            }
             apiRef.current.updateRows([{ ...row, isNew: false }]);
         }
+        // const employee = {};
+        // try {
+        //     await addEmployee()
+        // }
     };
+
 
     const handleDeleteClick = (id) => (event) => {
         event.stopPropagation();

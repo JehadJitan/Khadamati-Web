@@ -32,6 +32,22 @@ export const StyledService = styled.div`
     background-color: #ffffff;
 `;
 
+export const StyledReport = styled.div`
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items:center;
+    margin:auto;
+    width:60%;
+    height:500px;
+    // border: 4px solid #d31818;
+    margin-top:30px;
+    padding: 10px;
+    // border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
+`;
+
 export const StyledTable = styled.div`
     display:flex;
     flex-direction: column;
@@ -55,6 +71,14 @@ export const ButtomTitleLine = styled.div`
     // padding-bottom: 20px;
     // border-bottom: 2px solid black;
     color:#d31818;
+`;
+
+export const InsideDivTitle = styled.div`
+    margin:20px;
+    display: flex;
+    justify-content: center;
+    color:#d31818;
+    font-size: 10px;
 `;
 
 export const TitleDiv = styled.div`
