@@ -1,100 +1,22 @@
-import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import {
-    randomCreatedDate, randomEmail, randomId, randomPhoneNumber, randomTraderName,
-    randomUpdatedDate
-} from '@mui/x-data-grid-generator';
 import {
     DataGridPro, GridActionsCellItem, GridToolbarContainer, useGridApiRef
 } from '@mui/x-data-grid-pro';
 import PropTypes from 'prop-types';
-import * as React from 'react';
-
+import React, { useEffect, useState } from "react";
+import { addEmployee, getEmployees, editEmployee } from "../../shared/api";
 import { StyledEmployee } from '../../Components/Divs/StyledDivs';
-
-// const Title = styled.h2`
-// margin-top:10px;
-//     // color:#d31818;
-//     // margin-bottom:30px;
-// `;
-
-const rows = [
-
-    {
-        id: "1171858",
-        name: "جهاد الجيطان",
-        age: 25,
-        gender: "ذكر",
-        role: "محاسب",
-        password: "test123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: "1173019",
-        name: "طارق خوري",
-        age: 30,
-        gender: "ذكر",
-        role: "مساعد إداري",
-        password: "admin@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: "1156495",
-        name: "عيسى سلامة",
-        age: 25,
-        gender: "ذكر",
-        role: "المبيعات",
-        password: "sales@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: "1165240",
-        name: "ميار بطراوي",
-        age: 28,
-        gender: "انثى",
-        role: "المشتريات",
-        password: "role@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: "1123597",
-        name: "ديما يونس",
-        age: 25,
-        gender: "انثى",
-        role: "علاقات عامة",
-        password: "pr@123",
-        phone: randomPhoneNumber(),
-        email: randomEmail(),
-        // dateCreated: randomCreatedDate(),
-        // lastLogin: randomUpdatedDate(),
-    },
-];
-
-export const MOIERowLength = rows.length;
 
 function EditToolbar(props) {
     const { apiRef } = props;
 
     const handleClick = () => {
-        const id = randomId();
+        const id = 0;
         apiRef.current.updateRows([{ id, isNew: true }]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
@@ -118,18 +40,6 @@ function EditToolbar(props) {
             } color="primary" onClick={handleClick}>
                 إضافة موظف جديد
             </Button>
-            {/* <Button variant="contained" sx={{
-                ':hover': {
-                    bgcolor: 'primary.main', // theme.palette.primary.main
-                    background: '#d31818',
-                }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
-            }
-            } color="primary" onClick={handleClick}>
-                إبحث
-            </Button> */}
-            {/* <input style={{ "color": "red" }} placeholder="اسم الموظف" label="Multiline Placeholder"></input>
-            <label> : البحث عن موظف</label> */}
-            {/* <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name"></input> */}
         </GridToolbarContainer >
     );
 }
@@ -141,7 +51,25 @@ EditToolbar.propTypes = {
 };
 
 export default function FullFeaturedCrudGrid() {
+    const [rows, setRows] = useState([]);
+    const [data, setData] = useState([]);
+    const [edited, setEdited] = useState(false);
+
+    useEffect(() => {
+        getEmployees("MOI")
+            .then((res) => {
+                // console.log(res.data.data);
+                setData([...res.data.data]);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [rows]);
+
     const apiRef = useGridApiRef();
+
+    const MOTtotalEmployees = Object.keys(data).length;
+    console.log("Total Employees: ", MOTtotalEmployees);
 
     const handleRowEditStart = (params, event) => {
         event.defaultMuiPrevented = true;
@@ -158,6 +86,7 @@ export default function FullFeaturedCrudGrid() {
     const handleEditClick = (id) => (event) => {
         event.stopPropagation();
         apiRef.current.setRowMode(id, 'edit');
+        setEdited(true);
     };
 
     const handleSaveClick = (id) => async (event) => {
@@ -165,8 +94,46 @@ export default function FullFeaturedCrudGrid() {
         // Wait for the validation to run
         const isValid = await apiRef.current.commitRowChange(id);
         if (isValid) {
-            apiRef.current.setRowMode(id, 'view');
+            apiRef.current.setRowMode(id, "view");
             const row = apiRef.current.getRow(id);
+            const employee = {
+                _id: row.id,
+                name: row.name,
+                gender: row.gender,
+                birthDate: row.birthDate,
+                role: row.role,
+                phone: row.phone,
+                id: row.id,
+                email: row.email,
+                password: row.password,
+            };
+            if (edited) {
+                try {
+                    await editEmployee(employee)
+                        .then((res) => {
+                            console.log(res);
+                            setEdited(false);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                try {
+                    await addEmployee(employee)
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            console.log(JSON.stringify(row));
             apiRef.current.updateRows([{ ...row, isNew: false }]);
         }
     };
@@ -196,7 +163,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center'
         },
         {
-            field: 'age', headerName: 'العمر', type: 'number', width: 100, editable: true, align: 'center',
+            field: 'birthDate', headerName: 'العمر', type: 'date', width: 100, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
@@ -286,7 +253,7 @@ export default function FullFeaturedCrudGrid() {
                         width: '100%',
                         marginTop: '10px',
                     }}
-                    rows={rows}
+                    rows={data}
                     columns={columns}
                     apiRef={apiRef}
                     editMode="row"

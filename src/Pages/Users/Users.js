@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React, { useState, useEffect } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { ButtomTitleLine, StyledTable, TitleDiv } from '../../Components/Divs/StyledDivs';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { getCitizens } from "../../shared/api";
 
 const columns = [
     { field: 'id', headerName: 'رقم المستخدم', width: 120, align: 'center' },
     {
-        field: 'fullName',
+        field: 'name',
         headerName: 'اسم المواطن',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
@@ -18,16 +19,38 @@ const columns = [
         //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
     {
-        field: 'idNumber',
+        field: 'password',
+        headerName: 'كلمة المرور',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 180,
+        align: 'center',
+        headerAlign: 'center',
+        // valueGetter: (params) =>
+        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    },
+    {
+        field: 'email',
+        headerName: 'البريد الالكتروني',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 180,
+        align: 'center',
+        headerAlign: 'center',
+        // valueGetter: (params) =>
+        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    },
+    {
+        field: 'identity_id',
         headerName: 'رقم الهوية',
         width: 150,
         align: 'center',
         headerAlign: 'center',
     },
     {
-        field: 'dateOfBirth',
+        field: 'birthDate',
         headerName: 'تاريخ الميلاد',
-        width: 150,
+        width: 130,
         align: 'center',
         type: 'date',
         headerAlign: 'center',
@@ -40,38 +63,73 @@ const columns = [
         headerAlign: 'center',
     },
     {
-        field: 'address',
-        headerName: 'العنوان',
+        field: 'phone',
+        headerName: 'رقم الهاتف',
         width: 100,
-        align: 'center',
-        headerAlign: 'center',
-    },
-    {
-        field: 'dateSubmitted',
-        headerName: 'تاريخ التسجيل',
-        type: 'date',
-        width: 150,
         align: 'center',
         headerAlign: 'center',
     },
     { field: 'status', headerName: 'الحالة', width: 160, align: 'center', headerAlign: 'center', },
 ];
 
-const rows = [
-    // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 1, dateSubmitted: '12-10-2021', service: 'تجديد رخصة سياقة', idNumber: '1171858', fullName: 'عبدالعزيز بياثنه', gender: 'ذكر', address: 'سردا', dateOfBirth: '19-05-1998', status: 'مفعل' },
-    { id: 2, dateSubmitted: '02-05-2020', service: 'إصدار رخصة سياقة', idNumber: '1175684', fullName: 'معتز ريماوي', gender: 'ذكر', address: 'كفر عقب', dateOfBirth: '19-05-1996', status: 'مفعل' },
-    { id: 3, dateSubmitted: '19-07-2021', service: 'دفع مخالفات عام 2020', idNumber: '1135684', fullName: 'عدي عودة', gender: 'ذكر', address: 'بيت لحم', dateOfBirth: '28-10-1970', status: 'موقف' },
-    { id: 4, dateSubmitted: '29-04-2019', service: 'تجديد رخصة سياقة', idNumber: '1196583', fullName: 'احمد فريج', gender: 'ذكر', address: 'طولكرم', dateOfBirth: '20-12-1967', status: 'موقف' },
-    { id: 5, dateSubmitted: '12-11-2021', service: 'تسجيل إمتحان تؤوريا', idNumber: '1145672', fullName: 'بدر طوافشة', gender: 'ذكر', address: 'سنجل', dateOfBirth: '04-04-1999', status: 'مفعل' },
-    { id: 6, dateSubmitted: '20-01-2022', service: 'تجديد رخصة سياقة', idNumber: '1186372', fullName: 'نمر التميمي', gender: 'ذكر', address: 'بيرزيت', dateOfBirth: '23-06-2001', status: 'موقف' },
-    { id: 7, dateSubmitted: '01-01-2022', service: 'دفع مخالفات عام 2021', idNumber: '1171717', fullName: 'عيسى سلامة', gender: 'ذكر', address: 'بديا', dateOfBirth: '20-09-1998', status: 'مفعل' },
-    { id: 8, dateSubmitted: '12-10-2021', service: 'تجديد رخصة سياقة', idNumber: '1198365', fullName: 'محمد بكري', gender: 'ذكر', address: 'رام الله', dateOfBirth: '03-01-2002', status: 'مفعل' },
-];
-
-export const NumOfUsers = rows.length;
-
 export default function Users() {
+
+    const [rows, setRows] = useState([]);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        getCitizens({})
+            .then((res) => {
+                // console.log(res.data.data);
+                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [rows]);
+
+    // useEffect(() => {
+    //     getCitizens()
+    //         .then((res) => {
+    //             // console.log(res.data.data);
+    //             setData([...res.data.data]);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, [rows]);
+
+    const [selected, setSelected] = useState(false);
+
+    // onselect = setSelected(true);
+
+    function activateAccount() {
+        if (selected) {
+            console.log("Should be activated now");
+            setSelected(false);
+        } else {
+            console.log("Select row to activate");
+        }
+    }
+
+    function deactivateAccount() {
+
+        if (selected) {
+            console.log("Should be deactivated now");
+            setSelected(false);
+        } else {
+            console.log("Select row to deactivate");
+        }
+    }
+    function deleteAccount() {
+        if (selected) {
+            console.log("Should be deleted now");
+            setSelected(false);
+        } else {
+            console.log("Select row to delete");
+        }
+    }
+
     return (
         <>
             <TitleDiv>
@@ -82,17 +140,23 @@ export default function Users() {
             <StyledTable dir="rtl">
                 <div style={{ height: 490, width: '100%' }}>
                     <DataGrid
-                        rows={rows}
+                        rows={data}
                         columns={columns}
                         pageSize={7}
                         rowsPerPageOptions={[10]}
                         checkboxSelection
+                        // onSelectionChange={(newSelection) => {
+
+                        //     console.log("yes");
+                        // }}
+                        // onSelectionModelChange={itm => console.log("yes")}
+                        onSelectionModelChange={selected => setSelected(true)}
                     />
                 </div>
                 <Stack direction="row" style={{ 'margin-top': '20px' }}>
-                    <Button variant="contained" color="warning" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>حذف حساب</Button>
-                    <Button variant="contained" color="error" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>توقيف حساب</Button>
-                    <Button variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>
+                    <Button onClick={deleteAccount} variant="contained" color="warning" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>حذف حساب</Button>
+                    <Button onClick={deactivateAccount} variant="contained" color="error" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>توقيف حساب</Button>
+                    <Button onClick={activateAccount} variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>
                 </Stack>
             </StyledTable>
         </>
