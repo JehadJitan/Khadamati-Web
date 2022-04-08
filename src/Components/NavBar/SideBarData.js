@@ -133,6 +133,11 @@ export const SideBarData = [
                 title: 'التقارير',
                 path: '/DB/MinistryOfHealth/reports',
                 icon: <HiIcons.HiDocumentReport />,
+            },
+            {
+                title: 'مطعوم',
+                path: '/DB/MinistryOfHealth/covid',
+                icon: <MdIcons.MdOutlineCoronavirus />,
             }
         ]
     },

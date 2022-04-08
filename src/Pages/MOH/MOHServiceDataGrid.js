@@ -6,8 +6,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {
-    randomCreatedDate, randomEmail, randomId, randomPhoneNumber, randomTraderName,
-    randomUpdatedDate
+    randomId
 } from '@mui/x-data-grid-generator';
 import {
     DataGridPro, GridActionsCellItem, GridToolbarContainer, useGridApiRef
@@ -17,49 +16,13 @@ import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
 import { addService, editService, getService } from '../../shared/api';
 
-// const rows = [
-
-//     {
-//         id: "1672",
-//         service: "دفع مخالفات السير",
-//         serviceDes: "تتيح للمواطن إمكانية دفع المخالفات الكترونيا",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: "-",
-//     },
-//     {
-//         id: "1673",
-//         service: "دفع رسوم التأمين الصحي",
-//         serviceDes: "تتيح للمواطن إمكانية دفع تكاليف التأمين الصحي",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: randomUpdatedDate(),
-//     },
-//     {
-//         id: "1675",
-//         service: "دفع الضرائب",
-//         serviceDes: "تتيح للمواطن إمكانية دفع الضرائب الكترونيا",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: randomUpdatedDate(),
-//     },
-//     {
-//         id: "1676",
-//         service: "دفع رسوم تجديد جواز السفر",
-//         serviceDes: "تتيح للمواطن دفع تكاليف تجديد جواز السفر الكترونيا",
-//         active: "لا",
-//         dateStarted: "-",
-//         dateEnded: "-",
-//     },
-// ];
-export const MOFEServiceRowLength = 10;
-
+export const MOIServiceRowLength = 10;
 
 function EditToolbar(props) {
     const { apiRef } = props;
 
     const handleClick = () => {
-        const type = "MOF";
+        const type = "MOH";
         const id = randomId();
         apiRef.current.updateRows([{ id, isNew: true, type }]);
         apiRef.current.setRowMode(id, 'edit');
@@ -81,7 +44,7 @@ function EditToolbar(props) {
                     background: '#d31818',
                 }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
             }
-            } color="primary" onClick={handleClick}>
+            } color="primary" endIcon={<AddIcon />} onClick={handleClick}>
                 إضافة خدمة جديدة
             </Button>
         </GridToolbarContainer >
@@ -96,12 +59,13 @@ EditToolbar.propTypes = {
 
 export default function FullFeaturedCrudGrid() {
 
+
     const [rows, setRows] = useState([]);
     const [data, setData] = useState([]);
     const [edited, setEdited] = useState(false);
 
     useEffect(() => {
-        getService("MOF")
+        getService("MOH")
             .then((res) => {
                 // console.log(res.data.data);
                 setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);

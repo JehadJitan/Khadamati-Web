@@ -17,7 +17,8 @@ function EditToolbar(props) {
 
     const handleClick = () => {
         const id = 0;
-        apiRef.current.updateRows([{ id, isNew: true }]);
+        const role = "MOI";
+        apiRef.current.updateRows([{ id, isNew: true, role }]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
         setTimeout(() => {

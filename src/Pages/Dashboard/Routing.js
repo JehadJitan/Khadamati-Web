@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './Dashboard.css';
 import About from "../About/About"
 import LogIn from "../../Components/logIn/logIn";
-import HealthEmployees from "../MOH/HealthEmployees";
-import HealthServices from "../MOH/HealthServices";
+import HealthEmployees from "../MOH/HealthEmployee";
+import HealthServices from "../MOH/HealthService";
+import covidVaccine from "../MOH/covidVaccine";
 import InteriorEmployee from "../MOI/InteriorEmployee";
 import InteriorService from "../MOI/InteriorService";
 import DashboardContent from "./DashboardContent";
@@ -33,6 +34,7 @@ const Routing = () => {
                     <Route path='/DB/about' exact component={About} />
                     <Route path='/DB/MinistryOfHealth/employees' exact component={HealthEmployees} />
                     <Route path='/DB/MinistryOfHealth/services' exact component={HealthServices} />
+                    <Route path='/DB/MinistryOfHealth/covid' exact component={covidVaccine} />
                     <Route path='/DB/MinistryOfFinance/employees' exact component={FinanceEmployee} />
                     <Route path='/DB/MinistryOfFinance/services' exact component={FinanceService} />
                     <Route path='/DB/MinistryOfFinance/requests' exact component={FinanceRequestTable} />

@@ -16,63 +16,13 @@ import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
 import { addService, editService, getService } from '../../shared/api';
 
-// const bezr = [
-
-//     {
-//         id: "1672",
-//         name: "إصدار رخصة سياقة",
-//         description: "تتيح للمواطن تقديم طلب إصدار رخصة سياقة",
-//         activated: "نعم",
-//         startDate: randomCreatedDate(),
-//         endDate: "-",
-//         type: "MOT",
-//         ministryName: "وزارة المواصلات",
-//         price: "100 ₪",
-//     },
-//     {
-//         id: "1673",
-//         name: "طلب فقدان رخصة سياقة",
-//         description: "تتيح للمواطن تقديم طلب فقدان رخصته الشخصية",
-//         activated: "نعم",
-//         startDate: randomCreatedDate(),
-//         endDate: "-",
-//         type: "MOT",
-//         ministryName: "وزارة المواصلات",
-//         price: "100 ₪",
-//     },
-//     {
-//         id: "1675",
-//         name: "دفع مخالفات السير",
-//         description: "تتيح للمواطن تقديم طلب دفع المخالفات المتراكمة",
-//         activated: "نعم",
-//         startDate: randomCreatedDate(),
-//         endDate: "-",
-//         type: "MOT",
-//         ministryName: "وزارة المواصلات",
-//         price: "100 ₪",
-//     },
-//     {
-//         id: "1676",
-//         name: "تسجيل لإمتحان تؤوريا",
-//         description: "تتيح للمواطن تقديم طلب تقديم إمتحان التؤوريا",
-//         activated: "لا",
-//         startDate: randomCreatedDate(),
-//         endDate: "-",
-//         type: "MOT",
-//         ministryName: "وزارة المواصلات",
-//         price: "100 ₪",
-//     },
-// ];
-
-// export const MOTServiceRowLength = bezr.length;
-
-
 function EditToolbar(props) {
     const { apiRef } = props;
 
     const handleClick = () => {
+        const type = "MOT";
         const id = randomId();
-        apiRef.current.updateRows([{ id, isNew: true }]);
+        apiRef.current.updateRows([{ id, isNew: true, type }]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
         setTimeout(() => {

@@ -16,8 +16,9 @@ function EditToolbar(props) {
     const { apiRef } = props;
 
     const handleClick = () => {
+        const role = "MOF";
         const id = 0;
-        apiRef.current.updateRows([{ id, isNew: true }]);
+        apiRef.current.updateRows([{ id, isNew: true, role }]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
         setTimeout(() => {
@@ -60,7 +61,7 @@ const FullFeaturedCrudGrid = () => {
         getEmployees("MOF")
             .then((res) => {
                 // console.log(res.data.data);
-                setData([...res.data.data]);
+                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
             })
             .catch((err) => {
                 console.log(err);
@@ -105,7 +106,7 @@ const FullFeaturedCrudGrid = () => {
                 birthDate: row.birthDate,
                 role: row.role,
                 phone: row.phone,
-                id: row.id,
+                id: row.userId,
                 email: row.email,
                 password: row.password,
             };
@@ -165,11 +166,11 @@ const FullFeaturedCrudGrid = () => {
             headerAlign: 'center'
         },
         {
-            field: 'birthDate', headerName: 'العمر', type: 'date', width: 100, editable: true, align: 'center',
+            field: 'birthDate', headerName: 'تاريخ الميلاد', type: 'date', width: 100, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'id', headerName: 'رقم الهوية', width: 150, editable: true, align: 'center',
+            field: 'userId', headerName: 'رقم الهوية', width: 150, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {

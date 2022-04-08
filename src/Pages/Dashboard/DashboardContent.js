@@ -16,6 +16,7 @@ import { MOPRequestLength } from '../MOP/PropertyRequestTable';
 import { MOIRequestLength } from '../MOI/InteriorRequestTable';
 import { MOTRequestLength } from '../MOT/TransportationRequestTable';
 import { MOFRequestLength } from '../MOF/FinanceRequestTable';
+import styledTable from './DashStyle.css';
 
 const Parent = styled.div`
     display: flex;
