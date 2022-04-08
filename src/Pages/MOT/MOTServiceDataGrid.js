@@ -6,53 +6,65 @@ import SaveIcon from '@mui/icons-material/Save';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import {
-    randomCreatedDate, randomEmail, randomId, randomPhoneNumber, randomTraderName,
-    randomUpdatedDate
+    randomCreatedDate, randomId,
 } from '@mui/x-data-grid-generator';
 import {
     DataGridPro, GridActionsCellItem, GridToolbarContainer, useGridApiRef
 } from '@mui/x-data-grid-pro';
 import PropTypes from 'prop-types';
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
+import { addService, editService, getService } from '../../shared/api';
 
-const rows = [
+// const bezr = [
 
-    {
-        id: "1672",
-        service: "إصدار رخصة سياقة",
-        serviceDes: "تتيح للمواطن تقديم طلب إصدار رخصة سياقة",
-        active: "نعم",
-        dateStarted: randomCreatedDate(),
-        dateEnded: "-",
-    },
-    {
-        id: "1673",
-        service: "طلب فقدان رخصة سياقة",
-        serviceDes: "تتيح للمواطن تقديم طلب فقدان رخصته الشخصية",
-        active: "نعم",
-        dateStarted: randomCreatedDate(),
-        dateEnded: randomUpdatedDate(),
-    },
-    {
-        id: "1675",
-        service: "دفع مخالفات السير",
-        serviceDes: "تتيح للمواطن تقديم طلب دفع المخالفات المتراكمة",
-        active: "نعم",
-        dateStarted: randomCreatedDate(),
-        dateEnded: randomUpdatedDate(),
-    },
-    {
-        id: "1676",
-        service: "تسجيل لإمتحان تؤوريا",
-        serviceDes: "تتيح للمواطن تقديم طلب تقديم إمتحان التؤوريا",
-        active: "لا",
-        dateStarted: "-",
-        dateEnded: "-",
-    },
-];
+//     {
+//         id: "1672",
+//         name: "إصدار رخصة سياقة",
+//         description: "تتيح للمواطن تقديم طلب إصدار رخصة سياقة",
+//         activated: "نعم",
+//         startDate: randomCreatedDate(),
+//         endDate: "-",
+//         type: "MOT",
+//         ministryName: "وزارة المواصلات",
+//         price: "100 ₪",
+//     },
+//     {
+//         id: "1673",
+//         name: "طلب فقدان رخصة سياقة",
+//         description: "تتيح للمواطن تقديم طلب فقدان رخصته الشخصية",
+//         activated: "نعم",
+//         startDate: randomCreatedDate(),
+//         endDate: "-",
+//         type: "MOT",
+//         ministryName: "وزارة المواصلات",
+//         price: "100 ₪",
+//     },
+//     {
+//         id: "1675",
+//         name: "دفع مخالفات السير",
+//         description: "تتيح للمواطن تقديم طلب دفع المخالفات المتراكمة",
+//         activated: "نعم",
+//         startDate: randomCreatedDate(),
+//         endDate: "-",
+//         type: "MOT",
+//         ministryName: "وزارة المواصلات",
+//         price: "100 ₪",
+//     },
+//     {
+//         id: "1676",
+//         name: "تسجيل لإمتحان تؤوريا",
+//         description: "تتيح للمواطن تقديم طلب تقديم إمتحان التؤوريا",
+//         activated: "لا",
+//         startDate: randomCreatedDate(),
+//         endDate: "-",
+//         type: "MOT",
+//         ministryName: "وزارة المواصلات",
+//         price: "100 ₪",
+//     },
+// ];
 
-export const MOTServiceRowLength = rows.length;
+// export const MOTServiceRowLength = bezr.length;
 
 
 function EditToolbar(props) {
@@ -94,6 +106,22 @@ EditToolbar.propTypes = {
 };
 
 export default function FullFeaturedCrudGrid() {
+
+    const [rows, setRows] = useState([]);
+    const [data, setData] = useState([]);
+    const [edited, setEdited] = useState(false);
+
+    useEffect(() => {
+        getService("MOT")
+            .then((res) => {
+                // console.log(res.data.data);
+                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [rows]);
+
     const apiRef = useGridApiRef();
 
     const handleRowEditStart = (params, event) => {
@@ -111,16 +139,62 @@ export default function FullFeaturedCrudGrid() {
     const handleEditClick = (id) => (event) => {
         event.stopPropagation();
         apiRef.current.setRowMode(id, 'edit');
+        setEdited(true);
     };
 
     const handleSaveClick = (id) => async (event) => {
         event.stopPropagation();
         // Wait for the validation to run
+        const row = apiRef.current.getRow(id);
+        console.log({ row })
         const isValid = await apiRef.current.commitRowChange(id);
         if (isValid) {
-            apiRef.current.setRowMode(id, 'view');
+            const row2ND = apiRef.current.getRow(id);
+            console.log({ row2ND })
+            apiRef.current.setRowMode(id, "view");
             const row = apiRef.current.getRow(id);
-            apiRef.current.updateRows([{ ...row, isNew: false }]);
+            console.log({ row })
+            // apiRef.current.updateRows([{ id: 0, _action: "delete" }])
+            const service = {
+                _id: row.id,
+                name: row.name,
+                id: row.serviceId,
+                startDate: row.startDate,
+                endDate: row.endDate,
+                activated: row.activated,
+                type: row.type,
+                ministryName: row.ministryName,
+                description: row.description,
+                price: row.price,
+            };
+            if (edited) {
+                try {
+                    await editService(service)
+                        .then((res) => {
+                            console.log(res);
+                            setEdited(false);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                try {
+                    await addService(service)
+                        .then((res) => {
+                            console.log(res);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            // console.log(JSON.stringify(row));
+            // apiRef.current.updateRows([{ ...row, isNew: false }]);
         }
     };
 
@@ -141,27 +215,31 @@ export default function FullFeaturedCrudGrid() {
 
     const columns = [
         {
-            field: 'id', headerName: 'رقم الخدمة', width: 100, editable: true, align: 'center',
+            field: 'serviceId', headerName: 'رقم الخدمة', width: 100, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'service', headerName: 'الخدمة', width: 200, editable: true, align: 'center',
+            field: 'name', headerName: 'الخدمة', width: 200, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            field: 'type', headerName: 'الوزارة', width: 100, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'serviceDes', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
+            field: 'description', headerName: 'تفاصيل الخدمة', width: 400, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'active', headerName: 'التفعيل', width: 100, editable: true, align: 'center',
+            field: 'price', headerName: 'السعر', width: 100, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
-            field: 'dateStarted',
+            field: 'activated', headerName: 'التفعيل', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'startDate',
             headerName: 'تاريخ الإنشاء',
             type: 'date',
             width: 150,
@@ -170,7 +248,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center',
         },
         {
-            field: 'dateEnded',
+            field: 'endDate',
             headerName: 'تاريخ الإنتهاء',
             type: 'date',
             width: 150,
@@ -183,7 +261,7 @@ export default function FullFeaturedCrudGrid() {
             field: 'actions',
             type: 'actions',
             headerName: 'العملية',
-            width: 200,
+            width: 100,
             align: 'center',
             cellClassName: 'actions',
             getActions: ({ id }) => {
@@ -245,7 +323,7 @@ export default function FullFeaturedCrudGrid() {
                         width: '100%',
                         marginTop: '10px',
                     }}
-                    rows={rows}
+                    rows={data}
                     columns={columns}
                     apiRef={apiRef}
                     editMode="row"

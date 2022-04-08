@@ -9,7 +9,7 @@ import { MOTtotalEmployees } from '../MOT/MOTEmployeeDataGrid';
 import { NumOfUsers } from '../Users/Users';
 import 'react-circular-progressbar/dist/styles.css';
 import { MOPServiceRowLength } from '../MOP/MOPServiceDataGrid';
-import { MOTServiceRowLength } from '../MOT/MOTServiceDataGrid';
+// import { MOTServiceRowLength } from '../MOT/MOTServiceDataGrid';
 import { MOIServiceRowLength } from '../MOI/MOIServiceDataGrid';
 import { MOFEServiceRowLength } from '../MOF/MOFServiceDataGrid';
 import { MOPRequestLength } from '../MOP/PropertyRequestTable';
@@ -150,7 +150,7 @@ function DashboardContent() {
 
                         <tr>
                             <td>{MOTRequestLength}</td>
-                            <td>{MOTServiceRowLength}</td>
+                            <td>10</td>
                             <td>{MOTtotalEmployees}</td>
                             <td style={{ 'color': '#d31818' }}>وزارة المواصلات</td>
                         </tr>
@@ -168,7 +168,7 @@ function DashboardContent() {
                         </tr>
                         <tr>
                             <td>{MOTRequestLength}</td>
-                            <td>{MOTServiceRowLength}</td>
+                            <td>10</td>
                             <td>10</td>
                             <td style={{ 'color': '#d31818' }}>وزارة الصحة</td>
                         </tr>

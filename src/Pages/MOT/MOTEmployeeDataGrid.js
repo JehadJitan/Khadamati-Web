@@ -52,7 +52,7 @@ EditToolbar.propTypes = {
 };
 
 export var MOTtotalEmployees = 0;
-let data = []
+
 const FullFeaturedCrudGrid = () => {
 
     const [rows, setRows] = useState([]);
@@ -135,24 +135,6 @@ const FullFeaturedCrudGrid = () => {
                     await addEmployee(employee)
                         .then((res) => {
                             console.log(res);
-                            // reove row row with id : 0
-                            // {
-                            //     "_id": "405006669",
-                            //     "role": "MOT",
-                            //     "name": "طارق",
-                            //     "gender": "ذكر",
-                            //     "birthDate": {
-                            //       "$date": "2022-03-28T16:42:37.207Z"
-                            //     },
-                            //     "email": "tarek@hotmail.com",
-                            //     "password": "cba142",
-                            //     "phone": "0595076008",
-                            //     "__v": 0,
-                            //     "id": "405006669"
-                            //   }
-                            // apiRef.current.re
-
-                            // apiRef.current.updateRows([{ ...res, isNew: true }]);
                         })
                         .catch((error) => {
                             console.log(error);

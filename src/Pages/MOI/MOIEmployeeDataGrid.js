@@ -59,7 +59,7 @@ export default function FullFeaturedCrudGrid() {
         getEmployees("MOI")
             .then((res) => {
                 // console.log(res.data.data);
-                setData([...res.data.data]);
+                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
             })
             .catch((err) => {
                 console.log(err);
@@ -68,8 +68,8 @@ export default function FullFeaturedCrudGrid() {
 
     const apiRef = useGridApiRef();
 
-    const MOTtotalEmployees = Object.keys(data).length;
-    console.log("Total Employees: ", MOTtotalEmployees);
+    // const MOItotalEmployees = Object.keys(data).length;
+    // console.log("Total Employees: ", MOItotalEmployees);
 
     const handleRowEditStart = (params, event) => {
         event.defaultMuiPrevented = true;
@@ -103,7 +103,7 @@ export default function FullFeaturedCrudGrid() {
                 birthDate: row.birthDate,
                 role: row.role,
                 phone: row.phone,
-                id: row.id,
+                id: row.userId,
                 email: row.email,
                 password: row.password,
             };
@@ -167,7 +167,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center'
         },
         {
-            field: 'id', headerName: 'رقم الهوية', width: 150, editable: true, align: 'center',
+            field: 'userId', headerName: 'رقم الهوية', width: 150, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {

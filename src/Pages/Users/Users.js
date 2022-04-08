@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import { getCitizens } from "../../shared/api";
 
 const columns = [
-    { field: 'id', headerName: 'رقم المستخدم', width: 120, align: 'center' },
     {
         field: 'name',
         headerName: 'اسم المواطن',
@@ -15,19 +14,15 @@ const columns = [
         width: 250,
         align: 'center',
         headerAlign: 'center',
-        // valueGetter: (params) =>
-        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
     {
         field: 'password',
         headerName: 'كلمة المرور',
         description: 'This column has a value getter and is not sortable.',
         sortable: false,
-        width: 180,
+        width: 100,
         align: 'center',
         headerAlign: 'center',
-        // valueGetter: (params) =>
-        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
     {
         field: 'email',
@@ -37,8 +32,6 @@ const columns = [
         width: 180,
         align: 'center',
         headerAlign: 'center',
-        // valueGetter: (params) =>
-        //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
     {
         field: 'identity_id',
@@ -70,6 +63,7 @@ const columns = [
         headerAlign: 'center',
     },
     { field: 'status', headerName: 'الحالة', width: 160, align: 'center', headerAlign: 'center', },
+    { field: 'image', headerName: 'صورة شخصيه', width: 160, align: 'center', headerAlign: 'center', },
 ];
 
 export default function Users() {
@@ -88,20 +82,7 @@ export default function Users() {
             });
     }, [rows]);
 
-    // useEffect(() => {
-    //     getCitizens()
-    //         .then((res) => {
-    //             // console.log(res.data.data);
-    //             setData([...res.data.data]);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // }, [rows]);
-
     const [selected, setSelected] = useState(false);
-
-    // onselect = setSelected(true);
 
     function activateAccount() {
         if (selected) {
