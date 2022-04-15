@@ -47,6 +47,16 @@ export const getAdmin = async (email) => {
     return res;
 };
 
+
+export const addRequest = async (data) => {
+    const res = await axios.post(`${API_BASE_URL}/request`, { data });
+    return res;
+};
+
+export const getRequest = async (role) => {
+    const res = await axios.get(`${API_BASE_URL}/request/${role}`);
+    return res;
+};
 // export const addCovidCitizen = async (data) => {
 //     const res = await axios.post(`${API_BASE_URL}/covid`, { data });
 //     return res;
