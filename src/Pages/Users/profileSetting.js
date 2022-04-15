@@ -4,7 +4,7 @@ import { ButtomTitleLine, TitleDiv } from '../../Components/Divs/StyledDivs'
 import mainLogo from './icon.png'
 
 const ParentDiv = styled.div`
-margin:100px;
+margin:50px;
 direction: rtl;
 display: flex;
 justify-content: center;
@@ -13,7 +13,7 @@ justify-content: center;
 const RightDiv = styled.div`
 padding:30px;
 width:450px;
-height:300px;
+height:350px;
 background:#543920;
 display:flex;
 flex-direction: column;
@@ -27,7 +27,7 @@ const LeftDiv = styled.div`
 margin-right:50px;
 padding:30px;
 width:450px;
-height:300px;
+height:350px;
 background:#543920;
 display:flex;
 flex-direction: column;
@@ -53,12 +53,16 @@ function profileSetting() {
         <>
             <TitleDiv>
                 <ButtomTitleLine>
-                    <h1>تفاصيل حسابي</h1>
+                    <h1>تفاصيل حساب مواطن</h1>
                 </ButtomTitleLine>
                 <ParentDiv>
                     <RightDiv>
                         <InnerDiv>
-                            <Label>اسم المستخدم</Label>
+                            <Label>اسم المواطن</Label>
+                            <input type='text'></input>
+                        </InnerDiv>
+                        <InnerDiv>
+                            <Label>رقم الهوية</Label>
                             <input type='text'></input>
                         </InnerDiv>
                         <InnerDiv>

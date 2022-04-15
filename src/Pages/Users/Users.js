@@ -4,6 +4,7 @@ import { ButtomTitleLine, StyledTable, TitleDiv } from '../../Components/Divs/St
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { getCitizens } from "../../shared/api";
+import { useHistory } from "react-router-dom";
 
 const columns = [
     {
@@ -113,8 +114,11 @@ export default function Users() {
             console.log("Select row to delete");
         }
     }
-    function showAccount() {
+    let history = useHistory();
+
+    const showAccount = () => {
         if (selected) {
+            history.push('/DB/userInfo');
             console.log("Should re-direct to another page now");
             setSelected(false);
         } else {

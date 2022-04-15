@@ -10,11 +10,11 @@ import * as MdIcons from 'react-icons/md';
 import * as IoIcons from 'react-icons/io';
 
 export const SideBarData = [
-    {
-        title: 'حسابي',
-        icon: <MdIcons.MdManageAccounts />,
-        path: '/DB/myAccount'
-    },
+    // {
+    //     title: 'حسابي',
+    //     icon: <MdIcons.MdManageAccounts />,
+    //     path: '/DB/myAccount'
+    // },
     {
         title: 'لائحة المستخدمين',
         icon: <FaIcons.FaUsers />,
