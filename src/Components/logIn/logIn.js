@@ -1,16 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Form.css";
-import useForm from "./useForm";
-import validate from "./validateInfo";
 import { useHistory } from "react-router-dom";
 import logo from './img-2.png'
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import { getAdmin } from "../../shared/api";
 
 const LogIn = ({ submitForm }) => {
-  const { handleChange, handleSubmit, values, errors } = useForm(submitForm, validate);
   let history = useHistory();
+
+  const [password, setPassword] = useState();
+  const [email, setEmail] = useState();
+
+  const [errors, setErrors] = useState({});
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = e => {
+
+    e.preventDefault();
+    setIsSubmitting(true);
+    getAdmin(email)
+      .then((res) => {
+        if (res.data.success) {
+          if (password === res.data.data[0].password) {
+            history.push("/DB");
+          } else {
+            console.log("wrong password");
+            errors.password = 'خطأ في كلمة المرور';
+            alert("كلمة المرور خاطئة");
+          }
+        }
+        if (email !== res.data.data[0].email) {
+          console.log("jhljojoijoijioj");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -27,28 +53,23 @@ const LogIn = ({ submitForm }) => {
             <img src={logo} alt="Khadamati-logo" className="form-img"></img>
           </div>
           <div className="form-content-right">
-            <form className="form" onSubmit={handleSubmit} noValidate>
+            <form className="form" onSubmit={() => handleSubmit}>
               <h1>أهلا وسهلاً بكم في صفحة التحكم لتطبيق خدماتي</h1>
               <div className="form-inputs">
-                <label className="form-label" htmlFor="username">
-                  : اسم المستخدم
+                <label className="form-label" htmlFor="email">
+                  : البريد الإلكتروني
                 </label>
                 <input
                   type="text"
-                  name="username"
+                  name="email"
                   className="form-input"
-                  placeholder="ادخل اسم المستخدم"
-                  id="username"
-                  value={values.username}
-                  onChange={handleChange}
+                  placeholder="أدخل البريد الإلكتروني"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                {errors.username && <p>{errors.username}</p>}
+                {errors.email && <p>{errors.email}</p>}
               </div>
-              {/* <div className='form-inputs'>
-                    <label className='form-label' htmlFor='email'>: البريد الالكتروني</label>
-                    <input type='email' name='email' className='form-input' placeholder='ادخل البريد الالكتروني' id='email' value={values.email} onChange={handleChange} />
-                    {errors.email && <p>{errors.email}</p>}
-                </div> */}
               <div className="form-inputs">
                 <label className="form-label" htmlFor="password">
                   : كلمة المرور
@@ -59,8 +80,8 @@ const LogIn = ({ submitForm }) => {
                   className="form-input"
                   placeholder="ادخل كلمة المرور"
                   id="password"
-                  value={values.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 {errors.password && <p>{errors.password}</p>}
               </div>
@@ -71,23 +92,7 @@ const LogIn = ({ submitForm }) => {
               <button
                 className="form-input-btn"
                 type="submit"
-                onClick={() => {
-                  if (!values.email) {
-                    errors.email = "خطأ في البريد الالكتروني"
-                  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-                    errors.email = 'Email invalid';
-                  } else {
-                    history.push("/DB");
-                  }
-                  if (!values.password) {
-                    errors.password = 'خطأ في كلمة المرور';
-                  } else if (values.password.length < 6) {
-                    errors.password = 'يجب أن تكون كلمة المرور أطول من سته احرف';
-                  } else {
-                    history.push("/DB");
-                  }
-                }}
-              >
+                onClick={(e) => handleSubmit(e)}>
                 تسجيل الدخول
               </button>
               <span className='form-input-login'>هل نسيت كلمة المرور؟ إضغط <a href='#'>هنا</a></span>

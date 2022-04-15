@@ -40,3 +40,24 @@ export const getService = async (type) => {
     const res = await axios.get(`${API_BASE_URL}/service/${type}`);
     return res;
 };
+
+export const getAdmin = async (email) => {
+    console.log(email);
+    const res = await axios.get(`${API_BASE_URL}/admin/${email}`);
+    return res;
+};
+
+// export const addCovidCitizen = async (data) => {
+//     const res = await axios.post(`${API_BASE_URL}/covid`, { data });
+//     return res;
+// };
+
+// export const editCovidCitizen = async (type) => {
+//     const res = await axios.get(`${API_BASE_URL}/covid/edit`, { data });
+//     return res;
+// };
+
+// export const getCovidCitizen = async (type) => {
+//     const res = await axios.get(`${API_BASE_URL}/covid/${type}`);
+//     return res;
+// };

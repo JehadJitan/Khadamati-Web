@@ -16,23 +16,30 @@ const columns = [
         headerAlign: 'center',
     },
     {
-        field: 'password',
-        headerName: 'كلمة المرور',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
+        field: 'gender',
+        headerName: 'الجنس',
         width: 100,
         align: 'center',
         headerAlign: 'center',
     },
-    {
-        field: 'email',
-        headerName: 'البريد الالكتروني',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 180,
-        align: 'center',
-        headerAlign: 'center',
-    },
+    // {
+    //     field: 'password',
+    //     headerName: 'كلمة المرور',
+    //     description: 'This column has a value getter and is not sortable.',
+    //     sortable: false,
+    //     width: 100,
+    //     align: 'center',
+    //     headerAlign: 'center',
+    // },
+    // {
+    //     field: 'email',
+    //     headerName: 'البريد الالكتروني',
+    //     description: 'This column has a value getter and is not sortable.',
+    //     sortable: false,
+    //     width: 180,
+    //     align: 'center',
+    //     headerAlign: 'center',
+    // },
     {
         field: 'identity_id',
         headerName: 'رقم الهوية',
@@ -40,30 +47,26 @@ const columns = [
         align: 'center',
         headerAlign: 'center',
     },
+    { field: 'placeOfBirth', headerName: 'مكان الولادة', width: 160, align: 'center', headerAlign: 'center', },
+    { field: 'motherName', headerName: 'إسم الأم', width: 160, align: 'center', headerAlign: 'center', },
     {
         field: 'birthDate',
         headerName: 'تاريخ الميلاد',
-        width: 130,
+        width: 200,
         align: 'center',
         type: 'date',
         headerAlign: 'center',
     },
     {
-        field: 'gender',
-        headerName: 'الجنس',
-        width: 100,
-        align: 'center',
-        headerAlign: 'center',
-    },
-    {
         field: 'phone',
         headerName: 'رقم الهاتف',
-        width: 100,
+        width: 150,
         align: 'center',
         headerAlign: 'center',
     },
-    { field: 'status', headerName: 'الحالة', width: 160, align: 'center', headerAlign: 'center', },
-    { field: 'image', headerName: 'صورة شخصيه', width: 160, align: 'center', headerAlign: 'center', },
+    { field: 'status', headerName: 'الحالة', width: 150, align: 'center', headerAlign: 'center', },
+    // { field: 'image', headerName: 'صورة شخصيه', width: 160, align: 'center', headerAlign: 'center', },
+
 ];
 
 export default function Users() {
@@ -110,6 +113,14 @@ export default function Users() {
             console.log("Select row to delete");
         }
     }
+    function showAccount() {
+        if (selected) {
+            console.log("Should re-direct to another page now");
+            setSelected(false);
+        } else {
+            console.log("Select row to re-direct");
+        }
+    }
 
     return (
         <>
@@ -135,6 +146,7 @@ export default function Users() {
                     />
                 </div>
                 <Stack direction="row" style={{ 'margin-top': '20px' }}>
+                    <Button onClick={showAccount} variant="contained" color="primary" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>عرض حساب</Button>
                     <Button onClick={deleteAccount} variant="contained" color="warning" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>حذف حساب</Button>
                     <Button onClick={deactivateAccount} variant="contained" color="error" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>توقيف حساب</Button>
                     <Button onClick={activateAccount} variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>

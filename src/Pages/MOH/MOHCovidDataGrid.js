@@ -22,9 +22,8 @@ function EditToolbar(props) {
     const { apiRef } = props;
 
     const handleClick = () => {
-        const type = "MOH";
         const id = randomId();
-        apiRef.current.updateRows([{ id, isNew: true, type }]);
+        apiRef.current.updateRows([{ id, isNew: true }]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
         setTimeout(() => {
@@ -181,6 +180,10 @@ export default function FullFeaturedCrudGrid() {
         },
         {
             field: 'vaccineNumber', headerName: 'رقم الجرعة', width: 100, editable: true, align: 'center',
+            headerAlign: 'center'
+        },
+        {
+            field: 'vaccinePlace', headerName: 'مكان تلقي الجرعة', width: 200, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
