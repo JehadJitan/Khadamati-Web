@@ -6,16 +6,7 @@ import * as MdIcons from 'react-icons/md';
 import * as IoIcons from 'react-icons/io';
 import styled from 'styled-components';
 import { ButtomTitleLine, TitleDiv } from '../../Components/Divs/StyledDivs'
-import { MOTtotalEmployees } from '../MOT/MOTEmployeeDataGrid';
 import 'react-circular-progressbar/dist/styles.css';
-import { MOPServiceRowLength } from '../MOP/MOPServiceDataGrid';
-import { MOIServiceRowLength } from '../MOI/MOIServiceDataGrid';
-import { MOFEServiceRowLength } from '../MOF/MOFServiceDataGrid';
-import { MOPRequestLength } from '../MOP/PropertyRequestTable';
-import { MOIRequestLength } from '../MOI/InteriorRequestTable';
-import { MOTRequestLength } from '../MOT/TransportationRequestTable';
-import { MOFRequestLength } from '../MOF/FinanceRequestTable';
-import { rowLengthServices } from '../MOI/MOIServiceDataGrid';
 import styledTable from './DashStyle.css';
 import { getDashboardContent } from '../../shared/api';
 
