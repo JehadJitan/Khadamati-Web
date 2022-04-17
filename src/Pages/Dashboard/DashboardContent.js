@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useState } from "react";
 import * as BsIcons from 'react-icons/bs';
+import * as GoIcons from 'react-icons/go';
+import * as FaIcons from 'react-icons/fa';
+import * as MdIcons from 'react-icons/md';
+import * as IoIcons from 'react-icons/io';
 import styled from 'styled-components';
 import { ButtomTitleLine, TitleDiv } from '../../Components/Divs/StyledDivs'
-// import { MOFERowLength } from '../MOF/MOFEmployeeDataGrid';
-// import { MOIERowLength } from '../MOI/MOIEmployeeDataGrid';
-// import { MOPRowLength } from '../MOP/MOPEmployeeDataGrid';
 import { MOTtotalEmployees } from '../MOT/MOTEmployeeDataGrid';
-import { NumOfUsers } from '../Users/Users';
 import 'react-circular-progressbar/dist/styles.css';
 import { MOPServiceRowLength } from '../MOP/MOPServiceDataGrid';
-// import { MOTServiceRowLength } from '../MOT/MOTServiceDataGrid';
 import { MOIServiceRowLength } from '../MOI/MOIServiceDataGrid';
 import { MOFEServiceRowLength } from '../MOF/MOFServiceDataGrid';
 import { MOPRequestLength } from '../MOP/PropertyRequestTable';
 import { MOIRequestLength } from '../MOI/InteriorRequestTable';
 import { MOTRequestLength } from '../MOT/TransportationRequestTable';
 import { MOFRequestLength } from '../MOF/FinanceRequestTable';
+import { rowLengthServices } from '../MOI/MOIServiceDataGrid';
 import styledTable from './DashStyle.css';
+import { getDashboardContent } from '../../shared/api';
 
 const Parent = styled.div`
     display: flex;
@@ -31,11 +32,10 @@ const CardParent = styled.div`
     align-items: center;
     margin: 20px;
     flex-wrap: wrap;
-
 `;
 
 const Card = styled.div`
-    width: 320px;
+    width: 300px;
     height: 100px;
     padding: 20px;
     // border-radius: 25px;
@@ -44,25 +44,25 @@ const Card = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    border-left: 1px solid #d31818;
+    border-right: 1px solid #d31818;
     justify-content: center;
-    margin:20px;
 `;
 
 
 const DescTitle = styled.h1`
     color: black;
-    font-size: 18px;
-    margin-right: 10px;
+    font-size: 15px;
     width:200px;
     text-align: right;
     `;
 
 const NumberTitle = styled.h1`
     color: black;
-    font-size: 23px;
+    font-size: 25px;
     text-align: right;
     font-weight: bold;
-
+    color:#d31818;
 `;
 
 const TableParent = styled.div`
@@ -97,9 +97,95 @@ height:100%;
 
 `;
 
+const DataSum = styled.div`
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    // border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+`;
+
 function DashboardContent() {
-    const totalEmployees = 10 + 10 + 10 + 10;
+
+    const [citizens, setCitizens] = useState();
+    const [employees, setEmployees] = useState();
+    const [services, setServices] = useState();
+    const [requests, setRequests] = useState();
+
+    const [moiEmployee, setMoiEmployee] = useState();
+    const [mohEmployee, setMohEmployee] = useState();
+    const [mofEmployee, setMofEmployee] = useState();
+    const [motEmployee, setMotEmployee] = useState();
+    const [mopEmployee, setMopEmployee] = useState();
+
+    const [moiService, setMoiService] = useState();
+    const [mohService, setMohService] = useState();
+    const [mofService, setMofService] = useState();
+    const [motService, setMotService] = useState();
+    const [mopService, setMopService] = useState();
+
+    const [moiRequest, setMoiRequest] = useState();
+    const [mohRequest, setMohRequest] = useState();
+    const [mofRequest, setMofRequest] = useState();
+    const [motRequest, setMotRequest] = useState();
+    const [mopRequest, setMopRequest] = useState();
+
+    getDashboardContent({})
+        .then((res) => {
+            setCitizens(res.data.data[0]);
+            setEmployees(res.data.data[1]);
+            setServices(res.data.data[2]);
+            setRequests(res.data.data[3]);
+
+            setMoiEmployee(res.data.data[4]);
+            setMohEmployee(res.data.data[5]);
+            setMofEmployee(res.data.data[6]);
+            setMotEmployee(res.data.data[7]);
+            setMopEmployee(res.data.data[8]);
+
+            setMoiService(res.data.data[9]);
+            setMohService(res.data.data[10]);
+            setMofService(res.data.data[11]);
+            setMotService(res.data.data[12]);
+            setMopService(res.data.data[13]);
+
+            setMoiRequest(res.data.data[14]);
+            setMohRequest(res.data.data[15]);
+            setMofRequest(res.data.data[16]);
+            setMotRequest(res.data.data[17]);
+            setMopRequest(res.data.data[18]);
+        });
+
     const numOfCitizens = '5,295,924';
+    const totalEmployees = employees;
+    const totalUsers = citizens;
+    const totalServices = services;
+    const totalRequests = requests;
+
+    const totalMoiEmployee = moiEmployee;
+    const totalMohEmployee = mohEmployee;
+    const totalMofEmployee = mofEmployee;
+    const totalMotEmployee = motEmployee;
+    const totalMopEmployee = mopEmployee;
+
+    const totalMoiService = moiService;
+    const totalMohService = mohService;
+    const totalMofService = mofService;
+    const totalMotService = motService;
+    const totalMopService = mopService;
+
+    const totalMoiRequest = moiRequest;
+    const totalMohRequest = mohRequest;
+    const totalMofRequest = mofRequest;
+    const totalMotRequest = motRequest;
+    const totalMopRequest = mopRequest;
+
     // const Empercentage = (totalEmployees / numOfCitizens) * 100;
     // const Usprecentage = (NumOfUsers / numOfCitizens) * 100;
 
@@ -111,33 +197,53 @@ function DashboardContent() {
                 </ButtomTitleLine>
             </TitleDiv>
             <CardParent>
-                <Card style={{ 'background': '#38b000' }}>
-                    <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                        <BsIcons.BsPeopleFill size={60} />
-                    </STY2>
-                    <STY2>
-                        <NumberTitle>1000</NumberTitle>
-                        <DescTitle>عدد مستخدمين التطبيق </DescTitle>
-                    </STY2>
-                </Card>
-                <Card>
-                    <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                        <BsIcons.BsPeopleFill size={60} />
-                    </STY2>
-                    <STY2>
-                        <NumberTitle>{totalEmployees}</NumberTitle>
-                        <DescTitle>عدد الموظفين الحكومية</DescTitle>
-                    </STY2>
-                </Card>
-                <Card style={{ 'background': '#38b6ff' }}>
-                    <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                        <BsIcons.BsPeopleFill size={60} />
-                    </STY2>
-                    <STY2>
-                        <NumberTitle>{numOfCitizens}</NumberTitle>
-                        <DescTitle>العدد الإجمالي للمواطنين</DescTitle>
-                    </STY2>
-                </Card>
+                <DataSum>
+                    <Card style={{ 'background': '#eceff1' }}>
+                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
+                            <GoIcons.GoGitPullRequest size={50} />
+                        </STY2>
+                        <STY2>
+                            <NumberTitle>{totalRequests}</NumberTitle>
+                            <DescTitle>العدد الإجمالي للطلبات</DescTitle>
+                        </STY2>
+                    </Card>
+                    <Card style={{ 'background': '#ffffff' }}>
+                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
+                            <MdIcons.MdMiscellaneousServices size={50} />
+                        </STY2>
+                        <STY2>
+                            <NumberTitle>{totalServices}</NumberTitle>
+                            <DescTitle>العدد الإجمالي للخدمات</DescTitle>
+                        </STY2>
+                    </Card>
+                    <Card style={{ 'background': '#eceff1' }}>
+                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
+                            <IoIcons.IoIosPeople size={50} />
+                        </STY2>
+                        <STY2>
+                            <NumberTitle>{totalUsers}</NumberTitle>
+                            <DescTitle>عدد مستخدمين التطبيق </DescTitle>
+                        </STY2>
+                    </Card>
+                    <Card style={{ 'background': '#ffffff' }}>
+                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
+                            <FaIcons.FaUserTie size={45} />
+                        </STY2>
+                        <STY2>
+                            <NumberTitle>{totalEmployees}</NumberTitle>
+                            <DescTitle>عدد الموظفين الحكومية</DescTitle>
+                        </STY2>
+                    </Card>
+                    <Card style={{ 'background': '#eceff1' }}>
+                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
+                            <BsIcons.BsPeopleFill size={50} />
+                        </STY2>
+                        <STY2>
+                            <NumberTitle>{numOfCitizens}</NumberTitle>
+                            <DescTitle>العدد الإجمالي للمواطنين</DescTitle>
+                        </STY2>
+                    </Card>
+                </DataSum>
             </CardParent>
             <Parent>
                 <TableParent>
@@ -150,33 +256,33 @@ function DashboardContent() {
                         </tr>
 
                         <tr>
-                            <td>{MOTRequestLength}</td>
-                            <td>10</td>
-                            <td>{MOTtotalEmployees}</td>
+                            <td>{totalMotRequest}</td>
+                            <td>{totalMotService}</td>
+                            <td>{totalMotEmployee}</td>
                             <td style={{ 'color': '#d31818' }}>وزارة المواصلات</td>
                         </tr>
                         <tr>
-                            <td>{MOIRequestLength}</td>
-                            <td>{MOIServiceRowLength}</td>
-                            <td>10</td>
+                            <td>{totalMoiRequest}</td>
+                            <td>{totalMoiService}</td>
+                            <td>{totalMoiEmployee}</td>
                             <td style={{ 'color': '#d31818' }}>وزارة الداخلية</td>
                         </tr>
                         <tr>
-                            <td>{MOFRequestLength}</td>
-                            <td>{MOFEServiceRowLength}</td>
-                            <td>10</td>
+                            <td>{totalMofRequest}</td>
+                            <td>{totalMofService}</td>
+                            <td>{totalMofEmployee}</td>
                             <td style={{ 'color': '#d31818' }}>وزارة المالية</td>
                         </tr>
                         <tr>
-                            <td>{MOTRequestLength}</td>
-                            <td>10</td>
-                            <td>10</td>
+                            <td>{totalMohRequest}</td>
+                            <td>{totalMohService}</td>
+                            <td>{totalMohEmployee}</td>
                             <td style={{ 'color': '#d31818' }}>وزارة الصحة</td>
                         </tr>
                         <tr>
-                            <td>{MOPRequestLength}</td>
-                            <td>{MOPServiceRowLength}</td>
-                            <td>10</td>
+                            <td>{totalMopRequest}</td>
+                            <td>{totalMopService}</td>
+                            <td>{totalMopEmployee}</td>
                             <td style={{ 'color': '#d31818' }}>سلطة الأراضي</td>
                         </tr>
                     </CustomeTable>

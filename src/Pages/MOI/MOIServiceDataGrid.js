@@ -1,4 +1,3 @@
-import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
 import { addService, editService, getService } from '../../shared/api';
 
-export const MOIServiceRowLength = 10;
+export var MOIServiceRowLength = 1;
 
 function EditToolbar(props) {
     const { apiRef } = props;
@@ -44,7 +43,7 @@ function EditToolbar(props) {
                     background: '#d31818',
                 }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
             }
-            } color="primary" endIcon={<AddIcon />} onClick={handleClick}>
+            } color="primary" onClick={handleClick}>
                 إضافة خدمة جديدة
             </Button>
         </GridToolbarContainer >
@@ -59,6 +58,7 @@ EditToolbar.propTypes = {
 
 export default function FullFeaturedCrudGrid() {
 
+    const [rowLength, setRowLength] = useState();
 
     const [rows, setRows] = useState([]);
     const [data, setData] = useState([]);
@@ -67,8 +67,11 @@ export default function FullFeaturedCrudGrid() {
     useEffect(() => {
         getService("MOI")
             .then((res) => {
-                // console.log(res.data.data);
                 setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                const rowLength2 = res.data.data.length;
+                console.log(rowLength2);
+                setRowLength(res.data.data.length);
+                console.log(rowLength);
             })
             .catch((err) => {
                 console.log(err);
@@ -76,6 +79,11 @@ export default function FullFeaturedCrudGrid() {
     }, [rows]);
 
     const apiRef = useGridApiRef();
+    // setRowLength(Object.keys(data).length);
+    // console.log(rowLength);
+
+    MOIServiceRowLength = rowLength;
+    console.log(MOIServiceRowLength);
 
     const handleRowEditStart = (params, event) => {
         event.defaultMuiPrevented = true;
