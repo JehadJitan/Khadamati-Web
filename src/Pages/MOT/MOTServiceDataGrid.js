@@ -1,4 +1,3 @@
-import AddIcon from '@mui/icons-material/Add';
 import CancelIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
@@ -64,8 +63,14 @@ export default function FullFeaturedCrudGrid() {
     useEffect(() => {
         getService("MOT")
             .then((res) => {
-                // console.log(res.data.data);
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                const data1 = []
+                res.data.data.map((service) => {
+                    service.startDate = service.startDate.substring(0, 10);
+                    data1.push(service);
+                })
+                // setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+
             })
             .catch((err) => {
                 console.log(err);

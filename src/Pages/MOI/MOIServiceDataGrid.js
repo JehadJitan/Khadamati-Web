@@ -13,7 +13,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
-import { addService, editService, getService } from '../../shared/api';
+import { addService, editService, getRequest, getService } from '../../shared/api';
 
 export var MOIServiceRowLength = 1;
 
@@ -67,11 +67,14 @@ export default function FullFeaturedCrudGrid() {
     useEffect(() => {
         getService("MOI")
             .then((res) => {
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
-                const rowLength2 = res.data.data.length;
-                console.log(rowLength2);
-                setRowLength(res.data.data.length);
-                console.log(rowLength);
+                const data1 = []
+                res.data.data.map((service) => {
+                    service.startDate = service.startDate.substring(0, 10);
+                    data1.push(service);
+                })
+                // setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+
             })
             .catch((err) => {
                 console.log(err);

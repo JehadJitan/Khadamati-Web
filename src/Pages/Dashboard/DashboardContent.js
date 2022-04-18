@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as BsIcons from 'react-icons/bs';
 import * as GoIcons from 'react-icons/go';
 import * as FaIcons from 'react-icons/fa';
@@ -127,32 +127,33 @@ function DashboardContent() {
     const [motRequest, setMotRequest] = useState();
     const [mopRequest, setMopRequest] = useState();
 
-    getDashboardContent({})
-        .then((res) => {
-            setCitizens(res.data.data[0]);
-            setEmployees(res.data.data[1]);
-            setServices(res.data.data[2]);
-            setRequests(res.data.data[3]);
+    useEffect(() => {
+        getDashboardContent()
+            .then((res) => {
+                setCitizens(res.data.data[0]);
+                setEmployees(res.data.data[1]);
+                setServices(res.data.data[2]);
+                setRequests(res.data.data[3]);
 
-            setMoiEmployee(res.data.data[4]);
-            setMohEmployee(res.data.data[5]);
-            setMofEmployee(res.data.data[6]);
-            setMotEmployee(res.data.data[7]);
-            setMopEmployee(res.data.data[8]);
+                setMoiEmployee(res.data.data[4]);
+                setMohEmployee(res.data.data[5]);
+                setMofEmployee(res.data.data[6]);
+                setMotEmployee(res.data.data[7]);
+                setMopEmployee(res.data.data[8]);
 
-            setMoiService(res.data.data[9]);
-            setMohService(res.data.data[10]);
-            setMofService(res.data.data[11]);
-            setMotService(res.data.data[12]);
-            setMopService(res.data.data[13]);
+                setMoiService(res.data.data[9]);
+                setMohService(res.data.data[10]);
+                setMofService(res.data.data[11]);
+                setMotService(res.data.data[12]);
+                setMopService(res.data.data[13]);
 
-            setMoiRequest(res.data.data[14]);
-            setMohRequest(res.data.data[15]);
-            setMofRequest(res.data.data[16]);
-            setMotRequest(res.data.data[17]);
-            setMopRequest(res.data.data[18]);
-        });
-
+                setMoiRequest(res.data.data[14]);
+                setMohRequest(res.data.data[15]);
+                setMofRequest(res.data.data[16]);
+                setMotRequest(res.data.data[17]);
+                setMopRequest(res.data.data[18]);
+            });
+    }, []);
     const numOfCitizens = '5,295,924';
     const totalEmployees = employees;
     const totalUsers = citizens;

@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { ButtomTitleLine, StyledTable, TitleDiv } from '../../Components/Divs/StyledDivs';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { getCitizens } from "../../shared/api";
+import { editStatus, getCitizens } from "../../shared/api";
 import { useHistory } from "react-router-dom";
 
 const columns = [
@@ -74,24 +74,36 @@ export default function Users() {
 
     const [rows, setRows] = useState([]);
     const [data, setData] = useState([]);
-
+    const [id, setId] = useState();
+    const [submitted, setSubmitted] = useState(false);
+    // const [img, setImg] = useState();
+    // var ed = '';
     useEffect(() => {
         getCitizens({})
             .then((res) => {
                 // console.log(res.data.data);
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+                const data1 = []
+                res.data.data.map((citizen) => {
+                    citizen.birthDate = citizen.birthDate.substring(0, 10)
+                    data1.push(citizen)
+                })
+                // setData(da)
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+
             })
             .catch((err) => {
                 console.log(err);
             });
-    }, [rows]);
+    }, [rows, submitted]);
 
     const [selected, setSelected] = useState(false);
 
     function activateAccount() {
         if (selected) {
             console.log("Should be activated now");
+            editStatus({ citizenId: id, status: "success" })
             setSelected(false);
+            setSubmitted(!submitted);
         } else {
             console.log("Select row to activate");
         }
@@ -101,7 +113,10 @@ export default function Users() {
 
         if (selected) {
             console.log("Should be deactivated now");
+            editStatus({ citizenId: id, status: "deactivated" })
             setSelected(false);
+            setSubmitted(!submitted);
+
         } else {
             console.log("Select row to deactivate");
         }
@@ -109,6 +124,7 @@ export default function Users() {
     function deleteAccount() {
         if (selected) {
             console.log("Should be deleted now");
+
             setSelected(false);
         } else {
             console.log("Select row to delete");
@@ -146,7 +162,7 @@ export default function Users() {
                         //     console.log("yes");
                         // }}
                         // onSelectionModelChange={itm => console.log("yes")}
-                        onSelectionModelChange={selected => setSelected(true)}
+                        onSelectionModelChange={selected => { setSelected(true); setId(selected[0]) }}
                     />
                 </div>
                 <Stack direction="row" style={{ 'margin-top': '20px' }}>
@@ -156,6 +172,7 @@ export default function Users() {
                     <Button onClick={activateAccount} variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>
                 </Stack>
             </StyledTable>
+            {/* <img src={{ uri: img }} style={{ height: 300, width: 300 }} /> */}
         </>
     );
 }

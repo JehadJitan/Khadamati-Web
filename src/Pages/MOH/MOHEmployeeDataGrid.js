@@ -59,8 +59,13 @@ export default function FullFeaturedCrudGrid() {
     useEffect(() => {
         getEmployees("MOH")
             .then((res) => {
+                const data1 = []
+                res.data.data.map((employee) => {
+                    employee.birthDate = employee.birthDate.substring(0, 10)
+                    data1.push(employee)
+                })
                 // console.log(res.data.data);
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
             })
             .catch((err) => {
                 console.log(err);
@@ -164,7 +169,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center'
         },
         {
-            field: 'birthDate', headerName: 'العمر', type: 'date', width: 100, editable: true, align: 'center',
+            field: 'birthDate', headerName: 'تاريخ الميلاد', type: 'date', width: 150, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {
@@ -172,7 +177,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center'
         },
         {
-            field: 'phone', headerName: 'رقم الهاتف', width: 170, editable: true, align: 'center',
+            field: 'phone', headerName: 'رقم الهاتف', width: 150, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {

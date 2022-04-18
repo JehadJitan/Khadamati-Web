@@ -75,6 +75,11 @@ export const SideBarData = [
                 title: 'التقارير',
                 path: '/DB/MinistryOfInteriorAffairs/reports',
                 icon: <HiIcons.HiDocumentReport />,
+            },
+            {
+                title: ' شهادة ميلاد',
+                path: '/DB/MinistryOfInteriorAffairs/birthCertificate',
+                icon: <HiIcons.HiDocumentText />,
             }
         ]
     },

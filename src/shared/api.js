@@ -55,11 +55,21 @@ export const addRequest = async (data) => {
 
 export const getRequest = async (role) => {
     const res = await axios.get(`${API_BASE_URL}/request/${role}`);
-    return res;
+    return res.data.data;
 };
 
 export const getDashboardContent = async (data) => {
     const res = await axios.get(`${API_BASE_URL}/dashboard`);
+    return res;
+};
+
+export const editStatus = async (data) => {
+    const res = await axios.post(`${API_BASE_URL}/citizen/status`, { data });
+    return res;
+};
+
+export const acceptRequest = async (data) => {
+    const res = await axios.post(`${API_BASE_URL}/citizen/accept/request`, { data });
     return res;
 };
 // export const addCovidCitizen = async (data) => {

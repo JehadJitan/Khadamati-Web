@@ -48,6 +48,22 @@ export const StyledReport = styled.div`
     background-color: #ffffff;
 `;
 
+export const StyledCertificate = styled.div`
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items:center;
+    margin:auto;
+    width:35%;
+    height:500px;
+    // border: 4px solid #d31818;
+    margin-top:30px;
+    padding: 10px;
+    // border-radius: 25px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
+`;
+
 export const StyledTable = styled.div`
     display:flex;
     flex-direction: column;

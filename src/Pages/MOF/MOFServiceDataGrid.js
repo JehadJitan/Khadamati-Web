@@ -17,44 +17,6 @@ import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
 import { addService, editService, getService } from '../../shared/api';
 
-// const rows = [
-
-//     {
-//         id: "1672",
-//         service: "دفع مخالفات السير",
-//         serviceDes: "تتيح للمواطن إمكانية دفع المخالفات الكترونيا",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: "-",
-//     },
-//     {
-//         id: "1673",
-//         service: "دفع رسوم التأمين الصحي",
-//         serviceDes: "تتيح للمواطن إمكانية دفع تكاليف التأمين الصحي",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: randomUpdatedDate(),
-//     },
-//     {
-//         id: "1675",
-//         service: "دفع الضرائب",
-//         serviceDes: "تتيح للمواطن إمكانية دفع الضرائب الكترونيا",
-//         active: "نعم",
-//         dateStarted: randomCreatedDate(),
-//         dateEnded: randomUpdatedDate(),
-//     },
-//     {
-//         id: "1676",
-//         service: "دفع رسوم تجديد جواز السفر",
-//         serviceDes: "تتيح للمواطن دفع تكاليف تجديد جواز السفر الكترونيا",
-//         active: "لا",
-//         dateStarted: "-",
-//         dateEnded: "-",
-//     },
-// ];
-export const MOFEServiceRowLength = 10;
-
-
 function EditToolbar(props) {
     const { apiRef } = props;
 
@@ -103,8 +65,14 @@ export default function FullFeaturedCrudGrid() {
     useEffect(() => {
         getService("MOF")
             .then((res) => {
-                // console.log(res.data.data);
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                const data1 = []
+                res.data.data.map((service) => {
+                    service.startDate = service.startDate.substring(0, 10);
+                    data1.push(service);
+                })
+                // setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+
             })
             .catch((err) => {
                 console.log(err);

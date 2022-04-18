@@ -22,6 +22,10 @@ import PropertyRequestTable from "../MOP/PropertyRequestTable";
 import Users from "../Users/Users";
 import profileSetting from "../Users/profileSetting";
 import TransportationReports from "../MOT/TransportationReports";
+import HealthReport from "../MOH/HealthReport";
+import InteriorReports from "../MOI/InteriorReports";
+import HealthRequestTable from "../MOH/HealthRequestTable";
+import newBirthCertificate from "../MOI/newBirthCertificate";
 
 const Routing = () => {
 
@@ -41,10 +45,15 @@ const Routing = () => {
                     <Route path='/DB/MinistryOfTransportation/requests' exact component={TransportationRequestTable} />
                     <Route path='/DB/MinistryOfTransportation/services' exact component={TransportationService} />
                     <Route path='/DB/MinistryOfTransportation/employees' exact component={TransportationEmployee} />
-                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />
+                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />
+                    <Route path='/DB/MinistryOfHealth/reports' exact component={HealthReport} />
+                    <Route path='/DB/MinistryOfHealth/requests' exact component={HealthRequestTable} />
                     <Route path='/DB/MinistryOfInteriorAffairs/employees' exact component={InteriorEmployee} />
                     <Route path='/DB/MinistryOfInteriorAffairs/services' exact component={InteriorService} />
+                    <Route path='/DB/MinistryOfInteriorAffairs/reports' exact component={InteriorReports} />
                     <Route path='/DB/MinistryOfInteriorAffairs/requests' exact component={InteriorRequestTable} />
+                    <Route path='/DB/MinistryOfInteriorAffairs/birthCertificate' exact component={newBirthCertificate} />
+
                     <Route path='/DB/MinistryOfLandMark/employees' exact component={PropertyEmployee} />
                     <Route path='/DB/MinistryOfLandMark/services' exact component={PropertyService} />
                     <Route path='/DB/MinistryOfLandMark/requests' exact component={PropertyRequestTable} />
