@@ -166,10 +166,10 @@ export default function Users() {
                     />
                 </div>
                 <Stack direction="row" style={{ 'margin-top': '20px' }}>
-                    <Button onClick={showAccount} variant="contained" color="primary" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>عرض حساب</Button>
-                    <Button onClick={deleteAccount} variant="contained" color="warning" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>حذف حساب</Button>
-                    <Button onClick={deactivateAccount} variant="contained" color="error" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>توقيف حساب</Button>
-                    <Button onClick={activateAccount} variant="contained" color="success" style={{ 'margin-left': '50px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>
+                    <Button onClick={showAccount} variant="contained" color="primary" style={{ 'margin-left': '25px', 'font-family': 'Almarai' }}>عرض حساب</Button>
+                    <Button onClick={deleteAccount} variant="contained" color="warning" style={{ 'margin-left': '25px', 'font-family': 'Almarai' }}>حذف حساب</Button>
+                    <Button onClick={deactivateAccount} variant="contained" color="error" style={{ 'margin-left': '25px', 'font-family': 'Almarai' }}>توقيف حساب</Button>
+                    <Button onClick={activateAccount} variant="contained" color="success" style={{ 'margin-left': '10px', 'font-family': 'Almarai' }}>تفعيل حساب</Button>
                 </Stack>
             </StyledTable>
             {/* <img src={{ uri: img }} style={{ height: 300, width: 300 }} /> */}

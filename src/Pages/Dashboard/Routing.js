@@ -25,7 +25,7 @@ import TransportationReports from "../MOT/TransportationReports";
 import HealthReport from "../MOH/HealthReport";
 import InteriorReports from "../MOI/InteriorReports";
 import HealthRequestTable from "../MOH/HealthRequestTable";
-import newBirthCertificate from "../MOI/newBirthCertificate";
+import NewBirthCertificate from "../MOI/NewBirthCertificate";
 
 const Routing = () => {
 
@@ -52,7 +52,7 @@ const Routing = () => {
                     <Route path='/DB/MinistryOfInteriorAffairs/services' exact component={InteriorService} />
                     <Route path='/DB/MinistryOfInteriorAffairs/reports' exact component={InteriorReports} />
                     <Route path='/DB/MinistryOfInteriorAffairs/requests' exact component={InteriorRequestTable} />
-                    <Route path='/DB/MinistryOfInteriorAffairs/birthCertificate' exact component={newBirthCertificate} />
+                    <Route path='/DB/MinistryOfInteriorAffairs/birthCertificate' exact component={NewBirthCertificate} />
 
                     <Route path='/DB/MinistryOfLandMark/employees' exact component={PropertyEmployee} />
                     <Route path='/DB/MinistryOfLandMark/services' exact component={PropertyService} />

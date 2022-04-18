@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ButtomTitleLine, TitleDiv, StyledCertificate } from '../../Components/Divs/StyledDivs';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
@@ -24,45 +24,62 @@ justify-content: center;
 align-items: end;
 `;
 
-const handleSubmit = e => {
-    const arr = [];
-    const name = document.getElementsByClassName("name")[0].value;
-    const identity_id = document.getElementsByClassName("identity_id")[0].value;
-    const father_id = document.getElementsByClassName("father_id")[0].value;
-    const gender = document.getElementsByClassName("gender")[0].value;
-    const birthDate = document.getElementsByClassName("birthDate")[0].value;
-    const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
-    const motherName = document.getElementsByClassName("motherName")[0].value;
-    arr.push(name);
-    arr.push(identity_id);
-    arr.push(father_id);
-    arr.push(gender);
-    arr.push(birthDate);
-    arr.push(placeOfBirth);
-    arr.push(motherName);
-    console.log(arr);
-}
+function NewBirthCertificate() {
 
-const sendApplication = e => {
-    const arr = [];
-    const name = document.getElementsByClassName("name")[0].value;
-    const identity_id = document.getElementsByClassName("identity_id")[0].value;
-    const father_id = document.getElementsByClassName("father_id")[0].value;
-    const gender = document.getElementsByClassName("gender")[0].value;
-    const birthDate = document.getElementsByClassName("birthDate")[0].value;
-    const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
-    const motherName = document.getElementsByClassName("motherName")[0].value;
-    arr.push(name);
-    arr.push(identity_id);
-    arr.push(father_id);
-    arr.push(gender);
-    arr.push(birthDate);
-    arr.push(placeOfBirth);
-    arr.push(motherName);
-    console.log(arr);
-}
+    const [submitted, setSubmitted] = useState(false);
 
-function newBirthCertificate() {
+    if (submitted) {
+        document.getElementsByClassName("name")[0].value = "";
+        document.getElementsByClassName("identity_id")[0].value = "";
+        document.getElementsByClassName("father_id")[0].value = "";
+        document.getElementsByClassName("gender")[0].value = "";
+        document.getElementsByClassName("birthDate")[0].value = "";
+        document.getElementsByClassName("placeOfBirth")[0].value = "";
+        document.getElementsByClassName("motherName")[0].value = "";
+        setSubmitted(false);
+
+    }
+
+    const handleSubmit = e => {
+        const arr = [];
+        const name = document.getElementsByClassName("name")[0].value;
+        const identity_id = document.getElementsByClassName("identity_id")[0].value;
+        const father_id = document.getElementsByClassName("father_id")[0].value;
+        const gender = document.getElementsByClassName("gender")[0].value;
+        const birthDate = document.getElementsByClassName("birthDate")[0].value;
+        const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
+        const motherName = document.getElementsByClassName("motherName")[0].value;
+        arr.push(name);
+        arr.push(identity_id);
+        arr.push(father_id);
+        arr.push(gender);
+        arr.push(birthDate);
+        arr.push(placeOfBirth);
+        arr.push(motherName);
+        console.log(arr);
+        setSubmitted(true);
+    }
+
+    const sendApplication = e => {
+        const arr = [];
+        const name = document.getElementsByClassName("name")[0].value;
+        const identity_id = document.getElementsByClassName("identity_id")[0].value;
+        const father_id = document.getElementsByClassName("father_id")[0].value;
+        const gender = document.getElementsByClassName("gender")[0].value;
+        const birthDate = document.getElementsByClassName("birthDate")[0].value;
+        const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
+        const motherName = document.getElementsByClassName("motherName")[0].value;
+        arr.push(name);
+        arr.push(identity_id);
+        arr.push(father_id);
+        arr.push(gender);
+        arr.push(birthDate);
+        arr.push(placeOfBirth);
+        arr.push(motherName);
+        console.log(arr);
+        setSubmitted(true);
+
+    }
 
     return <TitleDiv>
         <ButtomTitleLine>
@@ -97,4 +114,4 @@ function newBirthCertificate() {
     </TitleDiv >;
 }
 
-export default newBirthCertificate;
+export default NewBirthCertificate;

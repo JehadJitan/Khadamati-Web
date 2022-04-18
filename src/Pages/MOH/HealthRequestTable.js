@@ -74,7 +74,7 @@ export default function HealthRequestTable() {
         <>
             <TitleDiv>
                 <ButtomTitleLine>
-                    <h1>طلبات وزارة الداخلية الفلسطينية</h1>
+                    <h1>طلبات وزارة الصحة الفلسطينية</h1>
                 </ButtomTitleLine>
             </TitleDiv>
             <StyledTable dir="rtl">
