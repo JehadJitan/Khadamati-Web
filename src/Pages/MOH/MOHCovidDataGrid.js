@@ -14,9 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from "react";
 import { StyledService } from '../../Components/Divs/StyledDivs';
-import { addService, editService, getService } from '../../shared/api';
-
-export const MOIServiceRowLength = 10;
+import { addVaccinatedCitizen, editVaccinatedCitizen, getVaccinatedCitizen } from '../../shared/api';
 
 function EditToolbar(props) {
     const { apiRef } = props;
@@ -44,7 +42,7 @@ function EditToolbar(props) {
                 }, flex: 1, background: '#344e41', fontFamily: 'Almarai'
             }
             } color="primary" onClick={handleClick}>
-                إضافة مواطن جديد
+                إضافة تطعيم جديد
             </Button>
         </GridToolbarContainer >
     );
@@ -64,10 +62,17 @@ export default function FullFeaturedCrudGrid() {
     const [edited, setEdited] = useState(false);
 
     useEffect(() => {
-        getService("MOH")
+        getVaccinatedCitizen({})
             .then((res) => {
                 // console.log(res.data.data);
-                setData([...res.data.data.map(({ id, ...res }) => ({ ...res, serviceId: id, id: res._id ?? id }))]);
+                const data1 = []
+                res.data.data.map((vaccine) => {
+                    vaccine.vaccineDate = vaccine.vaccineDate.substring(0, 10)
+                    data1.push(vaccine)
+                })
+                // setData(da)
+                setData([...data1.map(({ id, ...res }) => ({ ...res, userId: id, id: res._id ?? id }))]);
+
             })
             .catch((err) => {
                 console.log(err);
@@ -107,21 +112,18 @@ export default function FullFeaturedCrudGrid() {
             const row = apiRef.current.getRow(id);
             console.log({ row })
             // apiRef.current.updateRows([{ id: 0, _action: "delete" }])
-            const service = {
+            const vaccine = {
                 _id: row.id,
                 name: row.name,
-                id: row.serviceId,
-                startDate: row.startDate,
-                endDate: row.endDate,
-                activated: row.activated,
-                type: row.type,
-                ministryName: row.ministryName,
-                description: row.description,
-                price: row.price,
+                id: row.userId,
+                vaccineType: row.vaccineType,
+                vaccineDate: row.vaccineDate,
+                vaccineNumber: row.vaccineNumber,
+                vaccinePlace: row.vaccinePlace,
             };
             if (edited) {
                 try {
-                    await editService(service)
+                    await editVaccinatedCitizen(vaccine)
                         .then((res) => {
                             console.log(res);
                             setEdited(false);
@@ -134,7 +136,7 @@ export default function FullFeaturedCrudGrid() {
                 }
             } else {
                 try {
-                    await addService(service)
+                    await addVaccinatedCitizen(vaccine)
                         .then((res) => {
                             console.log(res);
                         })
@@ -171,7 +173,7 @@ export default function FullFeaturedCrudGrid() {
             headerAlign: 'center'
         },
         {
-            field: 'citizenName', headerName: 'اسم المواطن', width: 250, editable: true, align: 'center',
+            field: 'name', headerName: 'اسم المواطن', width: 250, editable: true, align: 'center',
             headerAlign: 'center'
         },
         {

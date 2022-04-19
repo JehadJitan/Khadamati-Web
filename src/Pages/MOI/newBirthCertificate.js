@@ -39,25 +39,25 @@ function NewBirthCertificate() {
         setSubmitted(false);
 
     }
-
     const handleSubmit = e => {
-        const arr = [];
-        const name = document.getElementsByClassName("name")[0].value;
-        const identity_id = document.getElementsByClassName("identity_id")[0].value;
-        const father_id = document.getElementsByClassName("father_id")[0].value;
-        const gender = document.getElementsByClassName("gender")[0].value;
-        const birthDate = document.getElementsByClassName("birthDate")[0].value;
-        const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
-        const motherName = document.getElementsByClassName("motherName")[0].value;
-        arr.push(name);
-        arr.push(identity_id);
-        arr.push(father_id);
-        arr.push(gender);
-        arr.push(birthDate);
-        arr.push(placeOfBirth);
-        arr.push(motherName);
-        console.log(arr);
-        setSubmitted(true);
+        // const arr = [];
+        // const name = document.getElementsByClassName("name")[0].value;
+        // const identity_id = document.getElementsByClassName("identity_id")[0].value;
+        // const father_id = document.getElementsByClassName("father_id")[0].value;
+        // const gender = document.getElementsByClassName("gender")[0].value;
+        // const birthDate = document.getElementsByClassName("birthDate")[0].value;
+        // const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
+        // const motherName = document.getElementsByClassName("motherName")[0].value;
+        // arr.push(name);
+        // arr.push(identity_id);
+        // arr.push(father_id);
+        // arr.push(gender);
+        // arr.push(birthDate);
+        // arr.push(placeOfBirth);
+        // arr.push(motherName);
+        // console.log(arr);
+        // alert("تم تقديم طلب إصدار شهادة ميلاد لرقم الهوية", identity_id);
+        // setSubmitted(true);
     }
 
     const sendApplication = e => {
@@ -76,9 +76,13 @@ function NewBirthCertificate() {
         arr.push(birthDate);
         arr.push(placeOfBirth);
         arr.push(motherName);
-        console.log(arr);
-        setSubmitted(true);
-
+        if (name === '' || identity_id === '' || father_id === '' || gender === '' || birthDate === '' || placeOfBirth === '' || motherName === '') {
+            alert("خطأ في الإدخال");
+        } else {
+            console.log(arr);
+            alert("تم تقديم طلب إصدار شهادة ميلاد بنجاح");
+            setSubmitted(true);
+        }
     }
 
     return <TitleDiv>
@@ -89,13 +93,13 @@ function NewBirthCertificate() {
             <form className="form" onSubmit={() => handleSubmit}>
                 <Row>
                     <Column>
-                        <input dir="rtl" class='identity_id' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input dir="rtl" class='father_id' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input dir="rtl" class='name' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input dir="rtl" class='gender' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input dir="rtl" class='motherName' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input dir="rtl" class='placeOfBirth' type='text' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
-                        <input type='date' class='birthDate' style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='identity_id' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='father_id' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='name' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='gender' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='motherName' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input dir="rtl" class='placeOfBirth' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input type='date' class='birthDate' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
                     </Column>
                     <Column>
                         <Label>رقم هوية المواطن</Label>

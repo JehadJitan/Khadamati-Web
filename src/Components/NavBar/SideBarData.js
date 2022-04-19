@@ -21,35 +21,6 @@ export const SideBarData = [
         path: '/DB/users'
     },
     {
-        title: 'وزارة المواصلات',
-        // path: '/DB/MinistryOfTransportation',
-        icon: <AiIcons.AiFillCar />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
-        subNav: [
-            {
-                title: 'الموظفين',
-                path: '/DB/MinistryOfTransportation/employees',
-                icon: <BsIcons.BsFillPersonFill />,
-            },
-            {
-                title: 'الخدمات',
-                path: '/DB/MinistryOfTransportation/services',
-                icon: <MdIcons.MdOutlineMiscellaneousServices />,
-            },
-            {
-                title: 'الطلبات',
-                path: '/DB/MinistryOfTransportation/requests',
-                icon: <IoIcons.IoMdSend />,
-            },
-            {
-                title: 'التقارير',
-                path: '/DB/MinistryOfTransportation/reports',
-                icon: <HiIcons.HiDocumentReport />,
-            }
-        ]
-    },
-    {
         title: 'وزارة الداخلية',
         // path: '/DB',
         icon: <HiIcons.HiIdentification />,
@@ -84,35 +55,6 @@ export const SideBarData = [
         ]
     },
     {
-        title: 'وزارة المالية',
-        // path: '/DB/MinistryOfFinance',
-        icon: <RiIcons.RiBankCard2Fill />,
-        iconClosed: <RiIcons.RiArrowDownSFill />,
-        iconOpened: <RiIcons.RiArrowUpSFill />,
-        subNav: [
-            {
-                title: 'الموظفين',
-                path: '/DB/MinistryOfFinance/employees',
-                icon: <BsIcons.BsFillPersonFill />,
-            },
-            {
-                title: 'الخدمات',
-                path: '/DB/MinistryOfFinance/services',
-                icon: <MdIcons.MdOutlineMiscellaneousServices />,
-            },
-            {
-                title: 'الطلبات',
-                path: '/DB/MinistryOfFinance/requests',
-                icon: <IoIcons.IoMdSend />,
-            },
-            {
-                title: 'التقارير',
-                path: '/DB/MinistryOfFinance/reports',
-                icon: <HiIcons.HiDocumentReport />,
-            }
-        ]
-    },
-    {
         title: 'وزارة الصحة',
         // path: '/DB',
         icon: <GiIcons.GiHealthNormal />,
@@ -143,6 +85,64 @@ export const SideBarData = [
                 title: 'مطعوم',
                 path: '/DB/MinistryOfHealth/covid',
                 icon: <MdIcons.MdOutlineCoronavirus />,
+            }
+        ]
+    },
+    {
+        title: 'وزارة المواصلات',
+        // path: '/DB/MinistryOfTransportation',
+        icon: <AiIcons.AiFillCar />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'الموظفين',
+                path: '/DB/MinistryOfTransportation/employees',
+                icon: <BsIcons.BsFillPersonFill />,
+            },
+            {
+                title: 'الخدمات',
+                path: '/DB/MinistryOfTransportation/services',
+                icon: <MdIcons.MdOutlineMiscellaneousServices />,
+            },
+            {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfTransportation/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
+                title: 'التقارير',
+                path: '/DB/MinistryOfTransportation/reports',
+                icon: <HiIcons.HiDocumentReport />,
+            }
+        ]
+    },
+    {
+        title: 'وزارة المالية',
+        // path: '/DB/MinistryOfFinance',
+        icon: <RiIcons.RiBankCard2Fill />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'الموظفين',
+                path: '/DB/MinistryOfFinance/employees',
+                icon: <BsIcons.BsFillPersonFill />,
+            },
+            {
+                title: 'الخدمات',
+                path: '/DB/MinistryOfFinance/services',
+                icon: <MdIcons.MdOutlineMiscellaneousServices />,
+            },
+            {
+                title: 'الطلبات',
+                path: '/DB/MinistryOfFinance/requests',
+                icon: <IoIcons.IoMdSend />,
+            },
+            {
+                title: 'التقارير',
+                path: '/DB/MinistryOfFinance/reports',
+                icon: <HiIcons.HiDocumentReport />,
             }
         ]
     },

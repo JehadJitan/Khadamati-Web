@@ -53,8 +53,8 @@ export const addRequest = async (data) => {
     return res;
 };
 
-export const getRequest = async (role) => {
-    const res = await axios.get(`${API_BASE_URL}/request/${role}`);
+export const getRequest2 = async (role) => {
+    const res = await axios.get(`${API_BASE_URL}/request/role/${role}`);
     return res.data.data;
 };
 
@@ -72,17 +72,17 @@ export const acceptRequest = async (data) => {
     const res = await axios.post(`${API_BASE_URL}/citizen/accept/request`, { data });
     return res;
 };
-// export const addCovidCitizen = async (data) => {
-//     const res = await axios.post(`${API_BASE_URL}/covid`, { data });
-//     return res;
-// };
+export const addVaccinatedCitizen = async (data) => {
+    const res = await axios.post(`${API_BASE_URL}/covid`, { data });
+    return res;
+};
 
-// export const editCovidCitizen = async (type) => {
-//     const res = await axios.get(`${API_BASE_URL}/covid/edit`, { data });
-//     return res;
-// };
+export const editVaccinatedCitizen = async (data) => {
+    const res = await axios.get(`${API_BASE_URL}/covid/edit`, { data });
+    return res;
+};
 
-// export const getCovidCitizen = async (type) => {
-//     const res = await axios.get(`${API_BASE_URL}/covid/${type}`);
-//     return res;
-// };
+export const getVaccinatedCitizen = async (type) => {
+    const res = await axios.get(`${API_BASE_URL}/covid/${type}`);
+    return res;
+};

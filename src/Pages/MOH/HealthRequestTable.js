@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { ButtomTitleLine, StyledTable, TitleDiv } from '../../Components/Divs/StyledDivs';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { getRequest } from "../../shared/api";
+import { getRequest2 } from "../../shared/api";
 
 
 const columns = [
@@ -53,7 +53,7 @@ export default function HealthRequestTable() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        getRequest("MOH")
+        getRequest2("MOH")
             .then((res) => {
                 const data1 = []
                 res.map((request) => {

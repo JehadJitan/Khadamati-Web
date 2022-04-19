@@ -84,7 +84,7 @@ export default function Users() {
                 // console.log(res.data.data);
                 const data1 = []
                 res.data.data.map((citizen) => {
-                    citizen.birthDate = citizen.birthDate.substring(0, 10)
+                    citizen.birthDate = citizen.birthDate.substring(4, 15)
                     data1.push(citizen)
                 })
                 // setData(da)
