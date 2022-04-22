@@ -83,8 +83,13 @@ export const SideBarData = [
             },
             {
                 title: 'مطعوم',
-                path: '/DB/MinistryOfHealth/covid',
+                path: '/DB/MinistryOfHealth/vaccine',
                 icon: <MdIcons.MdOutlineCoronavirus />,
+            },
+            {
+                title: 'COVID-19',
+                path: '/DB/MinistryOfHealth/covid',
+                icon: <MdIcons.MdCoronavirus />,
             }
         ]
     },

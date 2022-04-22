@@ -36,6 +36,7 @@ function NewBirthCertificate() {
         document.getElementsByClassName("birthDate")[0].value = "";
         document.getElementsByClassName("placeOfBirth")[0].value = "";
         document.getElementsByClassName("motherName")[0].value = "";
+        document.getElementsByClassName("requestDate")[0].value = "";
         setSubmitted(false);
 
     }
@@ -69,6 +70,8 @@ function NewBirthCertificate() {
         const birthDate = document.getElementsByClassName("birthDate")[0].value;
         const placeOfBirth = document.getElementsByClassName("placeOfBirth")[0].value;
         const motherName = document.getElementsByClassName("motherName")[0].value;
+        const requestDate = document.getElementsByClassName("requestDate")[0].value;
+
         arr.push(name);
         arr.push(identity_id);
         arr.push(father_id);
@@ -76,7 +79,8 @@ function NewBirthCertificate() {
         arr.push(birthDate);
         arr.push(placeOfBirth);
         arr.push(motherName);
-        if (name === '' || identity_id === '' || father_id === '' || gender === '' || birthDate === '' || placeOfBirth === '' || motherName === '') {
+        arr.push(requestDate);
+        if (name === '' || identity_id === '' || father_id === '' || gender === '' || birthDate === '' || placeOfBirth === '' || motherName === '' || requestDate === '') {
             alert("خطأ في الإدخال");
         } else {
             console.log(arr);
@@ -90,7 +94,7 @@ function NewBirthCertificate() {
             <h1>طلب إصدار شهادة ميلاد جديدة</h1>
         </ButtomTitleLine>
         <StyledCertificate>
-            <form className="form" onSubmit={() => handleSubmit}>
+            <form className="form" onSubmit={() => handleSubmit} style={{ 'marginTop': '30px' }}>
                 <Row>
                     <Column>
                         <input dir="rtl" class='identity_id' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
@@ -100,6 +104,8 @@ function NewBirthCertificate() {
                         <input dir="rtl" class='motherName' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
                         <input dir="rtl" class='placeOfBirth' type='text' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
                         <input type='date' class='birthDate' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+                        <input type='date' class='requestDate' required style={{ 'margin-right': '25px', 'margin-bottom': '25px' }}></input>
+
                     </Column>
                     <Column>
                         <Label>رقم هوية المواطن</Label>
@@ -109,6 +115,7 @@ function NewBirthCertificate() {
                         <Label>اسم الأم</Label>
                         <Label>مكان الولادة</Label>
                         <Label>تاريخ الميلاد</Label>
+                        <Label>تاريخ الطلب</Label>
 
                     </Column>
                 </Row>

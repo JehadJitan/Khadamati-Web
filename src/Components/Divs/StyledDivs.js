@@ -54,12 +54,9 @@ export const StyledCertificate = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:35%;
-    height:500px;
-    // border: 4px solid #d31818;
+    width:32%;
+    height:530px;
     margin-top:30px;
-    padding: 10px;
-    // border-radius: 25px;
     box-shadow: 5px 10px 18px #888888;
     background-color: #ffffff;
 `;

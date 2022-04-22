@@ -68,6 +68,11 @@ export const editStatus = async (data) => {
     return res;
 };
 
+export const editCovidStatus = async (data) => {
+    const res = await axios.post(`${API_BASE_URL}/citizen/status/covid`, { data });
+    return res;
+};
+
 export const acceptRequest = async (data) => {
     const res = await axios.post(`${API_BASE_URL}/citizen/accept/request`, { data });
     return res;

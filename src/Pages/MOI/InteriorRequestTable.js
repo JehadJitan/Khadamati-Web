@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Dialog from '@mui/material/Dialog';
-import person1 from './person1.jpg';
-import person2 from './person2.jpg';
+import p1 from './p1.jpg';
+import p2 from './p2.jpg';
 import styled from 'styled-components';
 
 const Row = styled.div`
@@ -22,18 +22,6 @@ padding: 10px;
 `;
 
 const columns = [
-    // { field: 'id', headerName: 'رقم الطلب', width: 120, align: 'center' },
-    // {
-    //     field: 'name',
-    //     headerName: 'اسم المواطن',
-    //     description: 'This column has a value getter and is not sortable.',
-    //     sortable: false,
-    //     width: 160,
-    //     align: 'center',
-    //     headerAlign: 'center',
-    //     // valueGetter: (params) =>
-    //     //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
     {
         field: 'citizenId',
         headerName: 'رقم الهوية',
@@ -63,8 +51,8 @@ const columns = [
 ];
 
 function SimpleDialog(props) {
-    const { onClose, selectedValue, open } = props;
-
+    const { onClose, selectedValue, open, selectedRow } = props;
+    console.log(selectedRow);
     const handleClose = () => {
         onClose(selectedValue);
     };
@@ -74,29 +62,46 @@ function SimpleDialog(props) {
             <InsideDivTitle>
                 <h1>تفاصيل طلب المواطن</h1>
             </InsideDivTitle>
-            <Row style={{ 'justify-content': 'right', 'marginRight': '50px', 'marginTop': '30px' }}>
-                <input size="40" type="text" readOnly style={{ 'direction': 'rtl', 'margin-left': '20px' }}></input>
-                <label style={{ 'margin-left': '20px' }}>:تفاصيل الخدمة</label>
-                <input size="15" type="text" readOnly style={{ 'direction': 'rtl', 'margin-left': '20px' }}></input>
-                <label style={{ 'margin-left': '20px' }}>:رقم الهوية</label>
+
+            <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '10px' }}>
+                {(selectedRow?.service == 'تجديد هوية فلسطينية' || selectedRow?.service == 'طلب فقدان هوية') && (<>
+                    <input size="30" type="text" value={selectedRow?.service} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
+                    <label style={{ 'marginLeft': '20px' }}>:تفاصيل الخدمة</label>
+                    <input size="15" type="text" value={selectedRow?.citizenId} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
+                    <label style={{ 'marginLeft': '20px' }}>:رقم الهوية</label>
+                </>
+                )}
             </Row>
+            {(selectedRow?.service == 'إصدار جواز سفر فلسطيني' || selectedRow?.service == 'تجديد جواز سفر فلسطيني') && (<>
+                <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '10px' }}>
+                    <input size="30" type="text" value={selectedRow?.service} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
+                    <label style={{ 'marginLeft': '20px' }}>:تفاصيل الخدمة</label>
+                    <input size="15" type="text" value={selectedRow?.citizenId} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
+                    <label style={{ 'marginLeft': '20px' }}>:رقم الهوية</label>
+                </Row>
+                <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '20px' }}>
+                    <input size="30" type="text" readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
+                    <lable style={{ 'marginLeft': '20px' }}>:المهنة</lable>
+                </Row>
+            </>
+            )}
             <List sx={{ height: 500, width: 900, }}>
                 <ListItem style={{ 'justifyContent': 'center' }}>
                     <Row>
                         <Column>
-                            <h3 style={{ 'text-align': 'center', 'margin-bottom': '15px' }}>الصورة الشخصية الجديدة</h3>
-                            <img style={{ 'width': '300px', 'height': '300px' }} src={person1}></img>
+                            <h3 style={{ 'textAlign': 'center', 'marginBottom': '15px' }}>الصورة الشخصية الجديدة</h3>
+                            <img style={{ 'width': '300px', 'height': '300px' }} src={p2}></img>
                         </Column>
                         <Column>
-                            <h3 style={{ 'text-align': 'center', 'margin-bottom': '15px' }}>الصورة الشخصية القديمة</h3>
-                            <img style={{ 'width': '300px', 'height': '300px' }} src={person2}></img>
+                            <h3 style={{ 'textAlign': 'center', 'marginBottom': '15px' }}>الصورة الشخصية القديمة</h3>
+                            <img style={{ 'width': '300px', 'height': '300px' }} src={p1}></img>
                         </Column>
 
                     </Row>
                 </ListItem>
                 <ListItem style={{ 'justifyContent': 'center' }}>
-                    <Button variant="contained" color="error" style={{ 'margin-right': '50px', 'font-family': 'Almarai' }}>موافقة الطلب</Button>
-                    <Button variant="contained" color="success" style={{ 'margin-right': '15px', 'font-family': 'Almarai' }}>رفض الطلب</Button>
+                    <Button variant="contained" color="success" style={{ 'marginRight': '50px', 'fontFamily': 'Almarai' }}>موافقة الطلب</Button>
+                    <Button variant="contained" color="error" style={{ 'marginRight': '15px', 'fontFamily': 'Almarai' }}>رفض الطلب</Button>
                 </ListItem>
             </List>
         </Dialog >
@@ -111,6 +116,9 @@ SimpleDialog.propTypes = {
 
 export default function InteriorRequestTable() {
 
+    const [rows, setRows] = useState([]);
+    const [data, setData] = useState([]);
+
     //POPUP STUFF
 
     const [open, setOpen] = React.useState(false);
@@ -118,6 +126,7 @@ export default function InteriorRequestTable() {
     const handleClickOpen = () => {
         if (selected) {
             console.log("Should view request");
+            console.log(data);
             setOpen(true);
             setSelected(false);
         } else {
@@ -128,9 +137,6 @@ export default function InteriorRequestTable() {
     const handleClose = (value) => {
         setOpen(false);
     };
-
-    const [rows, setRows] = useState([]);
-    const [data, setData] = useState([]);
 
     useEffect(() => {
         getRequest2("MOI")
@@ -149,6 +155,8 @@ export default function InteriorRequestTable() {
     }, [rows]);
 
     const [selected, setSelected] = useState(false);
+    const [rowId, setRowId] = useState();
+    const [selectedRow, setSelectedRow] = useState();
 
     const acceptCurrentRequest = () => {
         if (selected) {
@@ -166,16 +174,13 @@ export default function InteriorRequestTable() {
             console.log("Select row to deny");
         }
     }
-    // let history = useHistory();
-
-    const viewCurrentRequest = () => {
-        if (selected) {
-            console.log("Should view request");
-            setSelected(false);
-        } else {
-            console.log("Select row to view");
-        }
-    }
+    const handleRowSelection = (rowId) => {
+        setSelected(true);
+        const req = data.filter((row) => {
+            return row.id === rowId[0];
+        });
+        setSelectedRow(req[0]);
+    };
 
     return (
         <>
@@ -192,13 +197,15 @@ export default function InteriorRequestTable() {
                         pageSize={7}
                         rowsPerPageOptions={[10]}
                         checkboxSelection
-                        onSelectionModelChange={selected => { setSelected(true) }}
+                        // onSelectionModelChange={selected => { setSelected(true); setRowId(selected); }}
+                        onSelectionModelChange={(row) => handleRowSelection(row)}
 
                     />
                 </div>
                 <Stack direction="row" style={{ 'margin-top': '20px' }}>
                     <Button onClick={handleClickOpen} variant="contained" color="warning" style={{ 'margin-left': '25px', 'font-family': 'Almarai' }}>عرض الطلب</Button>
                     <SimpleDialog
+                        selectedRow={selectedRow}
                         open={open}
                         onClose={handleClose}
                     />

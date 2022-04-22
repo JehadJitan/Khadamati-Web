@@ -26,6 +26,7 @@ import HealthReport from "../MOH/HealthReport";
 import InteriorReports from "../MOI/InteriorReports";
 import HealthRequestTable from "../MOH/HealthRequestTable";
 import NewBirthCertificate from "../MOI/NewBirthCertificate";
+import CovidStatus from "../MOH/CovidStatus";
 
 const Routing = () => {
 
@@ -36,18 +37,24 @@ const Routing = () => {
                 <Switch>
                     <Route path='/DB' exact component={DashboardContent} />
                     <Route path='/DB/about' exact component={About} />
+
                     <Route path='/DB/MinistryOfHealth/employees' exact component={HealthEmployees} />
                     <Route path='/DB/MinistryOfHealth/services' exact component={HealthServices} />
-                    <Route path='/DB/MinistryOfHealth/covid' exact component={covidVaccine} />
+                    <Route path='/DB/MinistryOfHealth/vaccine' exact component={covidVaccine} />
+                    <Route path='/DB/MinistryOfHealth/covid' exact component={CovidStatus} />
+                    <Route path='/DB/MinistryOfHealth/reports' exact component={HealthReport} />
+                    <Route path='/DB/MinistryOfHealth/requests' exact component={HealthRequestTable} />
+
                     <Route path='/DB/MinistryOfFinance/employees' exact component={FinanceEmployee} />
                     <Route path='/DB/MinistryOfFinance/services' exact component={FinanceService} />
                     <Route path='/DB/MinistryOfFinance/requests' exact component={FinanceRequestTable} />
+
+
                     <Route path='/DB/MinistryOfTransportation/requests' exact component={TransportationRequestTable} />
                     <Route path='/DB/MinistryOfTransportation/services' exact component={TransportationService} />
                     <Route path='/DB/MinistryOfTransportation/employees' exact component={TransportationEmployee} />
                     <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />
-                    <Route path='/DB/MinistryOfHealth/reports' exact component={HealthReport} />
-                    <Route path='/DB/MinistryOfHealth/requests' exact component={HealthRequestTable} />
+
                     <Route path='/DB/MinistryOfInteriorAffairs/employees' exact component={InteriorEmployee} />
                     <Route path='/DB/MinistryOfInteriorAffairs/services' exact component={InteriorService} />
                     <Route path='/DB/MinistryOfInteriorAffairs/reports' exact component={InteriorReports} />
