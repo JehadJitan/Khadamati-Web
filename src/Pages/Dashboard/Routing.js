@@ -1,7 +1,7 @@
 import SideBar from "../../Components/NavBar/SideBar";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './Dashboard.css';
-import About from "../About/About"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./Dashboard.css";
+import About from "../About/About";
 import LogIn from "../../Components/logIn/logIn";
 import HealthEmployees from "../MOH/HealthEmployee";
 import HealthServices from "../MOH/HealthService";
@@ -25,51 +25,133 @@ import TransportationReports from "../MOT/TransportationReports";
 import HealthReport from "../MOH/HealthReport";
 import InteriorReports from "../MOI/InteriorReports";
 import HealthRequestTable from "../MOH/HealthRequestTable";
-import NewBirthCertificate from "../MOI/NewBirthCertificate";
+import NewBirthCertificate from "../MOI/newBirthCertificate";
 import CovidStatus from "../MOH/CovidStatus";
 
 const Routing = () => {
-
-    return (
-        <>
-            <Router>
-                <SideBar />
-                <Switch>
-                    <Route path='/DB' exact component={DashboardContent} />
-                    <Route path='/DB/about' exact component={About} />
-
-                    <Route path='/DB/MinistryOfHealth/employees' exact component={HealthEmployees} />
-                    <Route path='/DB/MinistryOfHealth/services' exact component={HealthServices} />
-                    <Route path='/DB/MinistryOfHealth/vaccine' exact component={covidVaccine} />
-                    <Route path='/DB/MinistryOfHealth/covid' exact component={CovidStatus} />
-                    <Route path='/DB/MinistryOfHealth/reports' exact component={HealthReport} />
-                    <Route path='/DB/MinistryOfHealth/requests' exact component={HealthRequestTable} />
-
-                    <Route path='/DB/MinistryOfFinance/employees' exact component={FinanceEmployee} />
-                    <Route path='/DB/MinistryOfFinance/services' exact component={FinanceService} />
-                    <Route path='/DB/MinistryOfFinance/requests' exact component={FinanceRequestTable} />
-
-
-                    <Route path='/DB/MinistryOfTransportation/requests' exact component={TransportationRequestTable} />
-                    <Route path='/DB/MinistryOfTransportation/services' exact component={TransportationService} />
-                    <Route path='/DB/MinistryOfTransportation/employees' exact component={TransportationEmployee} />
-                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />                    <Route path='/DB/MinistryOfTransportation/reports' exact component={TransportationReports} />
-
-                    <Route path='/DB/MinistryOfInteriorAffairs/employees' exact component={InteriorEmployee} />
-                    <Route path='/DB/MinistryOfInteriorAffairs/services' exact component={InteriorService} />
-                    <Route path='/DB/MinistryOfInteriorAffairs/reports' exact component={InteriorReports} />
-                    <Route path='/DB/MinistryOfInteriorAffairs/requests' exact component={InteriorRequestTable} />
-                    <Route path='/DB/MinistryOfInteriorAffairs/birthCertificate' exact component={NewBirthCertificate} />
-
-                    <Route path='/DB/MinistryOfLandMark/employees' exact component={PropertyEmployee} />
-                    <Route path='/DB/MinistryOfLandMark/services' exact component={PropertyService} />
-                    <Route path='/DB/MinistryOfLandMark/requests' exact component={PropertyRequestTable} />
-                    <Route path='/DB/users' exact component={Users} />
-                    <Route path='/DB/userInfo' exact component={profileSetting} />
-                    <Route path="/" exact component={LogIn} />
-                </Switch>
-            </Router>
-        </>
-    );
-}
+  return (
+    <>
+      <Router>
+        <SideBar />
+        <Switch>
+          <Route path="/DB" exact component={DashboardContent} />
+          <Route path="/DB/about" exact component={About} />
+          <Route
+            path="/DB/MinistryOfHealth/employees"
+            exact
+            component={HealthEmployees}
+          />
+          <Route
+            path="/DB/MinistryOfHealth/services"
+            exact
+            component={HealthServices}
+          />
+          <Route
+            path="/DB/MinistryOfHealth/vaccine"
+            exact
+            component={covidVaccine}
+          />
+          <Route
+            path="/DB/MinistryOfHealth/covid"
+            exact
+            component={CovidStatus}
+          />
+          <Route
+            path="/DB/MinistryOfHealth/reports"
+            exact
+            component={HealthReport}
+          />
+          <Route
+            path="/DB/MinistryOfHealth/requests"
+            exact
+            component={HealthRequestTable}
+          />
+          <Route
+            path="/DB/MinistryOfFinance/employees"
+            exact
+            component={FinanceEmployee}
+          />
+          <Route
+            path="/DB/MinistryOfFinance/services"
+            exact
+            component={FinanceService}
+          />
+          <Route
+            path="/DB/MinistryOfFinance/requests"
+            exact
+            component={FinanceRequestTable}
+          />
+          <Route
+            path="/DB/MinistryOfTransportation/requests"
+            exact
+            component={TransportationRequestTable}
+          />
+          <Route
+            path="/DB/MinistryOfTransportation/services"
+            exact
+            component={TransportationService}
+          />
+          <Route
+            path="/DB/MinistryOfTransportation/employees"
+            exact
+            component={TransportationEmployee}
+          />
+          <Route
+            path="/DB/MinistryOfTransportation/reports"
+            exact
+            component={TransportationReports}
+          />{" "}
+          <Route
+            path="/DB/MinistryOfTransportation/reports"
+            exact
+            component={TransportationReports}
+          />
+          <Route
+            path="/DB/MinistryOfInteriorAffairs/employees"
+            exact
+            component={InteriorEmployee}
+          />
+          <Route
+            path="/DB/MinistryOfInteriorAffairs/services"
+            exact
+            component={InteriorService}
+          />
+          <Route
+            path="/DB/MinistryOfInteriorAffairs/reports"
+            exact
+            component={InteriorReports}
+          />
+          <Route
+            path="/DB/MinistryOfInteriorAffairs/requests"
+            exact
+            component={InteriorRequestTable}
+          />
+          <Route
+            path="/DB/MinistryOfInteriorAffairs/birthCertificate"
+            exact
+            component={NewBirthCertificate}
+          />
+          <Route
+            path="/DB/MinistryOfLandMark/employees"
+            exact
+            component={PropertyEmployee}
+          />
+          <Route
+            path="/DB/MinistryOfLandMark/services"
+            exact
+            component={PropertyService}
+          />
+          <Route
+            path="/DB/MinistryOfLandMark/requests"
+            exact
+            component={PropertyRequestTable}
+          />
+          <Route path="/DB/users" exact component={Users} />
+          <Route path="/DB/userInfo" exact component={profileSetting} />
+          <Route path="/" exact component={LogIn} />
+        </Switch>
+      </Router>
+    </>
+  );
+};
 export default Routing;
