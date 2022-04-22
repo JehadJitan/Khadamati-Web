@@ -13,8 +13,6 @@ import PropTypes from "prop-types";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Dialog from "@mui/material/Dialog";
-import p1 from "./p1.jpg";
-import p2 from "./p2.jpg";
 import styled from "styled-components";
 
 const Row = styled.div`
@@ -60,7 +58,7 @@ const columns = [
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open, selectedRow } = props;
-  console.log(selectedRow);
+  console.log(selectedRow?.citizenId);
   const [currentImage, setCurrentImage] = useState("");
   const [newImage, setNewImage] = useState("");
 
@@ -69,21 +67,22 @@ function SimpleDialog(props) {
   };
 
   useEffect(() => {
-    getCurrentImage(selectedRow.citizenId)
+    getCurrentImage(selectedRow?.citizenId)
       .then((res) => {
         setCurrentImage(res.data.data);
+        console.log(currentImage);
       })
       .catch((err) => {
         console.log(err);
       });
-    getNewImage(selectedRow.citizenId)
+    getNewImage(selectedRow?.citizenId)
       .then((res) => {
         setNewImage(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [selectedRow]);
 
   return (
     <Dialog maxWidth={"xl"} onClose={handleClose} open={open}>
@@ -263,7 +262,6 @@ export default function InteriorRequestTable() {
   }, [rows]);
 
   const [selected, setSelected] = useState(false);
-  const [rowId, setRowId] = useState();
   const [selectedRow, setSelectedRow] = useState();
 
   const acceptCurrentRequest = () => {
@@ -298,7 +296,7 @@ export default function InteriorRequestTable() {
         </ButtomTitleLine>
       </TitleDiv>
       <StyledTable dir="rtl">
-        <div style={{ height: 490, width: "100%" }}>
+        <div style={{ height: 410, width: "100%" }}>
           <DataGrid
             rows={data}
             columns={columns}

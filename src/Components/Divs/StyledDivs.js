@@ -7,7 +7,7 @@ flex-wrap: wrap;
 align-items:center;
 margin:auto;
 width:95%;
-height:550px;
+height:500px;
 // border: 4px solid #d31818;
 margin-top:30px;
 padding: 10px;
@@ -23,7 +23,7 @@ export const StyledService = styled.div`
     align-items:center;
     margin:auto;
     width:95%;
-    height:550px;
+    height:500px;
     // border: 4px solid #d31818;
     margin-top:30px;
     padding: 10px;
@@ -38,7 +38,7 @@ export const StyledReport = styled.div`
     flex-wrap: wrap;
     align-items:center;
     margin:auto;
-    width:60%;
+    width:80%;
     height:500px;
     // border: 4px solid #d31818;
     margin-top:30px;
@@ -68,7 +68,7 @@ export const StyledTable = styled.div`
     align-items:center;
     margin:auto;
     width:95%;
-    height:570px;
+    height:500px;
     // border: 4px solid #d31818;
     margin-top:30px;
     padding: 10px;

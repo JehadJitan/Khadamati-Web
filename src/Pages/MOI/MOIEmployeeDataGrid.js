@@ -90,9 +90,6 @@ export default function FullFeaturedCrudGrid() {
 
   const apiRef = useGridApiRef();
 
-  // const MOItotalEmployees = Object.keys(data).length;
-  // console.log("Total Employees: ", MOItotalEmployees);
-
   const handleRowEditStart = (params, event) => {
     event.defaultMuiPrevented = true;
   };
@@ -179,7 +176,7 @@ export default function FullFeaturedCrudGrid() {
     {
       field: "name",
       headerName: "الإسم الكامل",
-      width: 230,
+      width: 220,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -187,7 +184,7 @@ export default function FullFeaturedCrudGrid() {
     {
       field: "gender",
       headerName: "الجنس",
-      width: 100,
+      width: 80,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -196,7 +193,7 @@ export default function FullFeaturedCrudGrid() {
       field: "birthDate",
       headerName: "تاريخ الميلاد",
       type: "date",
-      width: 150,
+      width: 120,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -204,7 +201,7 @@ export default function FullFeaturedCrudGrid() {
     {
       field: "userId",
       headerName: "رقم الهوية",
-      width: 150,
+      width: 120,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -212,7 +209,7 @@ export default function FullFeaturedCrudGrid() {
     {
       field: "phone",
       headerName: "رقم الهاتف",
-      width: 150,
+      width: 120,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -293,7 +290,7 @@ export default function FullFeaturedCrudGrid() {
       {/* <Title>لائحة الموظفين</Title> */}
       <Box
         sx={{
-          height: 500,
+          height: 450,
           width: "100%",
           "& .actions": {
             color: "text.secondary",

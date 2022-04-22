@@ -102,3 +102,8 @@ export const getNewImage = async (data) => {
   const res = await axios.get(`${API_BASE_URL}/images/New/${data}`);
   return res;
 };
+
+export const addNewBorn = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/newBorn`, { data });
+  return res;
+};

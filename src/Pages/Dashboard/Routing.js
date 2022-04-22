@@ -25,7 +25,7 @@ import TransportationReports from "../MOT/TransportationReports";
 import HealthReport from "../MOH/HealthReport";
 import InteriorReports from "../MOI/InteriorReports";
 import HealthRequestTable from "../MOH/HealthRequestTable";
-import NewBirthCertificate from "../MOI/newBirthCertificate";
+import NewBirthCertificate from "../MOI/NewBirthCertificate";
 import CovidStatus from "../MOH/CovidStatus";
 
 const Routing = () => {

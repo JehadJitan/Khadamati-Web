@@ -19,17 +19,16 @@ const Parent = styled.div`
 const CardParent = styled.div`
     display: flex;
     justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    margin: 20px;
-    flex-wrap: wrap;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
 `;
 
 const Card = styled.div`
-    width: 300px;
-    height: 100px;
-    padding: 20px;
-    // border-radius: 25px;
+    width: 21.5%;
+    height: 80px;
+    padding: 3%;
     box-shadow: 5px 10px 18px #888888;
     background-color: #fdc500;
     display: flex;
@@ -82,24 +81,6 @@ const CustomeTable = styled.table`
 border-collapse: collapse;
 width: 100%;
 height:100%;
-// border-radius: 15px;
-// overflow:hidden
-
-
-`;
-
-const DataSum = styled.div`
-    width: 100%;
-    height: 100px;
-    padding: 20px;
-    // border-radius: 25px;
-    box-shadow: 5px 10px 18px #888888;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
 `;
 
 function DashboardContent() {
@@ -189,10 +170,9 @@ function DashboardContent() {
                 </ButtomTitleLine>
             </TitleDiv>
             <CardParent>
-                <DataSum>
                     <Card style={{ 'background': '#eceff1' }}>
-                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                            <GoIcons.GoGitPullRequest size={50} />
+                        <STY2 style={{ 'margin-top': '25%', 'color': 'black' }}>
+                            <GoIcons.GoGitPullRequest size={45} />
                         </STY2>
                         <STY2>
                             <NumberTitle>{totalRequests}</NumberTitle>
@@ -200,8 +180,8 @@ function DashboardContent() {
                         </STY2>
                     </Card>
                     <Card style={{ 'background': '#ffffff' }}>
-                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                            <MdIcons.MdMiscellaneousServices size={50} />
+                    <STY2 style={{ 'margin-top': '25%', 'color': 'black' }}>
+                            <MdIcons.MdMiscellaneousServices size={45} />
                         </STY2>
                         <STY2>
                             <NumberTitle>{totalServices}</NumberTitle>
@@ -209,8 +189,8 @@ function DashboardContent() {
                         </STY2>
                     </Card>
                     <Card style={{ 'background': '#eceff1' }}>
-                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                            <IoIcons.IoIosPeople size={50} />
+                    <STY2 style={{ 'margin-top': '25%', 'color': 'black' }}>
+                            <IoIcons.IoIosPeople size={45} />
                         </STY2>
                         <STY2>
                             <NumberTitle>{totalUsers}</NumberTitle>
@@ -218,8 +198,8 @@ function DashboardContent() {
                         </STY2>
                     </Card>
                     <Card style={{ 'background': '#ffffff' }}>
-                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                            <FaIcons.FaUserTie size={45} />
+                    <STY2 style={{ 'margin-top': '27.5%', 'color': 'black' }}>
+                            <FaIcons.FaUserTie size={40} />
                         </STY2>
                         <STY2>
                             <NumberTitle>{totalEmployees}</NumberTitle>
@@ -227,15 +207,14 @@ function DashboardContent() {
                         </STY2>
                     </Card>
                     <Card style={{ 'background': '#eceff1' }}>
-                        <STY2 style={{ 'margin-top': '35px', 'color': 'black' }}>
-                            <BsIcons.BsPeopleFill size={50} />
+                    <STY2 style={{ 'margin-top': '25%', 'color': 'black' }}>
+                            <BsIcons.BsPeopleFill size={45} />
                         </STY2>
                         <STY2>
                             <NumberTitle>{numOfCitizens}</NumberTitle>
                             <DescTitle>العدد الإجمالي للمواطنين</DescTitle>
                         </STY2>
                     </Card>
-                </DataSum>
             </CardParent>
             <Parent>
                 <TableParent>
