@@ -62,22 +62,11 @@ function SimpleDialog(props) {
             <InsideDivTitle>
                 <h1>تفاصيل طلب المواطن</h1>
             </InsideDivTitle>
-
-            <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '10px' }}>
-                    <input size="30" type="text" value={selectedRow?.service} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
-                    <label style={{ 'marginLeft': '20px' }}>:تفاصيل الخدمة</label>
-                    <input size="15" type="text" value={selectedRow?.citizenId} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
-                    <label style={{ 'marginLeft': '20px' }}>:رقم الهوية</label>
-            </Row>
                 <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '10px' }}>
                     <input size="30" type="text" value={selectedRow?.service} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
                     <label style={{ 'marginLeft': '20px' }}>:تفاصيل الخدمة</label>
                     <input size="15" type="text" value={selectedRow?.citizenId} readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
                     <label style={{ 'marginLeft': '20px' }}>:رقم الهوية</label>
-                </Row>
-                <Row style={{ 'justifyContent': 'right', 'marginRight': '50px', 'marginTop': '20px' }}>
-                    <input size="30" type="text" readOnly style={{ 'direction': 'rtl', 'marginLeft': '20px' }}></input>
-                    <lable style={{ 'marginLeft': '20px' }}>:المهنة</lable>
                 </Row>
             <List sx={{ height: 500, width: 900, }}>
                 <ListItem style={{ 'justifyContent': 'center' }}>
