@@ -307,12 +307,12 @@ export default function InteriorRequestTable() {
             onSelectionModelChange={(row) => handleRowSelection(row)}
           />
         </div>
-        <Stack direction="row" style={{ "margin-top": "20px" }}>
+        <Stack direction="row" style={{ "marginTop": "20px" }}>
           <Button
             onClick={handleClickOpen}
             variant="contained"
             color="warning"
-            style={{ "margin-left": "25px", "font-family": "Almarai" }}
+            style={{ "marginLeft": "25px", "fontFamily": "Almarai" }}
           >
             عرض الطلب
           </Button>

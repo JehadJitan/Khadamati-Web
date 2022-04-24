@@ -20,12 +20,12 @@ import PropertyEmployee from "../MOP/PropertyEmployee";
 import PropertyService from "../MOP/PropertyService";
 import PropertyRequestTable from "../MOP/PropertyRequestTable";
 import Users from "../Users/Users";
-import profileSetting from "../Users/profileSetting";
 import TransportationReports from "../MOT/TransportationReports";
 import HealthReport from "../MOH/HealthReport";
 import InteriorReports from "../MOI/InteriorReports";
 import HealthRequestTable from "../MOH/HealthRequestTable";
 import NewBirthCertificate from "../MOI/NewBirthCertificate";
+import Visas from "../MOI/visaRegistry";
 import CovidStatus from "../MOH/CovidStatus";
 
 const Routing = () => {
@@ -131,6 +131,11 @@ const Routing = () => {
             exact
             component={NewBirthCertificate}
           />
+                    <Route
+            path="/DB/MinistryOfInteriorAffairs/visas"
+            exact
+            component={Visas}
+          />
           <Route
             path="/DB/MinistryOfLandMark/employees"
             exact
@@ -147,7 +152,6 @@ const Routing = () => {
             component={PropertyRequestTable}
           />
           <Route path="/DB/users" exact component={Users} />
-          <Route path="/DB/userInfo" exact component={profileSetting} />
           <Route path="/" exact component={LogIn} />
         </Switch>
       </Router>

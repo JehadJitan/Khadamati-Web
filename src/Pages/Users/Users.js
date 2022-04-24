@@ -8,7 +8,7 @@ import {
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { editStatus, getCitizens } from "../../shared/api";
-import { useHistory } from "react-router-dom";
+import PopUp from "./PopUp";
 
 const columns = [
   {
@@ -77,6 +77,9 @@ export default function Users() {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
   const [submitted, setSubmitted] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [selectedRow, setSelectedRow] = useState();
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     getCitizens({})
@@ -99,7 +102,29 @@ export default function Users() {
       });
   }, [rows, submitted]);
 
-  const [selected, setSelected] = useState(false);
+  const handleClickOpen = () => {
+    if (selected) {
+      console.log("Should view request");
+      console.log(data);
+      setOpen(true);
+      setSelected(false);
+    } else {
+      console.log("Select row to view");
+    }
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
+
+  const handleRowSelection = (rowId) => {
+    setSelected(true);
+    const req = data.filter((row) => {
+      return row.id === rowId[0];
+    });
+    setSelectedRow(req[0]);
+    console.log(req[0]);
+  };
 
   function activateAccount() {
     if (selected) {
@@ -131,17 +156,6 @@ export default function Users() {
       console.log("Select row to delete");
     }
   }
-  let history = useHistory();
-
-  const showAccount = () => {
-    if (selected) {
-      history.push("/DB/userInfo");
-      console.log("Should re-direct to another page now");
-      setSelected(false);
-    } else {
-      console.log("Select row to re-direct");
-    }
-  };
 
   return (
     <>
@@ -153,6 +167,7 @@ export default function Users() {
       <StyledTable dir="rtl">
         <div style={{ height: 410, width: "100%" }}>
           <DataGrid
+            selectedRow={selectedRow}
             rows={data}
             columns={columns}
             pageSize={7}
@@ -161,15 +176,16 @@ export default function Users() {
             onSelectionModelChange={(selected) => {
               setSelected(true);
               setId(selected[0]);
+              handleRowSelection(selected);
             }}
           />
         </div>
-        <Stack direction="row" style={{ "margin-top": "20px" }}>
+        <Stack direction="row" style={{ marginTop: "20px" }}>
           <Button
-            onClick={showAccount}
+            onClick={handleClickOpen}
             variant="contained"
             color="primary"
-            style={{ "margin-left": "25px", "font-family": "Almarai" }}
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
           >
             عرض حساب
           </Button>
@@ -177,7 +193,7 @@ export default function Users() {
             onClick={deleteAccount}
             variant="contained"
             color="warning"
-            style={{ "margin-left": "25px", "font-family": "Almarai" }}
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
           >
             حذف حساب
           </Button>
@@ -185,7 +201,7 @@ export default function Users() {
             onClick={deactivateAccount}
             variant="contained"
             color="error"
-            style={{ "margin-left": "25px", "font-family": "Almarai" }}
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
           >
             توقيف حساب
           </Button>
@@ -193,12 +209,25 @@ export default function Users() {
             onClick={activateAccount}
             variant="contained"
             color="success"
-            style={{ "margin-left": "10px", "font-family": "Almarai" }}
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
           >
             تفعيل حساب
           </Button>
         </Stack>
       </StyledTable>
+      <PopUp
+        selectedRow={selectedRow}
+        open={open}
+        onClose={handleClose}
+        fullName={selectedRow?.name}
+        idNumber={selectedRow?.identity_id}
+        emailAddress={selectedRow?.email}
+        birthDate={selectedRow?.birthDate}
+        motherName={selectedRow?.motherName}
+        phoneNumber={selectedRow?.phone}
+        gender={selectedRow?.gender}
+        placeOfBirth={selectedRow?.placeOfBirth}
+      />
     </>
   );
 }

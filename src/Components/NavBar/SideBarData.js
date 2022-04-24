@@ -51,6 +51,11 @@ export const SideBarData = [
                 title: ' شهادة ميلاد',
                 path: '/DB/MinistryOfInteriorAffairs/birthCertificate',
                 icon: <HiIcons.HiDocumentText />,
+            },
+            {
+                title: 'تأشيرات سفر',
+                path: '/DB/MinistryOfInteriorAffairs/visas',
+                icon: <FaIcons.FaPassport />,
             }
         ]
     },
