@@ -19,6 +19,7 @@ import FinanceRequestTable from "../MOF/FinanceRequestTable";
 import PropertyEmployee from "../MOP/PropertyEmployee";
 import PropertyService from "../MOP/PropertyService";
 import PropertyRequestTable from "../MOP/PropertyRequestTable";
+import CitizensProperty from "../MOP/ViewCitizensProperty";
 import Users from "../Users/Users";
 import TransportationReports from "../MOT/TransportationReports";
 import HealthReport from "../MOH/HealthReport";
@@ -27,6 +28,8 @@ import HealthRequestTable from "../MOH/HealthRequestTable";
 import NewBirthCertificate from "../MOI/NewBirthCertificate";
 import Visas from "../MOI/visaRegistry";
 import CovidStatus from "../MOH/CovidStatus";
+import AddProperty from "../MOP/AddProperty";
+import AddRealEstate from "../MOP/AddRealEstate";
 
 const Routing = () => {
   return (
@@ -131,7 +134,7 @@ const Routing = () => {
             exact
             component={NewBirthCertificate}
           />
-                    <Route
+          <Route
             path="/DB/MinistryOfInteriorAffairs/visas"
             exact
             component={Visas}
@@ -150,6 +153,21 @@ const Routing = () => {
             path="/DB/MinistryOfLandMark/requests"
             exact
             component={PropertyRequestTable}
+          />
+          <Route
+            path="/DB/MinistryOfLandMark/property"
+            exact
+            component={CitizensProperty}
+          />
+          <Route
+            path="/DB/MinistryOfLandMark/addProperty"
+            exact
+            component={AddProperty}
+          />
+                    <Route
+            path="/DB/MinistryOfLandMark/addRealEstate"
+            exact
+            component={AddRealEstate}
           />
           <Route path="/DB/users" exact component={Users} />
           <Route path="/" exact component={LogIn} />

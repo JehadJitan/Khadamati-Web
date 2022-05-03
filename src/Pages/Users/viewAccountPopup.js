@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Dialog from "@mui/material/Dialog";
 import styled from "styled-components";
 import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
-import mainLogo from "./icon.png";
+import {getCurrentImage} from "../../shared/api";
 
 const Row = styled.div`
   display: flex;
@@ -64,15 +64,27 @@ const Input = styled.input`
 
 export default function SimpleDialog(props) {
   const { onClose, selectedValue, open, selectedRow } = props;
-  console.log(selectedRow?.citizenId);
+
+  const [currentImage, setCurrentImage] = useState();
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
+  useEffect(() => {
+    getCurrentImage(selectedRow?.id)
+      .then((res) => {
+        setCurrentImage(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [selectedRow]);
+
   return (
     <Dialog maxWidth={"xl"} onClose={handleClose} open={open}>
       <InsideDivTitle>
+
         <h1>تفاصيل حساب مواطن</h1>
       </InsideDivTitle>
       <List sx={{ height: 550, width: 950 }}>
@@ -80,10 +92,10 @@ export default function SimpleDialog(props) {
           <ParentDiv>
             <LeftDiv>
               <img
-                src={mainLogo}
+                src={`data:image/jpeg;base64,${currentImage}`}
                 alt="khadamatiLogo"
                 width={300}
-                style={{ "margin-bottom": "25px" }}
+                style={{ "margin-bottom": "25px", 'border-radius': "50%" }}
               />
               <span style={{ color: "#e7ecef" }}>
                 لتغيير الصورة الشخصية إضغط{" "}

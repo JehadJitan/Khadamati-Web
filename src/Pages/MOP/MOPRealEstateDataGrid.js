@@ -4,7 +4,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { randomId } from "@mui/x-data-grid-generator";
+import ListItem from "@mui/material/ListItem";
+import RealEstateChangeOwnershipPopUp from "./RealEstateChangeOwnershipPopUp";
+
 import {
   DataGridPro,
   GridActionsCellItem,
@@ -13,21 +15,19 @@ import {
 } from "@mui/x-data-grid-pro";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { StyledService } from "../../Components/Divs/StyledDivs";
 import {
-getAllVisits,
-editCitizenVisits,
-getCitizenVisits,
-addVisit,
+  getAllRealEstates,
+  editRealEsate,
+  addRealEstate,
 } from "../../shared/api";
+import { StyledEmployee } from "../../Components/Divs/StyledDivs";
 
 function EditToolbar(props) {
   const { apiRef } = props;
 
   const handleClick = () => {
-    const id = randomId();
-    const passportType = 'فلسطيني'
-    apiRef.current.updateRows([{ id, isNew: true, passportType }]);
+    const id = 0;
+    apiRef.current.updateRows([{ id, isNew: true }]);
     apiRef.current.setRowMode(id, "edit");
     // Wait for the grid to render with the new row
     setTimeout(() => {
@@ -35,7 +35,7 @@ function EditToolbar(props) {
         rowIndex: apiRef.current.getRowsCount() - 1,
       });
 
-      apiRef.current.setCellFocus(id, "name");
+      apiRef.current.setCellFocus(id, "owner");
     });
   };
 
@@ -55,7 +55,7 @@ function EditToolbar(props) {
         color="primary"
         onClick={handleClick}
       >
-        إضافة تأشيرة جديدة
+        إضافة عقار جديد
       </Button>
     </GridToolbarContainer>
   );
@@ -68,37 +68,63 @@ EditToolbar.propTypes = {
 };
 
 export default function FullFeaturedCrudGrid() {
-
   const [rows, setRows] = useState([]);
   const [data, setData] = useState([]);
   const [edited, setEdited] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [selectedRow, setSelectedRow] = useState();
+  const [open, setOpen] = React.useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [id, setId] = useState();
 
   useEffect(() => {
-    getAllVisits({})
+    getAllRealEstates({})
       .then((res) => {
         const data1 = [];
-        res.data.data.map((travel) => {
-          if(travel.backDate !== undefined){
-            travel.backDate = travel.backDate.substring(0, 10);
-          }
-          travel.goingDate = travel.goingDate.substring(0, 10);
-          data1.push(travel);
+        res.data.data.map((realEstate) => {
+            realEstate.submitDate = realEstate.submitDate.substring(0, 10);
+          data1.push(realEstate);
         });
+        // setData(da)
         setData([
           ...data1.map(({ id, ...res }) => ({
             ...res,
-            citizenId: id,
+            ownerId: id,
             id: res._id ?? id,
           })),
         ]);
       })
-      
       .catch((err) => {
         console.log(err);
       });
   }, [rows]);
 
   const apiRef = useGridApiRef();
+
+  const handleChangeOwnership = () => {
+    if (selected) {
+      console.log("Should view request");
+      console.log(data);
+      setOpen(true);
+      setSelected(false);
+      setSubmitted(!submitted);
+    } else {
+      console.log("Select row to view");
+    }
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+  };
+
+  const handleRowSelection = (rowId) => {
+    setSelected(true);
+    const req = data.filter((row) => {
+      return row.id === rowId[0];
+    });
+    setSelectedRow(req[0]);
+    console.log(req[0]);
+  };
 
   const handleRowEditStart = (params, event) => {
     event.defaultMuiPrevented = true;
@@ -121,28 +147,24 @@ export default function FullFeaturedCrudGrid() {
   const handleSaveClick = (id) => async (event) => {
     event.stopPropagation();
     // Wait for the validation to run
-    const row = apiRef.current.getRow(id);
-    console.log({ row });
     const isValid = await apiRef.current.commitRowChange(id);
     if (isValid) {
-      const row2ND = apiRef.current.getRow(id);
-      console.log({ row2ND });
       apiRef.current.setRowMode(id, "view");
       const row = apiRef.current.getRow(id);
-      console.log({ row });
-      // apiRef.current.updateRows([{ id: 0, _action: "delete" }])
-      const travel = {
+      const realEstate = {
         // _id: row.id,
-        name: row.name,
-        citizenId: row.citizenId,
-        passportType: row.passportType,
-        goingDate: row.goingDate,
-        backDate : row.backDate,
-        destination: row.destination,
+        owner: row.owner,
+        id: row.ownerId,
+        address: row.address,
+        type: row.type,
+        typeName: row.typeName,
+        typeNum: row.typeNum,
+        totalArea: row.totalArea,
+        submitDate: row.submitDate,
       };
       if (edited) {
         try {
-          await editCitizenVisits(travel)
+          await editRealEsate(realEstate)
             .then((res) => {
               console.log(res);
               setEdited(false);
@@ -155,7 +177,7 @@ export default function FullFeaturedCrudGrid() {
         }
       } else {
         try {
-          await addVisit(travel)
+          await addRealEstate(realEstate)
             .then((res) => {
               console.log(res);
             })
@@ -166,6 +188,8 @@ export default function FullFeaturedCrudGrid() {
           console.log(err);
         }
       }
+      console.log(JSON.stringify(row));
+      apiRef.current.updateRows([{ ...row, isNew: false }]);
     }
   };
 
@@ -186,51 +210,66 @@ export default function FullFeaturedCrudGrid() {
 
   const columns = [
     {
-      field: "name",
-      headerName: "اسم المواطن",
-      width: 250,
+      field: "owner",
+      headerName: "الإسم الكامل",
+      width: 220,
       editable: true,
       align: "center",
       headerAlign: "center",
     },
     {
-      field: "passportType",
-      headerName: "نوع الجواز",
+      field: "ownerId",
+      headerName: "رقم الهوية",
+      width: 120,
+      editable: true,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "address",
+      headerName: "العنوان",
+      width: 210,
+      editable: true,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "type",
+      headerName: "نوع العقار",
+      width: 120,
+      editable: true,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+      field: "typeName",
+      headerName: "اسم العقار",
+      width: 120,
+      editable: true,
+      align: "center",
+      headerAlign: "center",
+    },
+    {
+        field: "typeNum",
+        headerName: "رقم العقار",
+        width: 100,
+        editable: true,
+        align: "center",
+        headerAlign: "center",
+      },
+    {
+      field: "totalArea",
+      headerName: "المساحة بالمتر مربع",
       width: 150,
       editable: true,
       align: "center",
       headerAlign: "center",
     },
     {
-      field: "citizenId",
-      headerName: "رقم الجواز",
-      width: 150,
-      editable: true,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "destination",
-      headerName: "الوجهة",
-      width: 150,
-      editable: true,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "goingDate",
-      headerName: "تاريخ الذهاب",
+      field: "submitDate",
+      headerName: "تاريخ التسجيل",
+      width: 120,
       type: "date",
-      width: 150,
-      editable: true,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "backDate",
-      headerName: "تاريخ الرجوع",
-      type: "date",
-      width: 150,
       editable: true,
       align: "center",
       headerAlign: "center",
@@ -283,7 +322,7 @@ export default function FullFeaturedCrudGrid() {
   ];
 
   return (
-    <StyledService dir="rtl">
+    <StyledEmployee dir="rtl">
       <Box
         sx={{
           height: 450,
@@ -301,6 +340,7 @@ export default function FullFeaturedCrudGrid() {
             width: "100%",
             marginTop: "10px",
           }}
+          selectedRow={selectedRow}
           rows={data}
           columns={columns}
           apiRef={apiRef}
@@ -314,8 +354,35 @@ export default function FullFeaturedCrudGrid() {
           componentsProps={{
             toolbar: { apiRef },
           }}
+          onSelectionModelChange={(selected) => {
+            setSelected(true);
+            setId(selected[0]);
+            handleRowSelection(selected);
+          }}
         />
       </Box>
-    </StyledService>
+      <ListItem style={{ justifyContent: "center" }}>
+        <Button
+          onClick={handleChangeOwnership}
+          variant="contained"
+          color="error"
+          style={{ "margin-left": "25px", "font-family": "Almarai" }}
+        >
+          تقديم طلب نقل ملكية
+        </Button>
+      </ListItem>
+      <RealEstateChangeOwnershipPopUp
+        selectedRow={selectedRow}
+        open={open}
+        onClose={handleClose}
+        address={selectedRow?.address}
+        type={selectedRow?.type}
+        typeName={selectedRow?.typeName}
+        typeNum={selectedRow?.typeNum}
+        ownerId={selectedRow?.ownerId}
+        totalArea={selectedRow?.totalArea}
+        owner={selectedRow?.owner}
+      />
+    </StyledEmployee>
   );
 }

@@ -29,8 +29,6 @@ const Column = styled.div`
 
 function NewBirthCertificate() {
   const [submitted, setSubmitted] = useState(false);
-  const [rows, setRows] = useState([]);
-  const [data, setData] = useState([]);
 
   if (submitted) {
     document.getElementsByClassName("name")[0].value = "";
@@ -104,7 +102,7 @@ function NewBirthCertificate() {
         <form
           className="form"
           onSubmit={() => handleSubmit}
-          style={{ marginTop: "90px" }}
+          style={{ marginTop: "50px" }}
         >
           <Row>
             <Column>

@@ -8,7 +8,7 @@ import * as HiIcons from 'react-icons/hi';
 import * as BsIcons from 'react-icons/bs';
 import * as MdIcons from 'react-icons/md';
 import * as IoIcons from 'react-icons/io';
-
+import * as ImIcons from 'react-icons/im';
 export const SideBarData = [
     // {
     //     title: 'حسابي',
@@ -182,7 +182,22 @@ export const SideBarData = [
                 title: 'التقارير',
                 path: '/DB/MinistryOfLandMark/reports',
                 icon: <HiIcons.HiDocumentReport />,
-            }
+            },
+            {
+                title: 'إضافة أراضي',
+                path: '/DB/MinistryOfLandMark/addProperty',
+                icon: <RiIcons.RiLandscapeFill/>,
+            },
+            {
+                title: 'إضافة عقار',
+                path: '/DB/MinistryOfLandMark/addRealEstate',
+                icon: <AiIcons.AiFillHome />,
+            },
+            {
+                title: 'عرض ملكية',
+                path: '/DB/MinistryOfLandMark/property',
+                icon: <MdIcons.MdPageview />,
+            },
         ]
     },
     {

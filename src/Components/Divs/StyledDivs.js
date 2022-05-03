@@ -7,7 +7,7 @@ flex-wrap: wrap;
 align-items:center;
 margin:auto;
 width:95%;
-height:500px;
+height:550px;
 // border: 4px solid #d31818;
 margin-top:30px;
 padding: 10px;

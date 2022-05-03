@@ -154,7 +154,7 @@ function SimpleDialog(props) {
             }}
           >
             <input
-              size="30"
+              size="19"
               type="text"
               readOnly
               style={{ direction: "rtl", marginLeft: "20px" }}

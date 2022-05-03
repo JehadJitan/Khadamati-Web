@@ -8,7 +8,8 @@ import {
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { editStatus, getCitizens } from "../../shared/api";
-import PopUp from "./PopUp";
+import ViewAccountPopUp from "./viewAccountPopup";
+import ViewVisasPopUp from "./viewVisasPopup";
 
 const columns = [
   {
@@ -80,6 +81,7 @@ export default function Users() {
   const [selected, setSelected] = useState(false);
   const [selectedRow, setSelectedRow] = useState();
   const [open, setOpen] = React.useState(false);
+  const [openVisas, setOpenVisas] = React.useState(false);
 
   useEffect(() => {
     getCitizens({})
@@ -125,6 +127,16 @@ export default function Users() {
     setSelectedRow(req[0]);
     console.log(req[0]);
   };
+
+  const viewVisas = () => {
+    if (selected) {
+      console.log("Should view visas");
+      setOpenVisas(true);
+      setSelected(false);
+    } else {
+      console.log("Select row to view visas for");
+    }
+  }
 
   function activateAccount() {
     if (selected) {
@@ -181,6 +193,14 @@ export default function Users() {
           />
         </div>
         <Stack direction="row" style={{ marginTop: "20px" }}>
+        <Button
+            onClick={viewVisas}
+            variant="contained"
+            color="secondary"
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
+          >
+            عرض تأشيرات السفر
+          </Button>
           <Button
             onClick={handleClickOpen}
             variant="contained"
@@ -215,7 +235,7 @@ export default function Users() {
           </Button>
         </Stack>
       </StyledTable>
-      <PopUp
+      <ViewAccountPopUp
         selectedRow={selectedRow}
         open={open}
         onClose={handleClose}
@@ -227,6 +247,16 @@ export default function Users() {
         phoneNumber={selectedRow?.phone}
         gender={selectedRow?.gender}
         placeOfBirth={selectedRow?.placeOfBirth}
+      />
+      <ViewVisasPopUp
+        selectedRow={selectedRow}
+        open={openVisas}
+        onClose={() => setOpenVisas(false)}
+        idNumber={selectedRow?.identity_id}
+        passportType={selectedRow?.passportType}
+        goingDate={selectedRow?.goingDate}
+        backDate={selectedRow?.backDate}
+        destination={selectedRow?.destination}
       />
     </>
   );
