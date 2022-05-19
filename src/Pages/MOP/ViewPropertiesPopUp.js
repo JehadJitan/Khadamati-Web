@@ -65,14 +65,11 @@ export default function SimpleDialog(props) {
   const [rows, setRows] = useState([]);
   const [data, setData] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  const [citizenId, setCitizenId] = useState([]);
   const citizenId2 = selectedRow?.id;
-  useEffect(()=>{
-    setCitizenId(selectedRow?.id);
-  }, []);
+  console.log(selectedRow)
 
   useEffect(() => {
-    getCitizenLands(citizenId)
+    getCitizenLands(selectedRow?.id)
     .then((res) => {
         const data1 = [];
         res.data.data.map((land) => {
@@ -90,7 +87,7 @@ export default function SimpleDialog(props) {
       .catch((err) => {
         console.log(err);
       });
-  }, [rows, submitted]);
+  }, [selectedRow]);
 
   const handleClose = () => {
     onClose(selectedValue);

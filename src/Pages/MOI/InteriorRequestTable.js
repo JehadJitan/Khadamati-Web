@@ -58,7 +58,6 @@ const columns = [
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open, selectedRow } = props;
-  console.log(selectedRow?.citizenId);
   const [currentImage, setCurrentImage] = useState("");
   const [newImage, setNewImage] = useState("");
 
@@ -70,7 +69,6 @@ function SimpleDialog(props) {
     getCurrentImage(selectedRow?.citizenId)
       .then((res) => {
         setCurrentImage(res.data.data);
-        console.log(currentImage);
       })
       .catch((err) => {
         console.log(err);
@@ -156,6 +154,7 @@ function SimpleDialog(props) {
             <input
               size="19"
               type="text"
+              value={selectedRow?.profession}
               readOnly
               style={{ direction: "rtl", marginLeft: "20px" }}
             ></input>
@@ -176,7 +175,6 @@ function SimpleDialog(props) {
                 src={`data:image/jpeg;base64,${currentImage}`}
               ></img>
             </Column>
-            {console.log(currentImage)}
             <Column>
               <h3 style={{ textAlign: "center", marginBottom: 15 }}>
                 الصورة الشخصية القديمة
@@ -227,7 +225,6 @@ export default function InteriorRequestTable() {
   const handleClickOpen = () => {
     if (selected) {
       console.log("Should view request");
-      console.log(data);
       setOpen(true);
       setSelected(false);
     } else {
