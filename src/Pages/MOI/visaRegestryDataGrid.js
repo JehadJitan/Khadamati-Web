@@ -77,6 +77,7 @@ export default function FullFeaturedCrudGrid() {
     getAllVisits({})
       .then((res) => {
         const data1 = [];
+        console.log(res.data.data);
         res.data.data.map((travel) => {
           if(travel.backDate !== undefined){
             travel.backDate = travel.backDate.substring(0, 10);
@@ -85,10 +86,10 @@ export default function FullFeaturedCrudGrid() {
           data1.push(travel);
         });
         setData([
-          ...data1.map(({ id, ...res }) => ({
+          ...data1.map(({ id, citizenId, ...res }) => ({
             ...res,
-            citizenId: id,
-            id: res._id ?? id,
+            userId: citizenId,
+            id: res.citizenId ?? citizenId,
           })),
         ]);
       })
@@ -202,7 +203,7 @@ export default function FullFeaturedCrudGrid() {
       headerAlign: "center",
     },
     {
-      field: "citizenId",
+      field: "userId",
       headerName: "رقم الجواز",
       width: 150,
       editable: true,

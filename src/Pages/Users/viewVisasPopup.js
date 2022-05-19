@@ -21,7 +21,7 @@ const ParentDiv = styled.div`
 
 const columns = [
   {
-    field: "id",
+    field: "userId",
     headerName: "رقم الجواز",
     sortable: true,
     width: 150,
@@ -74,9 +74,10 @@ export default function SimpleDialog(props) {
   }, []);
 
   useEffect(() => {
-    getCitizenVisits2(citizenId2)
+    getCitizenVisits2(selectedRow?.id)
       .then((res) => {
         console.log(res);
+        console.log(res.data.data);
         const data1 = [];
         res.data.data.map((visas) => {
           if (visas.backDate !== undefined) {
@@ -88,15 +89,15 @@ export default function SimpleDialog(props) {
         setData([
           ...data1.map(({ id, ...res }) => ({
             ...res,
-            id: id,
-            id: res._id ?? id,
+            userId: citizenId,
+            id: res.citizenId ?? citizenId,
           })),
         ]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [rows, submitted]);
+  }, [selectedRow]);
 
   const handleClose = () => {
     onClose(selectedValue);

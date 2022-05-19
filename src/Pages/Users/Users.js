@@ -115,6 +115,16 @@ export default function Users() {
     }
   };
 
+  const viewVisas = () => {
+    if (selected) {
+      console.log("Should view visas");
+      console.log(data);
+      setOpenVisas(true);
+      setSelected(false);
+    } else {
+      console.log("Select row to view visas for");
+    }
+  }
   const handleClose = (value) => {
     setOpen(false);
   };
@@ -128,15 +138,6 @@ export default function Users() {
     console.log(req[0]);
   };
 
-  const viewVisas = () => {
-    if (selected) {
-      console.log("Should view visas");
-      setOpenVisas(true);
-      setSelected(false);
-    } else {
-      console.log("Select row to view visas for");
-    }
-  }
 
   function activateAccount() {
     if (selected) {
