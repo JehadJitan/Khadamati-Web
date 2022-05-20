@@ -6,7 +6,11 @@ import Dialog from "@mui/material/Dialog";
 import styled from "styled-components";
 import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
 import {getCurrentImage} from "../../shared/api";
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 const Row = styled.div`
   display: flex;
   justify-content: end;
@@ -81,6 +85,51 @@ export default function SimpleDialog(props) {
       });
   }, [selectedRow]);
 
+  const downloadPdf = () => {
+    const pdfImage = `data:image/jpeg;base64,${currentImage}`;
+    const doc = new jsPDF();
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211,24,24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "تفاصيل حساب مواطن", "right");
+    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    doc.addImage(pdfImage, 'JPEG', 70, 40, 80, 80);
+    doc.autoTable({
+      head: [
+        [
+          "البريد الالكتروني",
+          "رقم الهاتف",
+          "مكان الولادة",
+          "تاريخ الولادة",
+          "اسم الأم",
+          "الجنس",
+          "رقم الهوية",
+          "اسم المواطن",
+        ],
+      ],
+      body: [
+        [
+          props?.emailAddress,
+          props?.phoneNumber,
+          props?.placeOfBirth,
+          props?.birthDate,
+          props?.motherName,
+          props?.gender,
+          props?.idNumber,
+          props?.fullName,
+        ],
+      ],
+      // body: data.phone,
+      styles: { font: "Amiri",halign: "center"},
+      margin: {
+        top: 130,
+      },
+      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+    });
+    doc.save("Citizen-Info.pdf");
+  };
+
   return (
     <Dialog maxWidth={"xl"} onClose={handleClose} open={open}>
       <InsideDivTitle>
@@ -141,6 +190,10 @@ export default function SimpleDialog(props) {
           </ParentDiv>
         </ListItem>
       </List>
+      <PrintIcon
+              onClick={downloadPdf}
+              style={{ marginTop: "7px" }}
+            ></PrintIcon>
     </Dialog>
   );
 }
