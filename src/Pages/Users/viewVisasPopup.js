@@ -76,8 +76,6 @@ export default function SimpleDialog(props) {
   useEffect(() => {
     getCitizenVisits2(selectedRow?.id)
       .then((res) => {
-        console.log(res);
-        console.log(res.data.data);
         const data1 = [];
         res.data.data.map((visas) => {
           if (visas.backDate !== undefined) {
@@ -90,14 +88,14 @@ export default function SimpleDialog(props) {
           ...data1.map(({ id, ...res }) => ({
             ...res,
             userId: citizenId,
-            id: res.citizenId ?? citizenId,
+            id: res.citizenId ?? id,
           })),
         ]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [selectedRow]);
+  }, [selectedRow, citizenId]);
 
   const handleClose = () => {
     onClose(selectedValue);

@@ -8,6 +8,11 @@ import {
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { editCovidStatus, getCitizens } from "../../shared/api";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 
 const columns = [
   {
@@ -104,6 +109,52 @@ export default function CovidStatus() {
     }
   };
 
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211,24,24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "في فلسطين COVID-19 نتيجة فاحصين", "right");
+    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    console.log(data[0].id);
+    console.log(data);
+    doc.autoTable({
+      head: [
+        [
+          "الحالة",
+          "رقم الهاتف",
+          "رقم الهوية",
+          "الجنس",
+          "إسم المواطن",
+        ],
+      ],
+      body: [
+        [
+          data[0].covidStatus,
+          data[0].phone,
+          data[0].identity_id,
+          data[0].gender,
+          data[0].name,
+        ],
+        [
+          data[1].covidStatus,
+          data[1].phone,
+          data[1].identity_id,
+          data[1].gender,
+          data[1].name,
+        ],
+      ],
+      // body: data.phone,
+      styles: { font: "Amiri",halign: "center"},
+      margin: {
+        top: 35,
+      },
+      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+    });
+    doc.save("Covid-Results.pdf");
+  };
+
   return (
     <>
       <TitleDiv>
@@ -150,6 +201,10 @@ export default function CovidStatus() {
           >
             سليم
           </Button>
+          <PrintIcon
+            onClick={downloadPdf}
+            style={{ marginTop: "7px" }}
+          ></PrintIcon>
         </Stack>
       </StyledTable>
     </>

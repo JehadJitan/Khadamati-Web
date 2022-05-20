@@ -10,6 +10,11 @@ import Button from "@mui/material/Button";
 import { editStatus, getCitizens } from "../../shared/api";
 import ViewAccountPopUp from "./viewAccountPopup";
 import ViewVisasPopUp from "./viewVisasPopup";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 
 const columns = [
   {
@@ -124,7 +129,7 @@ export default function Users() {
     } else {
       console.log("Select row to view visas for");
     }
-  }
+  };
   const handleClose = (value) => {
     setOpen(false);
   };
@@ -137,7 +142,6 @@ export default function Users() {
     setSelectedRow(req[0]);
     console.log(req[0]);
   };
-
 
   function activateAccount() {
     if (selected) {
@@ -170,6 +174,58 @@ export default function Users() {
     }
   }
 
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211,24,24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "أسماء المستخدمين", "right");
+    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    console.log(data[0].id);
+    console.log(data);
+    doc.autoTable({
+      head: [
+        [
+          "رقم الهاتف",
+          "تاريخ الولادة",
+          "مكان الولادة",
+          "إسم الأم",
+          "رقم الهوية",
+          "الجنس",
+          "الإسم الكامل",
+        ],
+      ],
+      body: [
+        [
+          data[0].phone,
+          data[0].birthDate,
+          data[0].placeOfBirth,
+          data[0].motherName,
+          data[0].id,
+          data[0].gender,
+          data[0].name,
+        ],
+        [
+          data[1].phone,
+          data[1].birthDate,
+          data[1].placeOfBirth,
+          data[1].motherName,
+          data[1].id,
+          data[1].gender,
+          data[1].name,
+        ],
+      ],
+      // body: data.phone,
+      styles: { font: "Amiri",halign: "center"},
+      margin: {
+        top: 35,
+      },
+      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+    });
+    doc.save("users.pdf");
+  };
+
   return (
     <>
       <TitleDiv>
@@ -194,14 +250,6 @@ export default function Users() {
           />
         </div>
         <Stack direction="row" style={{ marginTop: "20px" }}>
-        <Button
-            onClick={viewVisas}
-            variant="contained"
-            color="secondary"
-            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
-          >
-            عرض تأشيرات السفر
-          </Button>
           <Button
             onClick={handleClickOpen}
             variant="contained"
@@ -219,6 +267,14 @@ export default function Users() {
             حذف حساب
           </Button>
           <Button
+            onClick={viewVisas}
+            variant="contained"
+            color="secondary"
+            style={{ marginLeft: "25px", fontFamily: "Almarai" }}
+          >
+            عرض تأشيرات السفر
+          </Button>
+          <Button
             onClick={deactivateAccount}
             variant="contained"
             color="error"
@@ -234,6 +290,10 @@ export default function Users() {
           >
             تفعيل حساب
           </Button>
+          <PrintIcon
+            onClick={downloadPdf}
+            style={{ marginTop: "7px" }}
+          ></PrintIcon>
         </Stack>
       </StyledTable>
       <ViewAccountPopUp

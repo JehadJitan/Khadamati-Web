@@ -14,6 +14,8 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.26.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.23",
     "mdbreact": "^5.2.0",
     "react": "^17.0.2",
     "react-circular-progressbar": "^2.0.4",

@@ -8,6 +8,11 @@ import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
 import { DataGrid } from "@mui/x-data-grid";
 import { StyledTable } from "../../Components/Divs/StyledDivs";
 import { getAllLands, getCitizenLands } from "../../shared/api";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 
 const ParentDiv = styled.div`
   width: 100%;
@@ -93,6 +98,47 @@ export default function SimpleDialog(props) {
     onClose(selectedValue);
   };
 
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211,24,24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "قائمة أراضي المواطن", "right");
+    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    console.log(data[0].id);
+    console.log(data);
+    doc.autoTable({
+      head: [
+        [
+          "تاريخ التسجيل",
+          "المساحة",
+          "رقم القطعة",
+          "رقم الحوض",
+          "العنوان",
+          "إسم المالك",
+        ],
+      ],
+      body: [
+        [
+          data[0].submitDate,
+          data[0].totalArea,
+          data[0].pieceId,
+          data[0].hodId,
+          data[0].address,
+          data[0].owner,
+        ],
+      ],
+      // body: data.phone,
+      styles: { font: "Amiri",halign: "center"},
+      margin: {
+        top: 35,
+      },
+      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+    });
+    doc.save("Citizen-Lands.pdf");
+  };
+
   return (
     <Dialog maxWidth={"xl"} onClose={handleClose} open={open}>
       <InsideDivTitle>
@@ -116,6 +162,10 @@ export default function SimpleDialog(props) {
           </ParentDiv>
         </ListItem>
       </List>
+      <PrintIcon
+              onClick={downloadPdf}
+              style={{ marginTop: "7px" }}
+            ></PrintIcon>
     </Dialog>
   );
 }

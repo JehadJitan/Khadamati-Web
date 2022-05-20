@@ -14,6 +14,11 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Dialog from "@mui/material/Dialog";
 import styled from "styled-components";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 
 const Row = styled.div`
   display: flex;
@@ -248,6 +253,43 @@ export default function InteriorRequestTable() {
     setSelectedRow(req[0]);
   };
 
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211,24,24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "طلبات سلطة الأراضي", "right");
+    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    console.log(data[0].id);
+    console.log(data);
+    doc.autoTable({
+      head: [
+        [
+          "الحالة",
+          "تاريخ الطلب",
+          "الخدمة",
+          "رقم الهوية",
+        ],
+      ],
+      body: [
+        [
+          data[0].status,
+          data[0].date,
+          data[0].service,
+          data[0].citizenId,
+        ],
+      ],
+      // body: data.phone,
+      styles: { font: "Amiri",halign: "center"},
+      margin: {
+        top: 35,
+      },
+      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+    });
+    doc.save("MOP-Requests.pdf");
+  };
+
   return (
     <>
       <TitleDiv>
@@ -276,6 +318,10 @@ export default function InteriorRequestTable() {
           >
             عرض الطلب
           </Button>
+          <PrintIcon
+            onClick={downloadPdf}
+            style={{ marginTop: "7px" }}
+          ></PrintIcon>
           <SimpleDialog
             selectedRow={selectedRow}
             open={open}
