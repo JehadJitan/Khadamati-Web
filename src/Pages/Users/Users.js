@@ -216,7 +216,6 @@ export default function Users() {
           data[1].name,
         ],
       ],
-      // body: data.phone,
       styles: { font: "Amiri",halign: "center"},
       margin: {
         top: 35,

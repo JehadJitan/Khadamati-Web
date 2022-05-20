@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Dialog from "@mui/material/Dialog";
 import styled from "styled-components";
 import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
-import {getCurrentImage} from "../../shared/api";
+import { getCurrentImage } from "../../shared/api";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import webFavicon from "../../Components/Fonts/webLogo4.png";
@@ -88,13 +88,19 @@ export default function SimpleDialog(props) {
   const downloadPdf = () => {
     const pdfImage = `data:image/jpeg;base64,${currentImage}`;
     const doc = new jsPDF();
-    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.rect(
+      5,
+      5,
+      doc.internal.pageSize.width - 10,
+      doc.internal.pageSize.height - 10,
+      "S"
+    );
     doc.setFont("Amiri", "normal");
-    doc.setTextColor(211,24,24);
+    doc.setTextColor(211, 24, 24);
     doc.setFontSize(20);
     doc.text(200, 20, "تفاصيل حساب مواطن", "right");
-    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
-    doc.addImage(pdfImage, 'JPEG', 70, 40, 80, 80);
+    doc.addImage(webFavicon, "PNG", 10, 12, 40, 13);
+    doc.addImage(pdfImage, "JPEG", 70, 40, 80, 80);
     doc.autoTable({
       head: [
         [
@@ -120,12 +126,11 @@ export default function SimpleDialog(props) {
           props?.fullName,
         ],
       ],
-      // body: data.phone,
-      styles: { font: "Amiri",halign: "center"},
+      styles: { font: "Amiri", halign: "center" },
       margin: {
         top: 130,
       },
-      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+      headStyles: { halign: "center", fillColor: [211, 24, 24] },
     });
     doc.save("Citizen-Info.pdf");
   };
@@ -133,7 +138,6 @@ export default function SimpleDialog(props) {
   return (
     <Dialog maxWidth={"xl"} onClose={handleClose} open={open}>
       <InsideDivTitle>
-
         <h1>تفاصيل حساب مواطن</h1>
       </InsideDivTitle>
       <List sx={{ height: 550, width: 950 }}>
@@ -144,7 +148,7 @@ export default function SimpleDialog(props) {
                 src={`data:image/jpeg;base64,${currentImage}`}
                 alt="khadamatiLogo"
                 width={300}
-                style={{ "margin-bottom": "25px", 'border-radius': "50%" }}
+                style={{ "margin-bottom": "25px", "border-radius": "50%" }}
               />
               <span style={{ color: "#e7ecef" }}>
                 لتغيير الصورة الشخصية إضغط{" "}
@@ -190,10 +194,7 @@ export default function SimpleDialog(props) {
           </ParentDiv>
         </ListItem>
       </List>
-      <PrintIcon
-              onClick={downloadPdf}
-              style={{ marginTop: "7px" }}
-            ></PrintIcon>
+      <PrintIcon onClick={downloadPdf} style={{ marginTop: "7px" }}></PrintIcon>
     </Dialog>
   );
 }

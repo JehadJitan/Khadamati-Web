@@ -7,9 +7,7 @@ import styled from "styled-components";
 import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
 import { DataGrid } from "@mui/x-data-grid";
 import { StyledTable } from "../../Components/Divs/StyledDivs";
-import {
-  getCitizenVisits2,
-} from "../../shared/api";
+import { getCitizenVisits2 } from "../../shared/api";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import webFavicon from "../../Components/Fonts/webLogo4.png";
@@ -69,14 +67,8 @@ const columns = [
 
 export default function SimpleDialog(props) {
   const { onClose, selectedValue, open, selectedRow } = props;
-  const [rows, setRows] = useState([]);
   const [data, setData] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
   const [citizenId, setCitizenId] = useState([]);
-  const citizenId2 = selectedRow?.id;
-  useEffect(() => {
-    setCitizenId(selectedRow?.id);
-  }, []);
 
   useEffect(() => {
     getCitizenVisits2(selectedRow?.id)
@@ -92,7 +84,7 @@ export default function SimpleDialog(props) {
         setData([
           ...data1.map(({ id, ...res }) => ({
             ...res,
-            userId: citizenId,
+            userId: selectedRow?.id,
             id: res._id ?? citizenId,
           })),
         ]);
@@ -108,23 +100,23 @@ export default function SimpleDialog(props) {
 
   const downloadPdf = () => {
     const doc = new jsPDF();
-    doc.rect(5, 5, doc.internal.pageSize.width - 10, doc.internal.pageSize.height - 10, 'S');
+    doc.rect(
+      5,
+      5,
+      doc.internal.pageSize.width - 10,
+      doc.internal.pageSize.height - 10,
+      "S"
+    );
     doc.setFont("Amiri", "normal");
-    doc.setTextColor(211,24,24);
+    doc.setTextColor(211, 24, 24);
     doc.setFontSize(20);
     doc.text(200, 20, "قائمة تأشيرات المواطن", "right");
-    doc.addImage(webFavicon, 'PNG', 10, 12, 40, 13);
+    doc.addImage(webFavicon, "PNG", 10, 12, 40, 13);
     console.log(data[0].id);
     console.log(data);
     doc.autoTable({
       head: [
-        [
-          "تاريخ الرجوع",
-          "تاريخ الذهاب",
-          "الوجهة",
-          "نوع الجواز",
-          "رقم الجواز",
-        ],
+        ["تاريخ الرجوع", "تاريخ الذهاب", "الوجهة", "نوع الجواز", "رقم الجواز"],
       ],
       body: [
         [
@@ -150,11 +142,11 @@ export default function SimpleDialog(props) {
         ],
       ],
       // body: data.phone,
-      styles: { font: "Amiri",halign: "center"},
+      styles: { font: "Amiri", halign: "center" },
       margin: {
         top: 35,
       },
-      headStyles: { halign: "center", fillColor : [211, 24, 24]},
+      headStyles: { halign: "center", fillColor: [211, 24, 24] },
     });
     doc.save("Citizen-Visas.pdf");
   };
@@ -182,10 +174,7 @@ export default function SimpleDialog(props) {
           </ParentDiv>
         </ListItem>
       </List>
-      <PrintIcon
-              onClick={downloadPdf}
-              style={{ marginTop: "7px" }}
-            ></PrintIcon>
+      <PrintIcon onClick={downloadPdf} style={{ marginTop: "7px" }}></PrintIcon>
     </Dialog>
   );
 }
