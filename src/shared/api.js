@@ -24,6 +24,10 @@ export const getCitizens = async (data) => {
 };
 
 //////////////////////////////////////////////////////////////////////////
+export const getCitizen = async (data) => {
+  const res = await axios.get(`${API_BASE_URL}/citizen/${data}`);
+  return res;
+};
 
 export const getRowsLength = async (role) => {
   const res = await axios.get(`${API_BASE_URL}/employees/rowLength`);
@@ -82,8 +86,10 @@ export const editStatus = async (data) => {
 };
 
 export const editCovidStatus = async (data) => {
-    const res = await axios.post(`${API_BASE_URL}/citizen/status/covid`, { data });
-    return res;
+  const res = await axios.post(`${API_BASE_URL}/citizen/status/covid`, {
+    data,
+  });
+  return res;
 };
 
 export const acceptRequest = async (data) => {
@@ -164,7 +170,7 @@ export const addVisit = async (data) => {
 };
 
 export const getCitizenVisits = async (citizenId) => {
-  const res = await axios.get(`${API_BASE_URL}/citizen/visits/${ citizenId }`);
+  const res = await axios.get(`${API_BASE_URL}/citizen/visits/${citizenId}`);
   return res;
 };
 
@@ -206,3 +212,35 @@ export const getCitizenVisits2 = async (id) => {
   const res = await axios.get(`${API_BASE_URL}/citizen/visits/${id}`);
   return res;
 };
+export const saveNewBorn = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/newBorn`, {
+    data,
+  });
+  return res;
+};
+
+export const acceptNewIdenty = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/request/identy-card`, {
+    data,
+  });
+  return res;
+};
+
+export const activatePassport = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/request/issue-passport`, {
+    data,
+  });
+  return res;
+};
+
+// export const addVisit = async (data) => {
+//   const res = await axios.post(`${API_BASE_URL}/visit`, {
+//     data,
+//   });
+//   return res;
+// };
+
+// export const getAllVisits = async () => {
+//   const res = await axios.get(`${API_BASE_URL}/visits`);
+//   return res;
+// };
