@@ -5,6 +5,7 @@ import Dialog from "@mui/material/Dialog";
 import styled from "styled-components";
 import { InsideDivTitle } from "../../Components/Divs/StyledDivs";
 import Button from "@mui/material/Button";
+import { addNewTransfer, getCitizen } from "../../shared/api";
 
 const Label = styled.label`
   margin-left: 10px;
@@ -31,10 +32,26 @@ const Column = styled.div`
 `;
 
 export default function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
+  const { onClose, selectedValue, open, selectedRow, handlePopUp } = props;
   const handleClose = () => {
     onClose(selectedValue);
   };
+
+  const getNewOwnerName = () =>{
+        const secondOwnerid = document.getElementsByClassName("secondCitizen_id")[0].value;
+        console.log(secondOwnerid);
+        getCitizen(secondOwnerid)
+        .then((res) => {
+          const data1 = [];
+          console.log(res);
+          document.getElementsByClassName("secondCitizen_name")[0].value = res.data.data[0].name;
+
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+  }
 
   const sendApplication = (e) => {
     const firstCitizen_name =
@@ -51,9 +68,11 @@ export default function SimpleDialog(props) {
     const totalArea = document.getElementsByClassName("totalArea")[0].value;
     const totalPrice = document.getElementsByClassName("totalPrice")[0].value;
     const submitDate = document.getElementsByClassName("submitDate")[0].value;
+    console.log(selectedRow._id);
+    const pieceUniqueId=selectedRow._id;
 
     const newOwnership = {
-      // _id: id,
+      pieceUniqueId: pieceUniqueId,
       oldOwner: firstCitizen_name,
       oldOwnerId : firstCitizen_id,
       owner: secondCitizen_name,
@@ -66,22 +85,21 @@ export default function SimpleDialog(props) {
       submitDate: submitDate,
     };
     console.log(newOwnership);
+    console.log(selectedRow);
 
-  //   try {
-  //     await addNewBorn(newBorn)
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   alert("تم تقديم طلب إصدار شهادة ميلاد بنجاح");
-  //   setSubmitted(true);
-  // }
-
+    addNewTransfer(newOwnership)
+    .then((res) => {
+      console.log(res);
+      if (res.data.success) {
+        alert("Done");
+        handlePopUp(true);
+        handleClose();
+        // window.location.reload(false);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
   return (
@@ -133,6 +151,7 @@ export default function SimpleDialog(props) {
             <Column>
               <Input
                 className="secondCitizen_id"
+                onBlur={getNewOwnerName}
                 type="text"
                 dir="rtl"
                 required

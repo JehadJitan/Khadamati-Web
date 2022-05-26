@@ -76,6 +76,7 @@ export default function FullFeaturedCrudGrid() {
   const [selectedRow, setSelectedRow] = useState();
   const [open, setOpen] = React.useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [popUp, setPopUp] = useState(false);
   const [id, setId] = useState();
 
   useEffect(() => {
@@ -98,7 +99,7 @@ export default function FullFeaturedCrudGrid() {
       .catch((err) => {
         console.log(err);
       });
-  }, [rows]);
+  }, [rows, open]);
 
   const apiRef = useGridApiRef();
 
@@ -112,6 +113,10 @@ export default function FullFeaturedCrudGrid() {
     } else {
       console.log("Select row to view");
     }
+  };
+
+  const handlePopUp = (value) => {
+    setPopUp(value);
   };
 
   const handleClose = (value) => {
@@ -365,6 +370,7 @@ export default function FullFeaturedCrudGrid() {
       </ListItem>
       <ChangeOwnershipPopUp
         selectedRow={selectedRow}
+        handlePopUp={handlePopUp}
         open={open}
         onClose={handleClose}
         address={selectedRow?.address}

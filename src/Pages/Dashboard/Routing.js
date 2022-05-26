@@ -30,6 +30,8 @@ import Visas from "../MOI/visaRegistry";
 import CovidStatus from "../MOH/CovidStatus";
 import AddProperty from "../MOP/AddProperty";
 import AddRealEstate from "../MOP/AddRealEstate";
+import testingPage from "../Testing/testingPage";
+import changePropHistory from "../MOP/transferLandHistory";
 
 const Routing = () => {
   return (
@@ -169,7 +171,13 @@ const Routing = () => {
             exact
             component={AddRealEstate}
           />
+                              <Route
+            path="/DB/MinistryOfLandMark/changePropHistory"
+            exact
+            component={changePropHistory}
+          />
           <Route path="/DB/users" exact component={Users} />
+          <Route path="/DB/testing" exact component={testingPage} />
           <Route path="/" exact component={LogIn} />
         </Switch>
       </Router>

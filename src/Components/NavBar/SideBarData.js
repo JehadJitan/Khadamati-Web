@@ -8,7 +8,7 @@ import * as HiIcons from 'react-icons/hi';
 import * as BsIcons from 'react-icons/bs';
 import * as MdIcons from 'react-icons/md';
 import * as IoIcons from 'react-icons/io';
-import * as ImIcons from 'react-icons/im';
+import * as SiIcons from 'react-icons/si';
 export const SideBarData = [
     // {
     //     title: 'حسابي',
@@ -198,12 +198,22 @@ export const SideBarData = [
                 path: '/DB/MinistryOfLandMark/property',
                 icon: <MdIcons.MdPageview />,
             },
+            {
+                title: 'أرشيف نقليات',
+                path: '/DB/MinistryOfLandMark/changePropHistory',
+                icon: <RiIcons.RiExchangeFill />,
+            },
         ]
     },
     {
         title: 'عن النظام',
         path: '/DB/about',
         icon: <FcIcons.FcAbout />
+    },
+    {
+        title: 'Testing Page',
+        path: '/DB/testing',
+        icon: <SiIcons.SiTestin />
     },
     {
         title: 'تسجيل الخروج',

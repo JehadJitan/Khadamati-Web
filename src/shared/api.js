@@ -233,6 +233,26 @@ export const activatePassport = async (data) => {
   return res;
 };
 
+export const jawwalPay = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/payment/jawalWeb`, {
+    data,
+  });
+  return res;
+};
+
+///////////////////////////////////////////////////////////////////////////////
+
+export const addNewTransfer = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/addNewTransfer`, { data });
+  return res;
+};
+
+export const getTransferredLands = async (data) => {
+  const res = await axios.get(`${API_BASE_URL}/transferredLands`);
+  return res;
+};
+
+
 // export const addVisit = async (data) => {
 //   const res = await axios.post(`${API_BASE_URL}/visit`, {
 //     data,
