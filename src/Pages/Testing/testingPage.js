@@ -110,6 +110,27 @@ function DashboardContent() {
       });
   }, [rows]);
 
+  const [clicked, setClicked] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const clickedNow = () =>{
+    setClicked(true);
+    setFirstName(document.getElementById("name").value);
+    console.log("clicked");
+    console.log(firstName);
+    alert(firstName + " clicked me");
+  }
+
+  const arr = [1,2,3,4];
+  const [count, setCount] = useState(0);
+
+  const decrementCount = () =>{
+    setCount(prevCount => prevCount-1);
+  }
+
+  const incrementCount = () =>{
+    setCount(prevCount => prevCount+1);
+  }
+
   return (
     <>
       <iframe
@@ -119,6 +140,19 @@ function DashboardContent() {
         frameborder="0"
         allowfullscreen
       ></iframe>
+      <div>
+        <label>Name</label>
+        <input id="name"></input>
+        <button onClick={clickedNow}>Click Me</button>
+      </div>
+      <button onClick={decrementCount}>-</button>
+      <span>{count}</span>
+      <button onClick={incrementCount}>+</button>
+      {arr.map((request) => {
+          return (
+            <div>hi</div>
+            );
+          })}
     </>
   );
 }

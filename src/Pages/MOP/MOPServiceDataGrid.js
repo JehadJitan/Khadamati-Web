@@ -20,7 +20,7 @@ function EditToolbar(props) {
   const { apiRef } = props;
 
   const handleClick = () => {
-    const type = "MOP";
+    const type = "MOL";
     const id = randomId();
     apiRef.current.updateRows([{ id, isNew: true, type }]);
     apiRef.current.setRowMode(id, "edit");
@@ -68,7 +68,7 @@ export default function FullFeaturedCrudGrid() {
   const [edited, setEdited] = useState(false);
 
   useEffect(() => {
-    getService("MOP")
+    getService("MOL")
       .then((res) => {
         const data1 = [];
         res.data.data.map((service) => {

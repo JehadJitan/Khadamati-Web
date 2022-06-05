@@ -213,7 +213,7 @@ export default function InteriorRequestTable() {
                 <StyledLabel>المساحة الإجمالية:</StyledLabel>
               </StyledColumn>
               <StyledColumn>
-                <StyledLabelText>{request.totalPrice}₪</StyledLabelText>
+                <StyledLabelText>{request.totalPrice}JD</StyledLabelText>
                 <StyledLabelText>{request.totalArea}m²</StyledLabelText>
               </StyledColumn>
               <StyledColumn>

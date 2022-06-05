@@ -32,7 +32,7 @@ import AddProperty from "../MOP/AddProperty";
 import AddRealEstate from "../MOP/AddRealEstate";
 import testingPage from "../Testing/testingPage";
 import changePropHistory from "../MOP/transferLandHistory";
-
+import DocumentAccendent from "../MOI/documentAccident";
 const Routing = () => {
   return (
     <>
@@ -135,6 +135,11 @@ const Routing = () => {
             path="/DB/MinistryOfInteriorAffairs/birthCertificate"
             exact
             component={NewBirthCertificate}
+          />
+                    <Route
+            path="/DB/MinistryOfInteriorAffairs/accidents"
+            exact
+            component={DocumentAccendent}
           />
           <Route
             path="/DB/MinistryOfInteriorAffairs/visas"

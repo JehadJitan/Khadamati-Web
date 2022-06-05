@@ -252,6 +252,12 @@ export const getTransferredLands = async (data) => {
   return res;
 };
 
+////////////////////////////////////////////////////////////////////////////
+
+export const addNewAccident = async (data) => {
+  const res = await axios.post(`${API_BASE_URL}/newAccident`, { data });
+  return res;
+};
 
 // export const addVisit = async (data) => {
 //   const res = await axios.post(`${API_BASE_URL}/visit`, {

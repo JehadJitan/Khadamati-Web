@@ -61,6 +61,20 @@ export const StyledCertificate = styled.div`
     background-color: #ffffff;
 `;
 
+export const StyledAccident = styled.div`
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items:center;
+    margin:auto;
+    width:90%;
+    height:530px;
+    margin-top:30px;
+    box-shadow: 5px 10px 18px #888888;
+    background-color: #ffffff;
+`;
+
+
 export const StyledTable = styled.div`
     display:flex;
     flex-direction: column;

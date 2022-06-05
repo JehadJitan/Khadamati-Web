@@ -48,15 +48,20 @@ export const SideBarData = [
                 icon: <HiIcons.HiDocumentReport />,
             },
             {
+                title: 'تأشيرات سفر',
+                path: '/DB/MinistryOfInteriorAffairs/visas',
+                icon: <FaIcons.FaPassport />,
+            },
+            {
                 title: ' شهادة ميلاد',
                 path: '/DB/MinistryOfInteriorAffairs/birthCertificate',
                 icon: <HiIcons.HiDocumentText />,
             },
             {
-                title: 'تأشيرات سفر',
-                path: '/DB/MinistryOfInteriorAffairs/visas',
-                icon: <FaIcons.FaPassport />,
-            }
+                title: 'توثيق حادث',
+                path: '/DB/MinistryOfInteriorAffairs/accidents',
+                icon: <FaIcons.FaCarCrash />,
+            },
         ]
     },
     {
