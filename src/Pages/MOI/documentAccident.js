@@ -6,13 +6,20 @@ import {
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 import { addNewAccident } from "../../shared/api";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import webFavicon from "../../Components/Fonts/webLogo4.png";
+import Amiri from "../../Components/Fonts/Amiri-normal";
+import PrintIcon from "@mui/icons-material/Print";
 
 export const StyledView = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  align-items: center;
+  align-content: center;
   width: 100%;
   height: 500px;
   margin-top: 20px;
@@ -31,20 +38,12 @@ export const StyledColumn = styled.div`
 export const StyledRow = styled.div`
   display: flex;
   flex-direction: row;
-  margin-right: 50px;
 `;
 
 export const StyledLabel = styled.label`
   margin-bottom: 50px;
   color: #d31818;
-`;
-
-export const StyledTextInToolbar = styled.label`
-  //   font-size: 17px;
-  color: #d31818;
-  float: left;
-  margin-top: 20px;
-  margin-left: 20px;
+  font-size:17px;
 `;
 
 export const StyledLabelText = styled.label`
@@ -136,14 +135,65 @@ function DocumentAccendent() {
     }
   };
 
+  const downloadPdf = () => {
+    const doc = new jsPDF();
+    doc.rect(
+      5,
+      5,
+      doc.internal.pageSize.width - 10,
+      doc.internal.pageSize.height - 10,
+      "S"
+    );
+    doc.setFont("Amiri", "normal");
+    doc.setTextColor(211, 24, 24);
+    doc.setFontSize(20);
+    doc.text(200, 20, "تفاصيل حادث سير جديد", "right");
+    doc.addImage(webFavicon, "PNG", 10, 12, 40, 13);
+    doc.autoTable({
+      head: [
+        [
+          "الإصابات",
+          "التاريخ",
+          "المحافظة",
+          "سيارة المتضرر",
+          "سيارة المتسبب",
+          "رخصة المتضرر",
+          "رخصة المتسبب",
+          "هوية المتضرر",
+          "هوية المتسبب",
+        ],
+      ],
+      body: [
+        [
+          document.getElementById("injuries").value,
+          document.getElementById("date").value,
+          document.getElementById("city").value,
+          document.getElementById("affectedMan_carId").value,
+          document.getElementById("causedMan_carId").value,
+          document.getElementById("affectedMan_drivingId").value,
+          document.getElementById("causedMan_drivingId").value,
+          document.getElementById("affectedMan_id").value,
+          document.getElementById("causedMan_id").value,
+        ],
+      ],
+      styles: { font: "Amiri", halign: "center" },
+      margin: {
+        top: 50,
+      },
+      headStyles: { halign: "center", fillColor: [211, 24, 24] },
+    });
+    doc.save("Accident-Document.pdf");
+  };
+
   return (
     <>
       <TitleDiv>
         <ButtomTitleLine>
-          <h1>توثيق حادث جديد</h1>
+          <h1>توثيق حادث سير جديد</h1>
         </ButtomTitleLine>
       </TitleDiv>
       <StyledView>
+        <StyledRow style={{"marginTop" : '10px'}}>
         <StyledColumn>
           <StyledLabel>رقم هوية المتسبب:</StyledLabel>
           <StyledLabel>رقم هوية المتضرر:</StyledLabel>
@@ -180,14 +230,18 @@ function DocumentAccendent() {
           <StyledInputText dir="rtl" id="weatherCondition" type="text" required></StyledInputText>
           <StyledInputText dir="rtl" id="injuries" type="text" required></StyledInputText>
         </StyledColumn>
+        </StyledRow>
+        <StyledRow>
         <Button
           onClick={sendApplication}
           variant="contained"
-          color="success"
-          style={{ "font-family": "Almarai", "margin-top": "350px"}}
-        >
+          color="error"
+          style={{ "marginLeft" : "20px", "fontFamily": "Almarai", "marginTop": "30px"}}
+          >
           توثيق الحادث
         </Button>
+        <PrintIcon onClick={downloadPdf} style={{ marginTop: "37px" }}></PrintIcon>
+        </StyledRow>
       </StyledView>
     </>
   );
